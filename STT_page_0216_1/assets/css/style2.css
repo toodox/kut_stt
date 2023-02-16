@@ -1,0 +1,104 @@
+body {
+    min-height: 75rem;
+    padding-top: 4.5rem;
+}
+
+.head_logo {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+}
+
+.mainposter img {
+    width: 100%;
+}
+
+
+/*구매 박스*/
+.tbcell {
+    display: table-cell;
+    max-height: 200px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.product_purchase {
+    max-width: 1180px;
+    width: 100%;
+    display: table;
+    border-spacing: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: beige;
+    border-radius: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.product {
+    border-right: solid black 1px;
+}
+
+.product h3 {
+    font-size: 1.5rem;
+}
+
+.price {
+    font-size: 1.5rem;
+}
+
+.pr_info {
+    font-size: 0.8rem;
+}
+
+.w-btn-red-outline {
+    border: 3px solid #ff5f2e;
+    color: #6e6e6e;
+}
+
+.w-btn-outline {
+    position: relative;
+    background-color: white;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.w-btn-outline:hover {
+    letter-spacing: 2px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.w-btn-red-outline:hover {
+    background-color: #ff5f2e;
+    color: #e1eef6;
+}
+
+.w-btn-outline:active {
+    transform: scale(1.5);
+}
+
+@media (max-width: 921px) {
+    .collapse {
+        font-size: 0.7rem;
+    }
+
+}
+
+@media (max-width: 767px) {
+    body {
+        padding-top: 7.0rem;
+    }
+}
+
+@media (max-width: 479px) {
+    body {
+        padding-top: 10.0rem;
+    }
+}
