@@ -82,3 +82,21 @@ body {
     max-width: 1500px;
     margin-right: auto;
 }
+@media (max-width: 919px) {
+    .collapse {
+        font-size: 0.9rem;
+    }
+
+}
+@media (max-width: 866px) {
+    .collapse {
+        font-size: 0.8rem;
+    }
+
+}
+@media (max-width: 805px) {
+    .collapse {
+        font-size: 0.7rem;
+    }
+
+}
