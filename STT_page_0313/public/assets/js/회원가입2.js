@@ -193,12 +193,12 @@ elSubmitButton.onclick = function() {
 //-------- 유효성 검사에서 사용하는 함수다 ---------//
 
 // [아이디] 길이가 4자 이상이면 true를 리턴하는 함수
-function isMoreThan4Length(value) {
-  // 아이디 입력창에 사용자가 입력을 할 때 
-  // 글자 수가 4개이상인지 판단한다.
-  // 글자가 4개 이상이면 success메세지가 보여야 한다.
-  return value.length >= 4;
-}
+// function isMoreThan4Length(value) {
+//   // 아이디 입력창에 사용자가 입력을 할 때 
+//   // 글자 수가 4개이상인지 판단한다.
+//   // 글자가 4개 이상이면 success메세지가 보여야 한다.
+//   return value.length >= 4;
+// }
 
 // [아이디] '영문, 숫자'만 있으면 true를 리턴하는 함수
 function isUserNameChar(username) {
@@ -213,7 +213,7 @@ function isUserNameChar(username) {
 
 // [비밀번호] 길이가 10자 이상이면 true를 리턴하는 함수
 function isMoreThan10Length (password) {
-  return password.length >= 10;
+  return password.length >= 8;
 }
 
 // [비밀번호] 영문이 있으면 true를 리턴하는 함수
