@@ -204,7 +204,7 @@ function isMoreThan4Length(value) {
 
 // [아이디] '영문, 숫자'만 있으면 true를 리턴하는 함수
 function isUserNameChar(username) {
-  var letters = /^[A-Za-z0-9]+$/;
+  var letters = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
 
   if( username.match(letters) ) {
     return true;
