@@ -17,6 +17,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
+
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" 
     integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" 
     crossorigin="anonymous"></script>
@@ -32,12 +33,12 @@
             <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
+                <input type="email" class="form-control" id="username" placeholder="name@example.com">
+                <label for="username">Email address</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+                <label for="password">Password</label>
             </div>
 
             <div class="checkbox mb-3">
@@ -45,7 +46,7 @@
                     <input type="checkbox" value="remember-me"> Remember me
                 </label>
             </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit" id="login">Sign in</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit" id="signInButton">Sign in</button>
 
             <footer class="py-3 my-4">
                 <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
@@ -54,45 +55,56 @@
         </form>
     </main>
     <script>
-        $(document).ready(function(){
-        
-        //가입버튼 눌렀을 때
-        $(document).on('click','.login',function(){
-        
-        //제이쿼리 선택자와 val() 함수를 이용해서 이메일,비밀번호 값을 가져온다. 
-        var email = $('#email').val();
-        var password = $('#password').val();
-        alert("로그인 버튼 눌렸음" + email +":"+ password);
-        
-        //파이어베이스 이메일 로그인 함수
-        firebaseEmailAuth.signInWithEmailAndPassword(email, password)
-       .then(function(firebaseUser) {
-     
-           //성공하면 firebaseUser에 유저 정보 값이 담겨 넘어온다.
-           loginSuccess(firebaseUser);
-     
-       })
-      .catch(function(error) {
-           // 실패했을 때 에러 처리
-           alert(error);
-           alert("로그인 실패");
-      });
-        
-          });
-        });
-        
-        //로그인 성공했을 때
-        function loginSuccess(firebaseUser){
-           alert("로그인 성공");
-     
-        //로그인 성공한 유저 id 확인해 보기 - firebase database에 접근해서 데이터 조회 하는 함수
-       firebaseDatabase.ref("users/"+firebaseUser.uid).once('value').then(function(snapshot){
-            //alert(snapshot.val().name)
-        });
-     
-        //메인 페이지로 이동
-        window.location.href = "/index.html"
-        }
+
+        var auth = firebase.auth();
+
+        // document.getElementById('signUpButton').addEventListener('click', (event) => {
+        //     event.preventDefault()
+        //     const signUpEmail = document.getElementById('signUpEmail').value
+        //     const signUpPassword = document.getElementById('signUpPassword').value
+
+        //     createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
+        //         .then((userCredential) => {
+        //             console.log(userCredential)
+        //             // Signed in
+        //             const user = userCredential.user;
+        //             // ...
+        //         })
+        //         .catch((error) => {
+        //             console.log('error')
+        //             const errorCode = error.code;
+        //             const errorMessage = error.message;
+        //             // ..
+        //         });
+
+        // })
+
+        document.getElementById('signInButton').addEventListener('click', (event) => {
+            event.preventDefault()
+            if(!username || !password){
+                alert("공백은 제출할 수 없습니다.")
+            }
+            var signInEmail = document.getElementById('username').value
+            var signInPassword = document.getElementById('password').value
+
+            auth.signInWithEmailAndPassword(signInEmail, signInPassword)
+                .then((userCredential) => {
+                    // Signed in
+                    console.log('로그인 성공')
+                    alert("로그인 성공");
+                    console.log(userCredential)
+                    const user = userCredential.user;
+                    window.location.href = '/index.html'
+                    // ...
+                })
+                .catch((error) => {
+                    console.log('로그인 실패')
+                    alert("로그인 실패");
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                });
+
+        })
     </script>
 </body>
 
