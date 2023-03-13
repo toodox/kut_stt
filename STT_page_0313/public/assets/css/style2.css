@@ -1,0 +1,46 @@
+body {
+    min-height: 75rem;
+    padding-top: 4.5rem;
+}
+
+.head_logo {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+}
+
+.mainposter img {
+    width: 100%;
+}
+
+
+
+@media (max-width: 767px) {
+    body {
+        padding-top: 7.0rem;
+    }
+}
+
+@media (max-width: 479px) {
+    body {
+        padding-top: 10.0rem;
+    }
+}
+@media (max-width: 919px) {
+    .collapse {
+        font-size: 0.9rem;
+    }
+
+}
+@media (max-width: 866px) {
+    .collapse {
+        font-size: 0.8rem;
+    }
+
+}
+@media (max-width: 805px) {
+    .collapse {
+        font-size: 0.7rem;
+    }
+
+}
