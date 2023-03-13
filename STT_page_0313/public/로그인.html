@@ -33,12 +33,12 @@
             <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
+                <input type="email" class="form-control" id="username" placeholder="name@example.com">
+                <label for="username">Email address</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+                <label for="password">Password</label>
             </div>
 
             <div class="checkbox mb-3">
@@ -56,7 +56,7 @@
     </main>
     <script>
 
-        const auth = getAuth();
+        var auth = firebase.auth();
 
         // document.getElementById('signUpButton').addEventListener('click', (event) => {
         //     event.preventDefault()
@@ -81,11 +81,16 @@
 
         document.getElementById('signInButton').addEventListener('click', (event) => {
             event.preventDefault()
-            const signInEmail = document.getElementById('email').value
-            const signInPassword = document.getElementById('password').value
-            signInWithEmailAndPassword(auth, signInEmail, signInPassword)
+            if(!username || !password){
+                alert("공백은 제출할 수 없습니다.")
+            }
+            var signInEmail = document.getElementById('username').value
+            var signInPassword = document.getElementById('password').value
+
+            auth.signInWithEmailAndPassword(signInEmail, signInPassword)
                 .then((userCredential) => {
                     // Signed in
+                    console.log('로그인 성공')
                     alert("로그인 성공");
                     console.log(userCredential)
                     const user = userCredential.user;
@@ -97,7 +102,6 @@
                     alert("로그인 실패");
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    window.location.href = '/로그인.html'
                 });
 
         })
