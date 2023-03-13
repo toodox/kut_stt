@@ -25,7 +25,8 @@
     <script src="assets/js/firebaseset.js"></script>
     <script src="assets/js/main.js"></script>
     <!-- 파이어베이스 관련 스크립트 -->
-
+    <script src="assets/js/loginlogout.js"></script>
+    <!-- 로그인로그아웃버튼바뀌기 -->
     <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
         <div class="container-xxl">
             <a href="index.html" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -71,10 +72,10 @@
                         <a class="nav-link" href="질문등록.html">질문등록/관리</a>
                     </li>
                 </ul>
-                <span class="userinfo hidden">아마도?</span>
-                <form class="d-flex px-2">
-                    <a class="nav-link" href="로그인.html"><button type="button"
-                            class="btn btn-outline-primary me-2">Login</button></a>
+
+                <span class="userinfo hidden" id="userInfo">아마도?</span>
+                <form class="d-flex">
+                    <button type="button" class="btn btn-outline-primary me-2" id="loginbtn">Login</button></a>
                     <a href="회원가입2.html" class="nav-link"><button type="button"
                             class="btn btn-primary">Sign-up</button></a>
                 </form>
