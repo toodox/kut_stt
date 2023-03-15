@@ -69,7 +69,7 @@ window.onload = function() {
         pbfvnow + pbfvmin + pbfvmax + '></div>');
     });
     db.collection('questions').doc('users1_questions' + i).get().then((result) => {
-        $('#questions').html('<h1 id="Qcon">' + result.data().content + '</h1>');
+        $('#questions').html('<h1 id="Qcon">질문1. ' + result.data().content + '</h1>');
     });
     i ++;
 }
@@ -77,7 +77,7 @@ window.onload = function() {
 $('#send').click(function () {
     db.collection('questions').doc('users1_questions' + i).get().then((result) => {
         if (i - 1 < questionsLen) {
-            document.getElementById("Qcon").innerText=result.data().content;
+            document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
             i ++;
             var currP = 100 * (i-2) / questionsLen;
             $('#QProgress').html('<div ' + 
