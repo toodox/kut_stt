@@ -24,9 +24,10 @@
     <!-- 파이어베이스 관련 스크립트 -->
     <script src="assets/js/모의면접.js"></script>
     <!-- 파이어베이스 관련 스크립트 -->
+    <script src="assets/js/questions.js"></script>
     <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
         <div class="container-xxl">
-            <a href="index.html" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <a href="main4.html" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
                 <img src="assets/image/로고.png" class="head_logo" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -69,7 +70,7 @@
                 <form class="d-flex">
                     <a class="nav-link" href="로그인.html"
                     ><button type="button" class="btn btn-outline-primary me-2">Login</button></a>
-                    <a href="회원가입2.html" class="nav-link"><button type="button" class="btn btn-primary">Sign-up</button></a>
+                    <a href="회원가입1.html" class="nav-link"><button type="button" class="btn btn-primary">Sign-up</button></a>
                 </form>
             </div>
         </div>
@@ -102,15 +103,21 @@
                 </div>
             </div>
             <!--질문 진도 표시-->
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress" id="QProgress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                    role="progressbar" 
+                    style="width: 0%" 
+                    aria-valuenow="0" 
+                    aria-valuemin="0" 
+                    aria-valuemax="100">
+                </div>
             </div>
             <div class="card my-4 border-0">
-                <div class="card-body">
-                    <h1>
-                        질문1. 우리 학교 지원 동기는 무엇입니까?
+                <div class="card-body" id="questions">
+                    <!-- <h1> -->
+                        <!-- 질문1. 우리 학교 지원 동기는 무엇입니까? -->
                         <!-- 단순 h1형식으로 하는게 아니라 질문DB에서 따와서 불러와야 됨-->
-                    </h1>
+                    <!-- </h1> -->
                 </div>
             </div>
             <div class="card my-4 border-0">
@@ -123,7 +130,7 @@
                     </div>
                 </div>
             </div>
-            <textarea readonly class="form-control mt-2" id="content"></textarea>
+            <textarea class="form-control mt-2" id="content"></textarea>
             <div class="card my-4 border-0">
                 <div class="card-body text-end">
                     <button type="button" class="btn btn-primary float-end" id="send">다음 단계</button>
