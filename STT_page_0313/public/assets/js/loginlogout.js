@@ -1,6 +1,6 @@
-
+var user = firebase.auth().currentUser;
 $('#loginbtn').click(function(){
-  var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
+  // var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
   if(user){
     firebase.auth().signOut().then(function() { // signOut() 메소드 호출 시 then()을 사용하여 로그아웃 성공 시 처리할 작업을 추가합니다.
       alert("로그아웃 되었습니다.");
@@ -15,7 +15,7 @@ $('#loginbtn').click(function(){
 });
 
 firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
+    if (user!=null) {
       // 로그인 된 경우
       document.getElementById('loginbtn').innerHTML = 'LogOUT';
       document.getElementById('userInfo').innerHTML = user.displayName + '님 환영합니다!';
