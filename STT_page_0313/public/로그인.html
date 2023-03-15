@@ -91,17 +91,17 @@
                 .then((userCredential) => {
                     // Signed in
                     console.log('로그인 성공')
-                    alert("로그인 성공");
                     console.log(userCredential)
-                    const user = userCredential.user;
-                    window.location.href = '/index.html'
+                    var user = userCredential.user;
+                    alert("로그인 성공");
+                    window.location.href = 'index.html'
                     // ...
                 })
                 .catch((error) => {
                     console.log('로그인 실패')
                     alert("로그인 실패");
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
                 });
 
         })
