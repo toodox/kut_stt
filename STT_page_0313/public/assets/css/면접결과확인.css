@@ -1,0 +1,26 @@
+body {
+    min-height: 75rem;
+    padding-top: 10rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.head_logo {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+}
+
+hr {
+    margin-top: 0;
+}
+
+@media (max-width: 880px) {
+    .collapse {
+        font-size: 0.7rem;
+    }
+
+}
