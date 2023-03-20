@@ -7,9 +7,39 @@
     <title>STT모의 면접 서비스</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style3.css">
+
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 </head>
 
 <body>
+    <py-script>
+        from pyodide.ffi import create_proxy
+        from js import XMLHttpRequest, createObject
+        import json
+
+        createObject(create_proxy(globals()), "pyodideGlobals")
+
+        def spellChecker(text):
+            data = "text1=" + text
+            url = "http://164.125.7.61/speller/results"
+
+            # data = "sentence=" + text
+            # urlDaum = "https://alldic.daum.net/grammar_checker.do"
+
+            req = XMLHttpRequest.new()
+            req.open("POST", url, False)
+
+            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+
+            req.send(data)
+
+            result = str(req.response).split('data = [', 1)[-1].rsplit('];', 1)[0]
+            result = json.loads(result)
+            # print(result['errInfo'][0]['candWord'])
+
+            return result['errInfo'][0]['candWord']
+    </py-script>
     <!-- 파이어베이스 관련 스크립트 -->
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
@@ -22,7 +52,7 @@
     crossorigin="anonymous"></script>
     <script src="assets/js/firebaseset.js"></script>
     <!-- 파이어베이스 관련 스크립트 -->
-    <script src="assets/js/모의면접.js"></script>
+    <script src="assets/py/모의면접.py"></script>
     <!-- 파이어베이스 관련 스크립트 -->
     
     <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">

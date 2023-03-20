@@ -1,6 +1,17 @@
 var isRecoding = false;
 var r = document.getElementById('content');
 var speechRecognizer = new webkitSpeechRecognition();
+var db = firebase.firestore();
+var storage = firebase.storage();
+var i = 1;
+var questionsLen = 0;
+var pbclass = 'class="progress-bar progress-bar-striped progress-bar-animated" ';
+var pbrole = 'role="progressbar" ';
+var pbfstyle = 'style="width: ';
+var pbfvnow = '%" aria-valuenow="0"';
+var pbfvmin = ' aria-valuemin="0"';
+var pbfvmax = ' aria-valuemax="100"';
+
 
 function startConverting() {
     isRecoding = true;
@@ -38,24 +49,14 @@ function startConverting() {
     }
 }
 
+
 function stopConverting() {
     if (isRecoding) {
         isRecoding = false;
         speechRecognizer.stop();
     }
-
-
 }
-var db = firebase.firestore();
-var storage = firebase.storage();
-var i = 1;
-var questionsLen = 0;
-var pbclass = 'class="progress-bar progress-bar-striped progress-bar-animated" ';
-var pbrole = 'role="progressbar" ';
-var pbfstyle = 'style="width: ';
-var pbfvnow = '%" aria-valuenow="0"';
-var pbfvmin = ' aria-valuemin="0"'
-var pbfvmax = ' aria-valuemax="100"'
+
 
 window.onload = function() {
     db.collection('questions').get().then(snap => {
@@ -74,33 +75,44 @@ window.onload = function() {
     i ++;
 }
 
+
+function createObject(object, variableName) {
+    let execString = variableName + " = object"
+    console.log("Running '" + execString + "'");
+    eval(execString)
+}
+
+
 $('#send').click(function () {
+    var check = pyodideGlobals.get('spellChecker');
     db.collection('questions').doc('users1_questions' + i).get().then((result) => {
         if (i - 1 < questionsLen) {
-            document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
-            i ++;
-            var currP = 100 * (i-2) / questionsLen;
-            $('#QProgress').html('<div ' + 
-            pbclass + pbrole + 
-            pbfstyle + currP + 
-            pbfvnow + pbfvmin + pbfvmax + '></div>');
-
             var 저장할거 = {
-                내용: $('#content').val(),
+                수정전내용: $('#content').val(),
                 날짜: new Date(),
                 유저명: "user",
+                수정후내용: check($('#content').val())
             }
             // var file = document.querySelector('#mp3').files[0];
             // var storageRef = storage.ref();
             // var 저장할경로 = storageRef.child('voicedata/' + new Date()); //추후 유저명+시간으로 음성파일이름 바꿈
             // var 업로드작업 = 저장할경로.put(file)
             // var fileCK = $("#mp3").val();
-            if (저장할거.내용 != '') //&& fileCK
+            if (저장할거.수정전내용 != '') //&& fileCK
             {
                 const ok = window.confirm("전송하시겠습니까?");
                 if (ok) {
-                    db.collection('teststt').add(저장할거).then((result) => {
-                        
+                    document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
+                    i ++;
+                    var currP = 100 * (i-2) / questionsLen;
+                    $('#QProgress').html('<div ' + 
+                    pbclass + pbrole + 
+                    pbfstyle + currP + 
+                    pbfvnow + pbfvmin + pbfvmax + '></div>');
+
+                    // 사용자가 답변한 내용을 저장할 때 각 문서의 이름 =
+                    // 유저명+질문유형+질문번호+(year month day hour minute second)?
+                    db.collection('teststt').doc(저장할거.유저명 + (i - 2)).set(저장할거).then((result) => {
                         console.log(result)
                         alert("정상동작 하였습니다.");
                     }).catch((error) => {
@@ -110,7 +122,7 @@ $('#send').click(function () {
                     })
                 }
             }
-            else if (저장할거.내용 == ''){
+            else if (저장할거.수정전내용 == '') {
                 alert("공백은 제출할 수 없습니다.");
             }
             // else if(!fileCK)
