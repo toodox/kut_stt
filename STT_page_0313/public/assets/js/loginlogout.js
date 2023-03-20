@@ -26,15 +26,3 @@ $('#logoutbtn').click(function () {
   }
 });
 
-
-// firebase.auth().onAuthStateChanged(function(user) {
-
-
-// function testbtn_click(){
-//     document.getElementById('loginbtn').classList.add('hidden');
-//     document.getElementById('logoutbtn').classList.remove('hidden');
-// }
-// function testbtn_click1(){
-//   document.getElementById('logoutbtn').classList.add('hidden');
-//   document.getElementById('loginbtn').classList.remove('hidden');
-// }
