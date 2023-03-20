@@ -107,6 +107,7 @@ $('#send').click(function () {
         console.log(error)
       })
     }
+<<<<<<< Updated upstream
   }
   else if (저장할거.내용 == '') {
     alert("공백은 제출할 수 없습니다.");
@@ -115,3 +116,37 @@ $('#send').click(function () {
     alert("제출하는 중 에러가 발생했습니다.");
   }
 });
+=======
+    // var file = document.querySelector('#mp3').files[0];
+    // var storageRef = storage.ref();
+    // var 저장할경로 = storageRef.child('voicedata/' + new Date()); //추후 유저명+시간으로 음성파일이름 바꿈
+    // var 업로드작업 = 저장할경로.put(file)
+    // var fileCK = $("#mp3").val();
+    if (저장할거.내용 != '') //&& fileCK
+    {
+        const ok = window.confirm("전송하시겠습니까?");
+        if (ok) {
+            db.collection('sttdata').add(저장할거).then((result) => {
+                window.location.href = '/모의면접.html' //다음문제로넘어가게
+                console.log(result)
+                alert("제출되었습니다.");
+            }).catch((error) => {
+                alert("에러가 발생했습니다");
+                window.location.href = '/유의사항.html'
+                console.log(err)
+            })
+        }
+    }
+    else if (저장할거.내용 == ''){
+        alert("공백은 제출할 수 없습니다.");
+    }
+    // else if(!fileCK)
+    // {
+    //   alert("음성파일이 등록되지 않았습니다.");
+    // }
+    else 
+    { 
+      alert("제출하는 중 에러가 발생했습니다.");
+    }
+});    
+>>>>>>> Stashed changes
