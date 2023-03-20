@@ -94,7 +94,7 @@
                     console.log(userCredential)
                     var user = userCredential.user;
                     alert("로그인 성공");
-                    window.location.href = 'index.html'
+                    window.location.href = '/index.html'
                     // ...
                 })
                 .catch((error) => {
