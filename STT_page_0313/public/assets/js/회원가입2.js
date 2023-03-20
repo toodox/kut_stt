@@ -146,7 +146,7 @@ elPasswordRetype.onkeyup = passwordRetypeFn;
 
 // 모든 조건이 충족되었는지 확인하는 함수
 function isAllCheck() {
-  if( isMoreThan4Length(elInputUsername.value) && isUserNameChar(elInputUsername.value) ) { // 아이디
+  if( isMoreThan4Length(elInputUsername.value)&& isUserNameChar(elInputUsername.value) ) { // 아이디
     if( (isMoreThan10Length(elPassword.value)) && 
         (isPasswordEng(elPassword.value) + isPasswordNum(elPassword.value) + isPasswordSpeci(elPassword.value) >= 2) &&
         (isPasswordChar(elPassword.value)) &&
@@ -191,16 +191,14 @@ elSubmitButton.onclick = function() {
 };
 
 //-------- 유효성 검사에서 사용하는 함수다 ---------//
-
 // [아이디] 길이가 4자 이상이면 true를 리턴하는 함수
-// function isMoreThan4Length(value) {
-//   // 아이디 입력창에 사용자가 입력을 할 때 
-//   // 글자 수가 4개이상인지 판단한다.
-//   // 글자가 4개 이상이면 success메세지가 보여야 한다.
-//   return value.length >= 4;
-// }
-
-// [아이디] '영문, 숫자'만 있으면 true를 리턴하는 함수
+function isMoreThan4Length(value) {
+  // 아이디 입력창에 사용자가 입력을 할 때 
+  // 글자 수가 4개이상인지 판단한다.
+  // 글자가 4개 이상이면 success메세지가 보여야 한다.
+  return value.length >= 4;
+}
+// [아이디] 이메일 형식이면 true를 리턴하는 함수
 function isUserNameChar(username) {
   var letters = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
 

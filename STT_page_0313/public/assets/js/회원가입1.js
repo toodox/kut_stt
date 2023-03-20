@@ -8,7 +8,7 @@ $('#subit-button').click(function(){
 
     firebase.auth().createUserWithEmailAndPassword(이메일, 패스워드).then((result)=>{
     alert("가입 완료되었습니다.");
-    window.location.href = '/로그인.html'
+    window.location.href = '로그인.html'
     console.log(result.user)
     }).catch((error)=>{
         alert("아이디 중복");
