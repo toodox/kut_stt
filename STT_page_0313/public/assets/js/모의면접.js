@@ -44,8 +44,8 @@ function stopConverting() {
         speechRecognizer.stop();
     }
 
-
 }
+
 var db = firebase.firestore();
 var storage = firebase.storage();
 var i = 1;
