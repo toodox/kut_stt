@@ -80,7 +80,8 @@ $('#send').click(function() {
     var ok = window.confirm("전송하시겠습니까?");
     if (ok) {
       var storageRef = storage.ref();
-      var 저장할경로 = storageRef.child('sample/' + new Date()); //추후 유저명+시간으로 음성파일이름 바꿈
+      var user = firebase.auth().currentUser;
+      var 저장할경로 = storageRef.child('sample/' + user + new Date()); //추후 유저명+시간으로 음성파일이름 바꿈
       var 업로드작업 = 저장할경로.put(blob);
 
       db.collection('teststt').add(저장할거).then((result) => {
