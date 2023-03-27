@@ -188,46 +188,27 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="col">
-          <div class="card mb-4 rounded-3 shadow-sm border-primary">
-            <div class="card-header py-3 text-bg-primary border-primary">
-              <h4 class="my-0 fw-normal">Enterprise</h4>
-            </div>
-            <div class="card-body">
-              <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
-              <ul class="list-unstyled mt-3 mb-4">
-                <li>30 users included</li>
-                <li>15 GB of storage</li>
-                <li>Phone and email support</li>
-                <li>Help center access</li>
-              </ul>
-              <button type="button" class="w-100 btn btn-lg btn-primary">Contact us</button>
-            </div>
-          </div>
-        </div> -->
     </div>
-    <!-- <div class="product_purchase">
-        <div class="product tbcell">
-            <h3>모의 면접 10회 이용권 구매</h3>
-        </div>
-        <div class="pay tbcell">
-            <span class="price"><b>EVENT 무료!</b> <del>19,900&#8361;</del></span>
-            <div class="pr_info">이용권 구매없이 무료로 이용해보세요!</div>
-            </dl>
-        </div>
-        <div class="go_service tbcell">
-            <button class="w-btn-outline w-btn-red-outline" type="button">
-                이동하기
-            </button>
-        </div>
-    </div> -->
-
     <footer class="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
         <p class="text-center text-muted">© 2023 KOREATECH, Univ</p>
     </footer>
-
-
+<script>
+    $('#logoutbtn').click(function () {
+        var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
+        if (user) {
+          firebase.auth().signOut().then(function () { // signOut() 메소드 호출 시 then()을 사용하여 로그아웃 성공 시 처리할 작업을 추가합니다.
+            alert("로그아웃 되었습니다.");
+            window.location.href = 'index.html';
+          }).catch(function (error) { // 로그아웃 실패 시 오류 메시지를 표시합니다.
+            alert(error.message);
+          });
+        }
+        else {
+          window.location.href = '로그인.html';
+        }
+      });
+</script>
 </body>
 
 </html>
