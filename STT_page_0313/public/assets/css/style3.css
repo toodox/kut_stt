@@ -2,11 +2,6 @@ body {
     min-height: 75rem;
     padding-top: 10rem;
 }
-
-.hidden{
-    display:none;
-}
-
 .head_logo {
     max-width: 400px;
     width: 100%;

@@ -32,9 +32,7 @@ hr{
     margin-left: auto;
 
 }
-.hidden{
-    display:none;
-}
+
 .box, .form-control{
     max-width: 1500px;
     margin-right: auto;
@@ -44,8 +42,4 @@ hr{
         font-size: 0.7rem;
     }
 
-}
-
-.hidden{
-    display:none;
 }

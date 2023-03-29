@@ -11,6 +11,9 @@
 
 <body>
     <!-- 파이어베이스 관련 스크립트 -->
+
+
+
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
@@ -21,6 +24,7 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="assets/js/firebaseset.js"></script>
+    <script src="assets/js/main.js"></script>
     <!-- 파이어베이스 관련 스크립트 -->
     <script src="assets/js/loginlogout.js"></script>
     <!-- 로그인로그아웃버튼바뀌기 -->
@@ -69,14 +73,18 @@
                         <a class="nav-link" href="질문등록.html">질문등록/관리</a>
                     </li>
                 </ul>
+                <!-- <button id="testbtn" class="nav-link" onclick="testbtn_click();">test</button>
+                <button id="testbtn" class="nav-link" onclick="testbtn_click1();">test</button> -->
                 <span class="userinfo hidden" id="userInfoaf"></span>
                 <form class="d-flex">
                     <a href="로그인.html" class="nav-link">
                         <button type="button" class="btn btn-outline-primary me-2" id="loginbtn">
                             Login</button>
                         </a>
+                    <!-- <a href="" class="nav-link"> -->
                         <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
                             Logout</button>
+                        <!-- </a> -->
                     <a href="회원가입2.html" class="nav-link"><button type="button"
                             class="btn btn-primary">Sign-up</button></a>
                 </form>
