@@ -70,8 +70,12 @@
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <a class="nav-link" href="로그인.html"
-                    ><button type="button" class="btn btn-outline-primary me-2">Login</button></a>
+                    <a href="로그인.html" class="nav-link">
+                        <button type="button" class="btn btn-outline-primary me-2 hidden" id="loginbtn">
+                            Login</button>
+                    </a>
+                    <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
+                        Logout</button>
                     <a href="회원가입2.html" class="nav-link"><button type="button" class="btn btn-primary">Sign-up</button></a>
                 </form>
             </div>
@@ -143,8 +147,22 @@
         <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
         <p class="text-center text-muted">© 2023 KOREATECH, Univ</p>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $('#logoutbtn').click(function () {
+            var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
+            if (user) {
+              firebase.auth().signOut().then(function () { // signOut() 메소드 호출 시 then()을 사용하여 로그아웃 성공 시 처리할 작업을 추가합니다.
+                alert("로그아웃 되었습니다.");
+                window.location.href = 'index.html';
+              }).catch(function (error) { // 로그아웃 실패 시 오류 메시지를 표시합니다.
+                alert(error.message);
+              });
+            }
+            else {
+              window.location.href = '로그인.html';
+            }
+          });
+    </script>
     <script src="assets/js/상세결과.js"></script>
 </body>
 
