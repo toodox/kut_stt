@@ -31,14 +31,18 @@
             req.open("POST", url, False)
 
             req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
-
             req.send(data)
 
             result = str(req.response).split('data = [', 1)[-1].rsplit('];', 1)[0]
             result = json.loads(result)
-            # print(result['errInfo'][0]['candWord'])
 
-            return result['errInfo'][0]['candWord']
+            originalText = result["str"]
+            errorList = result["errInfo"]
+
+            for error in errorList:
+                originalText = originalText.replace(error["orgStr"], error["candWord"])
+
+            return originalText
     </py-script>
     <!-- 파이어베이스 관련 스크립트 -->
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
@@ -52,7 +56,7 @@
     <script src="assets/js/firebaseset.js"></script>
     <script src="assets/js/loginlogout.js"></script>
     <!-- 파이어베이스 관련 스크립트 -->
-    <script src="assets/py/모의면접.py"></script>
+    
     <!-- 파이어베이스 관련 스크립트 -->
     
     <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
@@ -134,7 +138,7 @@
         <div class="col-md-8">
             <div class="shadow card my-4 rounded-pill bg-warning border-0">
                 <div class="card-body text-center">
-                    유형1
+                    <h6 id="Qtype"></h6>
                 </div>
             </div>
             <!--질문 진도 표시-->

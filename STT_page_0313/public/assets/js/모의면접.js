@@ -1,14 +1,62 @@
 var isRecoding = false;
 var r = document.getElementById('content');
 var speechRecognizer = new webkitSpeechRecognition();
+
+
+function startConverting() {
+    isRecoding = true;
+    r.innerHTML = '';
+    if ('webkitSpeechRecognition' in window) {
+        speechRecognizer.continuous = true;
+        speechRecognizer.interimResults = true;
+        speechRecognizer.lang = 'ko-KR';
+        speechRecognizer.start();
+
+        var finalTranscripts = '';
+
+        speechRecognizer.onresult = function (event) {
+            var interimTranscripts = '';
+            for (var i = event.resultIndex; i < event.results.length; i++) {
+                var transcript = event.results[i][0].transcript;
+                transcript.replace("\n", "<br>");
+                if (event.results[i].isFinal) {
+                    finalTranscripts += transcript;
+                }
+                else {
+                    interimTranscripts += transcript;
+                }
+            }
+            r.innerHTML = finalTranscripts + interimTranscripts;
+        };
+
+        speechRecognizer.onerror = function (event) {
+
+        };
+
+    }
+    else {
+        r.innerHTML = 'Your browser is not supported. If google chrome, please upgrade!';
+    }
+}
+
+
+function stopConverting() {
+    if (isRecoding) {
+        isRecoding = false;
+        speechRecognizer.stop();
+    }
+}
+
+
+function createObject(object, variableName) {
+    let execString = variableName + " = object"
+    console.log("Running '" + execString + "'");
+    eval(execString)
+}
+
+
 var db = firebase.firestore();
 var storage = firebase.storage();
-var constraints = { audio: true };
-var mediaRecorder;
-var chunks = [];
-var blob;
-var bloburl;
-
 var i = 1;
 var questionsLen = 0;
 var pbclass = 'class="progress-bar progress-bar-striped progress-bar-animated" ';
@@ -17,65 +65,6 @@ var pbfstyle = 'style="width: ';
 var pbfvnow = '%" aria-valuenow="0"';
 var pbfvmin = ' aria-valuemin="0"';
 var pbfvmax = ' aria-valuemax="100"';
-
-
-function startRecording() {
-    chunks = [];
-    navigator.mediaDevices.getUserMedia(constraints)
-      .then(function(mediaStream) {
-        mediaRecorder = new MediaRecorder(mediaStream);
-  
-        mediaRecorder.ondataavailable = function(e) {
-          chunks.push(e.data);
-          if (mediaRecorder.state == 'inactive') {
-            blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
-            // Do something with the blob object, such as uploading it to the server
-          }
-        }
-  
-        mediaRecorder.start();
-      })
-      .catch(function(err) { 
-        console.log(err.name + ": " + err.message); 
-      });
-  }
-  
-  function startConverting() {
-    startRecording();
-    isRecoding = true;
-    r.innerHTML = '';
-    if ('webkitSpeechRecognition' in window) {
-      speechRecognizer.continuous = true;
-      speechRecognizer.interimResults = true;
-      speechRecognizer.lang = 'ko-KR';
-      speechRecognizer.start();
-  
-      var finalTranscripts = '';
-  
-      speechRecognizer.onresult = function(event) {
-        var interimTranscripts = '';
-        for (var i = event.resultIndex; i < event.results.length; i++) {
-          var transcript = event.results[i][0].transcript;
-          transcript.replace("\n", "<br>");
-          if (event.results[i].isFinal) {
-            finalTranscripts += transcript;
-          } else {
-            interimTranscripts += transcript;
-          }
-        }
-        r.innerHTML = finalTranscripts + interimTranscripts;
-      };
-  
-      speechRecognizer.onerror = function(event) {};
-    } else {
-      r.innerHTML = 'Your browser is not supported. If google chrome, please upgrade!';
-    }
-  }
-  
-  function stopConverting() {
-    speechRecognizer.stop();
-    mediaRecorder.stop();
-  }
 
 
 window.onload = function() {
@@ -91,16 +80,11 @@ window.onload = function() {
     });
     db.collection('questions').doc('users1_questions' + i).get().then((result) => {
         $('#questions').html('<h1 id="Qcon">질문1. ' + result.data().content + '</h1>');
+        document.getElementById("Qtype").innerText= result.data().type;
     });
     i ++;
 }
 
-
-function createObject(object, variableName) {
-    let execString = variableName + " = object"
-    console.log("Running '" + execString + "'");
-    eval(execString)
-}
 
 $('#send').click(function () {
     var check = pyodideGlobals.get('spellChecker');
@@ -121,12 +105,8 @@ $('#send').click(function () {
             {
                 const ok = window.confirm("전송하시겠습니까?");
                 if (ok) {
-                    var storageRef = storage.ref();
-                    var user = firebase.auth().currentUser;
-                    var 저장할경로 = storageRef.child('sample/' + user + new Date()); //추후 유저명+시간으로 음성파일이름 바꿈
-                    var 업로드작업 = 저장할경로.put(blob);
-
                     document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
+                    document.getElementById("Qtype").innerText= result.data().type;
                     i ++;
                     var currP = 100 * (i-2) / questionsLen;
                     $('#QProgress').html('<div ' + 
