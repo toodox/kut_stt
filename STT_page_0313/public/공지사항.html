@@ -10,6 +10,20 @@
 </head>
 
 <body>
+    <!-- 파이어베이스 관련 스크립트 -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="assets/js/firebaseset.js"></script>
+    <!-- 파이어베이스 관련 스크립트 -->
+    <script src="assets/js/loginlogout.js"></script>
+
     <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
         <div class="container-xxl">
             <a href="index.html" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -25,7 +39,8 @@
                         <a class="nav-link" href="이용안내.html">이용안내</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role = " button"  data-bs-toggle="dropdown" aria-expanded="false" href="#">면접연습</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
+                            aria-expanded="false" href="#">면접연습</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="유형선택.html">면접 유형 선택</a></li>
                             <li><a class="dropdown-item" href="유의사항.html">유의사항 확인</a></li>
@@ -35,14 +50,16 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role = " button"  data-bs-toggle="dropdown" aria-expanded="false" href="#">면접결과확인</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
+                            aria-expanded="false" href="#">면접결과확인</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="면접결과확인.html">완료된 면접</a></li>
                             <li><a class="dropdown-item" href="상세결과.html">면접 결과 상세</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role = " button"  data-bs-toggle="dropdown" aria-expanded="false" href="#">고객센터</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
+                            aria-expanded="false" href="#">고객센터</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="공지사항.html">공지사항</a></li>
                             <li><a class="dropdown-item" href="자주하는질문.html">자주하는질문</a></li>
@@ -53,27 +70,28 @@
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <a class="nav-link" href="로그인.html"
-                    ><button type="button" class="btn btn-outline-primary me-2">Login</button></a>
-                    <a href="회원가입2.html" class="nav-link"><button type="button" class="btn btn-primary">Sign-up</button></a>
+                    <a href="로그인.html" class="nav-link">
+                        <button type="button" class="btn btn-outline-primary me-2 hidden" id="loginbtn">
+                            Login</button>
+                    </a>
+                    <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
+                        Logout</button>
+                    <a href="회원가입2.html" class="nav-link"><button type="button"
+                            class="btn btn-primary">Sign-up</button></a>
                 </form>
             </div>
         </div>
     </nav>
 
-    
+
     <div class="row mx-4">
         <div class="col-md-3">
-            <!-- 사이드 바 메뉴-->
-            <!-- 패널 타이틀1 -->
             <div class="panel panel-info">
-                <!-- <div class="panel-heading">
-                    <h3 class="panel-title">면접 연습</h3>
-                </div> -->
-                <!-- 사이드바 메뉴목록1 -->
                 <ul class="list-group text-decoration-none">
-                    <li class="list-group-item bg-primary text-right"><a class= "text-decoration-none text-white" href="공지사항.html">공지사항</a></li>
-                    <li class="list-group-item bg-light"><a class= "text-decoration-none text-dark" href="자주하는질문.html">자주 하는 질문</a></li>
+                    <li class="list-group-item bg-primary text-right"><a class="text-decoration-none text-white"
+                            href="공지사항.html">공지사항</a></li>
+                    <li class="list-group-item bg-light"><a class="text-decoration-none text-dark" href="자주하는질문.html">자주
+                            하는 질문</a></li>
                 </ul>
             </div>
         </div>
@@ -119,26 +137,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class = "text-center">
+                        <tr class="text-center">
                             <th scope="row">1</th>
                             <td>[이벤트 당첨자 발표] 설문조사 참여 이벤트 당첨자 공지</td>
                             <td>Admin</td>
                             <td>2023-01-01</td>
                         </tr>
-                        <tr class = "text-center">
+                        <tr class="text-center">
                             <th scope="row">2</th>
                             <td>[이벤트] 설문조사 참여 이벤트 안내</td>
                             <td>Admin</td>
                             <td>2023-01-01</td>
                         </tr>
-                        <tr class = "text-center">
+                        <tr class="text-center">
                             <th scope="row">3</th>
                             <td>웹사이트 정기점검 안내</td>
                             <td>Admin</td>
                             <td>2023-01-01</td>
                         </tr>
                     </tbody>
-                    </table>
+                </table>
             </div>
 
             <!--페이지 표시-->
@@ -171,7 +189,22 @@
         <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
         <p class="text-center text-muted">© 2023 KOREATECH, Univ</p>
     </footer>
-
+    <script>
+        $('#logoutbtn').click(function () {
+            var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
+            if (user) {
+                firebase.auth().signOut().then(function () { // signOut() 메소드 호출 시 then()을 사용하여 로그아웃 성공 시 처리할 작업을 추가합니다.
+                    alert("로그아웃 되었습니다.");
+                    window.location.href = 'index.html';
+                }).catch(function (error) { // 로그아웃 실패 시 오류 메시지를 표시합니다.
+                    alert(error.message);
+                });
+            }
+            else {
+                window.location.href = '로그인.html';
+            }
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
