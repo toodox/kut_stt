@@ -1,6 +1,8 @@
 var isRecoding = false;
 var r = document.getElementById('content');
 var speechRecognizer = new webkitSpeechRecognition();
+var db = firebase.firestore();
+var storage = firebase.storage();
 
 var constraints = { audio: true };
 var mediaRecorder;
@@ -65,9 +67,6 @@ function stopConverting() {
   speechRecognizer.stop();
   mediaRecorder.stop();
 }
-
-var db = firebase.firestore();
-var storage = firebase.storage();
 
 $('#send').click(function() {
   var 저장할거 = {
