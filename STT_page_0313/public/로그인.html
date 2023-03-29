@@ -58,27 +58,6 @@
 
         var auth = firebase.auth();
 
-        // document.getElementById('signUpButton').addEventListener('click', (event) => {
-        //     event.preventDefault()
-        //     const signUpEmail = document.getElementById('signUpEmail').value
-        //     const signUpPassword = document.getElementById('signUpPassword').value
-
-        //     createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
-        //         .then((userCredential) => {
-        //             console.log(userCredential)
-        //             // Signed in
-        //             const user = userCredential.user;
-        //             // ...
-        //         })
-        //         .catch((error) => {
-        //             console.log('error')
-        //             const errorCode = error.code;
-        //             const errorMessage = error.message;
-        //             // ..
-        //         });
-
-        // })
-
         document.getElementById('signInButton').addEventListener('click', (event) => {
             event.preventDefault()
             if(!username || !password){
@@ -108,33 +87,5 @@
     </script>
 </body>
 
-<!-- <body class="text-center" cz-shortcut-listen="true">
-    <main class="form-signin w-100 m-100">
-        <form class="m-500">
-            <a href="index.html">
-                <img class="mb-4" src="assets/image/로고.png" alt="" width="auto" height="57">
-            </a>
-            <h1 class="h3 mb-3">로그인</h1>
-
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
-            </div>
-
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
-            </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-            <p class="mt-5 mb-3 text-muted">© 2017–2023</p>
-        </form>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body> -->
 
 </html>
