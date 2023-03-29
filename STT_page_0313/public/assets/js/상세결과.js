@@ -5,13 +5,26 @@ var i = 1;
 var questionsLen = 0;
 var audioEl = document.querySelector("audio");
 var user = firebase.auth().currentUser;
+var qList = document.getElementById("questionLists");
 
 
 window.onload = function() {
     db.collection('questions').get().then(snap => {
         size = snap.size
         questionsLen = size;
-
+        for (var n = 1; n <= questionsLen; n ++) {
+            if (n == i) {
+                var plusQ = document.createElement('li');
+                plusQ.className = "list-group-item bg-primary text-right";
+                plusQ.innerHTML = '<a class= "text-decoration-none text-white align-items-center" href="#">질문' + n + '</a>';
+            }
+            else {
+                var plusQ = document.createElement('li');
+                plusQ.className = "list-group-item bg-light";
+                plusQ.innerHTML = '<a class= "text-decoration-none text-dark" href="#">질문' + n + '</a>';
+            }
+            qList.appendChild(plusQ);
+        }
     });
     db.collection('questions').doc('users1_questions' + i).get().then((result) => {
         $('#questions').html('<h1 id="Qcon">질문1. ' + result.data().content + '</h1>');
