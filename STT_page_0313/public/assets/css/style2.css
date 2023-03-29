@@ -16,7 +16,10 @@ body {
 .hidden{
     display:none;
 }
-
+.bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+}
 
 
 @media (max-width: 767px) {
