@@ -1,16 +1,6 @@
 var isRecoding = false;
 var r = document.getElementById('content');
 var speechRecognizer = new webkitSpeechRecognition();
-var db = firebase.firestore();
-var storage = firebase.storage();
-var i = 1;
-var questionsLen = 0;
-var pbclass = 'class="progress-bar progress-bar-striped progress-bar-animated" ';
-var pbrole = 'role="progressbar" ';
-var pbfstyle = 'style="width: ';
-var pbfvnow = '%" aria-valuenow="0"';
-var pbfvmin = ' aria-valuemin="0"';
-var pbfvmax = ' aria-valuemax="100"';
 
 
 function startConverting() {
@@ -58,6 +48,25 @@ function stopConverting() {
 }
 
 
+function createObject(object, variableName) {
+    let execString = variableName + " = object"
+    console.log("Running '" + execString + "'");
+    eval(execString)
+}
+
+
+var db = firebase.firestore();
+var storage = firebase.storage();
+var i = 1;
+var questionsLen = 0;
+var pbclass = 'class="progress-bar progress-bar-striped progress-bar-animated" ';
+var pbrole = 'role="progressbar" ';
+var pbfstyle = 'style="width: ';
+var pbfvnow = '%" aria-valuenow="0"';
+var pbfvmin = ' aria-valuemin="0"';
+var pbfvmax = ' aria-valuemax="100"';
+
+
 window.onload = function() {
     db.collection('questions').get().then(snap => {
         size = snap.size
@@ -71,15 +80,9 @@ window.onload = function() {
     });
     db.collection('questions').doc('users1_questions' + i).get().then((result) => {
         $('#questions').html('<h1 id="Qcon">질문1. ' + result.data().content + '</h1>');
+        document.getElementById("Qtype").innerText= result.data().type;
     });
     i ++;
-}
-
-
-function createObject(object, variableName) {
-    let execString = variableName + " = object"
-    console.log("Running '" + execString + "'");
-    eval(execString)
 }
 
 
@@ -103,6 +106,7 @@ $('#send').click(function () {
                 const ok = window.confirm("전송하시겠습니까?");
                 if (ok) {
                     document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
+                    document.getElementById("Qtype").innerText= result.data().type;
                     i ++;
                     var currP = 100 * (i-2) / questionsLen;
                     $('#QProgress').html('<div ' + 
