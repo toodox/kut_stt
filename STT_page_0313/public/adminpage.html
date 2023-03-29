@@ -6,150 +6,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STT모의 면접 서비스</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/style3.css">
 </head>
 
 <body>
-    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-            <svg class="bi me-2" width="40" height="32">
-                <use xlink:href="#bootstrap"></use>
-            </svg>
-            <span class="fs-4">Sidebar</span>
-        </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a href="#" class="nav-link active" aria-current="page">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#home"></use>
-                    </svg>
-                    Home
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link link-dark">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#speedometer2"></use>
-                    </svg>
-                    Dashboard
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link link-dark">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#table"></use>
-                    </svg>
-                    Orders
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link link-dark">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#grid"></use>
-                    </svg>
-                    Products
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link link-dark">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#people-circle"></use>
-                    </svg>
-                    Customers
-                </a>
-            </li>
-        </ul>
-        <hr>
-        <div class="dropdown">
-            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                <strong>mdo</strong>
+    <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
+        <div class="container-fluid">
+            <a href="main4.html" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                <img src="assets/image/로고.png" class="head_logo" alt="">
             </a>
-            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
-            </ul>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">이용안내</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">면접연습</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">면접결과확인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">고객센터</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">질문등록/관리</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <button type="button" class="btn btn-outline-primary me-2">Login</button>
+                    <button type="button" class="btn btn-primary">Sign-up</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="row mx-4">
+        <div class="col-md-3">
+            <!-- 사이드 바 메뉴-->
+            <!-- 패널 타이틀1 -->
+            <div class="panel panel-info">
+                <!-- <div class="panel-heading">
+                    <h3 class="panel-title">면접 연습</h3>
+                </div> -->
+                <!-- 사이드바 메뉴목록1 -->
+                <ul class="list-group text-decoration-none">
+                    <li class="list-group-item bg-light"><a class= "text-decoration-none text-dark align-items-center" href="#">질문유형선택</a></li>
+                    <li class="list-group-item bg-light"><a class= "text-decoration-none text-dark" href="#">유의사항확인</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="col-md-9">
+            <div class="card my-4">
+                <div class="card-body text-center">
+                    유형1
+                </div>
+            </div>
+            <div class="card my-4">
+                <div class="card-body">
+                    ejfiwjfoeij
+                </div>
+            </div>
+            <div class="card my-4">
+                <div class="card-body">
+                    녹음 시작 영역
+                </div>
+            </div>
+            <div class="card my-4">
+                <div class="card-body text-end">
+                    녹음 완료 버튼 영역
+                </div>
+            </div>
+            <div class="card my-4">
+                <div class="card-body text-end">
+
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-        <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-            <svg class="bi me-2" width="30" height="24">
-                <use xlink:href="#bootstrap"></use>
-            </svg>
-            <span class="fs-5 fw-semibold">Collapsible</span>
-        </a>
-        <ul class="list-unstyled ps-0">
-            <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                    data-bs-target="#home-collapse" aria-expanded="false">
-                    Home
-                </button>
-                <div class="collapse" id="home-collapse" style="">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark rounded">Overview</a></li>
-                        <li><a href="#" class="link-dark rounded">Updates</a></li>
-                        <li><a href="#" class="link-dark rounded">Reports</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                    data-bs-target="#dashboard-collapse" aria-expanded="false">
-                    Dashboard
-                </button>
-                <div class="collapse" id="dashboard-collapse" style="">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark rounded">Overview</a></li>
-                        <li><a href="#" class="link-dark rounded">Weekly</a></li>
-                        <li><a href="#" class="link-dark rounded">Monthly</a></li>
-                        <li><a href="#" class="link-dark rounded">Annually</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded" data-bs-toggle="collapse"
-                    data-bs-target="#orders-collapse" aria-expanded="true">
-                    Orders
-                </button>
-                <div class="collapse show" id="orders-collapse" style="">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark rounded">New</a></li>
-                        <li><a href="#" class="link-dark rounded">Processed</a></li>
-                        <li><a href="#" class="link-dark rounded">Shipped</a></li>
-                        <li><a href="#" class="link-dark rounded">Returned</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="border-top my-3"></li>
-            <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                    data-bs-target="#account-collapse" aria-expanded="false">
-                    Account
-                </button>
-                <div class="collapse" id="account-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark rounded">New...</a></li>
-                        <li><a href="#" class="link-dark rounded">Profile</a></li>
-                        <li><a href="#" class="link-dark rounded">Settings</a></li>
-                        <li><a href="#" class="link-dark rounded">Sign out</a></li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </div>
-<!-- 
     <footer class="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
         <p class="text-center text-muted">© 2023 KOREATECH, Univ</p>
-    </footer> -->
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
