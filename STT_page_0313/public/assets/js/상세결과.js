@@ -33,7 +33,7 @@ window.onload = function() {
         document.getElementById("Qtype").innerText= result.data().type;
     });
     // 수정 전/후 텍스트 불러오기
-    db.collection('teststt').doc('user' + i).get().then((result) => {
+    db.collection('teststt').doc(user.email + i).get().then((result) => {
         document.getElementById('contents1').value = result.data().수정전내용;
         document.getElementById('contents2').value = result.data().수정후내용;
     });
