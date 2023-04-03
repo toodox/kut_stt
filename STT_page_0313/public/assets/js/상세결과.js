@@ -12,6 +12,7 @@ window.onload = function() {
     db.collection('questions').get().then(snap => {
         size = snap.size
         questionsLen = size;
+        // 사이드바 생성
         for (var n = 1; n <= questionsLen; n ++) {
             if (n == i) {
                 var plusQ = document.createElement('li');
@@ -26,14 +27,17 @@ window.onload = function() {
             qList.appendChild(plusQ);
         }
     });
+    // 질문지 불러오기
     db.collection('questions').doc('users1_questions' + i).get().then((result) => {
         $('#questions').html('<h1 id="Qcon">질문1. ' + result.data().content + '</h1>');
         document.getElementById("Qtype").innerText= result.data().type;
     });
+    // 수정 전/후 텍스트 불러오기
     db.collection('teststt').doc('user' + i).get().then((result) => {
         document.getElementById('contents1').value = result.data().수정전내용;
         document.getElementById('contents2').value = result.data().수정후내용;
     });
+    // 오디오 파일 불러오기
     storageRef.child('sample/'+ user + " " + i).getDownloadURL().then(function(url) {
         // 오디오 태그를 사용하여 음성 파일을 표시
         audioEl.src = url;
