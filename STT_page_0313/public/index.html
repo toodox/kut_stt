@@ -79,13 +79,14 @@
                     <a href="로그인.html" class="nav-link">
                         <button type="button" class="btn btn-outline-primary me-2 hidden" id="loginbtn">
                             Login</button>
-                        </a>
+                    </a>
                     <!-- <a href="" class="nav-link"> -->
-                        <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
-                            Logout</button>
-                        <!-- </a> -->
+                    <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
+                        Logout</button>
+                    <!-- </a> -->
                     <a href="회원가입2.html" class="nav-link"><button type="button"
-                            class="btn btn-primary">Sign-up</button></a>
+                            class="btn btn-primary hidden"id="signupbtn">Sign-up</button></a>
+                    <button type="button" class="btn btn-primary hidden" id="uinfo"></button>
                 </form>
             </div>
         </div>
@@ -106,19 +107,21 @@
                 </div>
                 <h3 class="fs-2">실제와 유사한 질문</h3>
                 <p>
-                    본 모의면접서비스는 학생들이 실제 대학 입시 면접에서 만날 수 있는 상황을 경험하고 이를 토대로 면접 준비에 도움을 주는 것입니다. 면접 상황에서 경험할 수 있는 각종 질문들을 미리 경험하고, 피드백을 받으며 더 나은 면접 결과를 얻도록 도와줍니다.
+                    본 모의면접서비스는 학생들이 실제 대학 입시 면접에서 만날 수 있는 상황을 경험하고 이를 토대로 면접 준비에 도움을 주는 것입니다. 면접 상황에서 경험할 수 있는 각종 질문들을
+                    미리 경험하고, 피드백을 받으며 더 나은 면접 결과를 얻도록 도와줍니다.
                 </p>
             </div>
             <div class="feature col">
                 <div
                     class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
                     <svg class="bi" width="1em" height="1em">
-                        <i class="bi bi-1-square-fill"></i>
+                        <use class="bi bi-1-square-fill"></use>
                     </svg>
                 </div>
                 <h3 class="fs-2">Speech-To-Text 기능</h3>
                 <p>
-                실시간으로 학생들이 면접 질문에 대답한 음성 파일을 텍스트로 변환하여 저장할 수 있습니다. 이를 통해 면접 후 다시 한번 자신의 면접 내용을 돌아보며, 미흡한 부분을 체크하고 보완할 수 있습니다.
+                    실시간으로 학생들이 면접 질문에 대답한 음성 파일을 텍스트로 변환하여 저장할 수 있습니다. 이를 통해 면접 후 다시 한번 자신의 면접 내용을 돌아보며, 미흡한 부분을 체크하고
+                    보완할 수 있습니다.
                 </p>
             </div>
             <div class="feature col">
@@ -130,7 +133,7 @@
                 </div>
                 <h3 class="fs-2">키워드 분석 및 검사</h3>
                 <p>
-                피면접자들이 응답한 데이터들을 바탕으로 키워드를 분석하여 결과 피드백을 제공합니다. 또한, 맞춤법 검사 기능도 동작하여 면접 응답 중 부적절한 단어를 검출하여 피드백을 제공합니다.
+                    피면접자들이 응답한 데이터들을 바탕으로 키워드를 분석하여 결과 피드백을 제공합니다. 또한, 맞춤법 검사 기능도 동작하여 면접 응답 중 부적절한 단어를 검출하여 피드백을 제공합니다.
                 </p>
             </div>
         </div>
@@ -186,22 +189,22 @@
         <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
         <p class="text-center text-muted">© 2023 KOREATECH, Univ</p>
     </footer>
-<script>
-    $('#logoutbtn').click(function () {
-        var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
-        if (user) {
-          firebase.auth().signOut().then(function () { // signOut() 메소드 호출 시 then()을 사용하여 로그아웃 성공 시 처리할 작업을 추가합니다.
-            alert("로그아웃 되었습니다.");
-            window.location.href = 'index.html';
-          }).catch(function (error) { // 로그아웃 실패 시 오류 메시지를 표시합니다.
-            alert(error.message);
-          });
-        }
-        else {
-          window.location.href = '로그인.html';
-        }
-      });
-</script>
+    <script>
+        $('#logoutbtn').click(function () {
+            var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
+            if (user) {
+                firebase.auth().signOut().then(function () { // signOut() 메소드 호출 시 then()을 사용하여 로그아웃 성공 시 처리할 작업을 추가합니다.
+                    alert("로그아웃 되었습니다.");
+                    window.location.href = 'index.html';
+                }).catch(function (error) { // 로그아웃 실패 시 오류 메시지를 표시합니다.
+                    alert(error.message);
+                });
+            }
+            else {
+                window.location.href = '로그인.html';
+            }
+        });
+    </script>
 </body>
 
 </html>

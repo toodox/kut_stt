@@ -23,6 +23,7 @@
     integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" 
     crossorigin="anonymous"></script>
     <script src="assets/js/firebaseset.js"></script>
+    <script src="assets/js/loginlogout.js"></script>
     <!-- 파이어베이스 관련 스크립트 -->
     <script src="assets/js/상세결과.js"></script>
     <!-- 파이어베이스 관련 스크립트 -->
@@ -70,10 +71,16 @@
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <a class="nav-link" href="로그인.html"
-                    ><button type="button" class="btn btn-outline-primary me-2">Login</button></a>
-                    <a href="회원가입2.html" class="nav-link"><button type="button" class="btn btn-primary">Sign-up</button></a>
-                </form>
+
+                    <a href="로그인.html" class="nav-link">
+                        <button type="button" class="btn btn-outline-primary me-2 hidden" id="loginbtn">
+                            Login</button>
+                    </a>
+                    <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
+                        Logout</button>
+                        <a href="회원가입2.html" class="nav-link "><button type="button"
+                            class="btn btn-primary hidden"id="signupbtn">Sign-up</button></a>
+                    <button type="button" class="btn btn-primary hidden" id="uinfo"></button>                </form>
             </div>
         </div>
     </nav>
@@ -128,7 +135,7 @@
             <textarea readonly class="form-control mt-2" id="contents2"></textarea>
             <div class="card my-4 border-0">
                 <div class="card-body text-end">
-                    <button type="button" class="btn btn-primary float-end" id="after">다음</button>
+                    <button type="button" class="btn btn-primary float-end mx-3 " id="after">다음</button>
                     <button type="button" class="btn btn-primary float-end" id="before">이전</button>
                 </div>
             </div>

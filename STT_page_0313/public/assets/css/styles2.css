@@ -19,7 +19,7 @@ a{
 textarea{
     resize: none;
     overflow-y: scroll;
-    height: 500px;
+    height: 300px;
 }
 p{
     margin-top: 0;
