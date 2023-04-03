@@ -35,12 +35,12 @@ window.onload = function() {
         document.getElementById("Qtype").innerText= result.data().type;
     });
     // 수정 전/후 텍스트 불러오기
-    db.collection('teststt').doc(user.email + i).get().then((result) => {
+    db.collection('teststt').doc(user.email + i + '번 질문').get().then((result) => {
         document.getElementById('contents1').value = result.data().수정전내용;
         document.getElementById('contents2').value = result.data().수정후내용;
     });
     // 오디오 파일 불러오기
-    storageRef.child('sample/'+ user + " " + i).getDownloadURL().then(function(url) {
+    storageRef.child('voicedata/'+ user.email + i +'번 질문').getDownloadURL().then(function(url) {
         // 오디오 태그를 사용하여 음성 파일을 표시
         audioEl.src = url;
     }).catch((error) => {
