@@ -13,21 +13,21 @@ var bloburl;
 function startRecording() {
   chunks = [];
   navigator.mediaDevices.getUserMedia(constraints)
-    .then(function(mediaStream) {
+    .then(function (mediaStream) {
       mediaRecorder = new MediaRecorder(mediaStream);
 
-      mediaRecorder.ondataavailable = function(e) {
+      mediaRecorder.ondataavailable = function (e) {
         chunks.push(e.data);
         if (mediaRecorder.state == 'inactive') {
-          blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+          blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' });
           // Do something with the blob object, such as uploading it to the server
         }
       }
 
       mediaRecorder.start();
     })
-    .catch(function(err) { 
-      console.log(err.name + ": " + err.message); 
+    .catch(function (err) {
+      console.log(err.name + ": " + err.message);
     });
 }
 
@@ -43,7 +43,7 @@ function startConverting() {
 
     var finalTranscripts = '';
 
-    speechRecognizer.onresult = function(event) {
+    speechRecognizer.onresult = function (event) {
       var interimTranscripts = '';
       for (var i = event.resultIndex; i < event.results.length; i++) {
         var transcript = event.results[i][0].transcript;
@@ -57,7 +57,7 @@ function startConverting() {
       r.innerHTML = finalTranscripts + interimTranscripts;
     };
 
-    speechRecognizer.onerror = function(event) {};
+    speechRecognizer.onerror = function (event) { };
   } else {
     r.innerHTML = 'Your browser is not supported. If google chrome, please upgrade!';
   }
@@ -68,7 +68,7 @@ function stopConverting() {
   mediaRecorder.stop();
 }
 
-$('#send').click(function() {
+$('#send').click(function () {
   var 저장할거 = {
     내용: $('#content').val(),
     날짜: new Date(),
@@ -81,7 +81,7 @@ $('#send').click(function() {
       var user = firebase.auth().currentUser;
       var 저장할경로 = storageRef.child('sample/' + user.email + " " + new Date()); //추후 유저명+시간으로 음성파일이름 바꿈
       var 업로드작업 = 저장할경로.put(blob);
-      db.collection('teststt').doc(user.email).set(저장할거).then((result) =>{
+      db.collection('teststt').doc(user.email).set(저장할거).then((result) => {
         window.location.href = '모의면접.html';
         console.log(result)
         // alert("정상동작 하였습니다.");
