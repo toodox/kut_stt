@@ -17,11 +17,13 @@ window.onload = function() {
             if (n == i) {
                 var plusQ = document.createElement('li');
                 plusQ.className = "list-group-item bg-primary text-right";
+                plusQ.id = "QLcontainer" + n;
                 plusQ.innerHTML = '<a class= "text-decoration-none text-white align-items-center" href="#">질문' + n + '</a>';
             }
             else {
                 var plusQ = document.createElement('li');
                 plusQ.className = "list-group-item bg-light";
+                plusQ.id = "QLcontainer" + n;
                 plusQ.innerHTML = '<a class= "text-decoration-none text-dark" href="#">질문' + n + '</a>';
             }
             qList.appendChild(plusQ);
@@ -48,15 +50,23 @@ window.onload = function() {
 
 
 $('#after').click(function () {
-    if (i - 1 < questionsLen) {
+    if (i < questionsLen) {
         i ++;
         db.collection('questions').doc('users1_questions' + i).get().then((result) => {
+            // 질문 내용 업데이트
             document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
+            // 질문 유형 업데이트
             document.getElementById("Qtype").innerText= result.data().type;
             db.collection('teststt').doc('user' + i).get().then((result) => {
                 document.getElementById('contents1').value = result.data().수정전내용;
                 document.getElementById('contents2').value = result.data().수정후내용;
             });
+            // 현재 질문의 사이드 바를 하이라이트 설정
+            document.getElementById('QLcontainer' + i).className = "list-group-item bg-primary text-right";
+            document.getElementById('QLcontainer' + i).innerHTML = '<a class= "text-decoration-none text-white align-items-center" href="#">질문' + i + '</a>';
+            // 이전 질문의 사이드 바를 하이라이트 해제
+            document.getElementById('QLcontainer' + (i - 1)).className = "list-group-item bg-light";
+            document.getElementById('QLcontainer' + (i - 1)).innerHTML = '<a class= "text-decoration-none text-dark" href="#">질문' + (i - 1) + '</a>';
         });
     }
     else {
@@ -68,12 +78,20 @@ $('#before').click(function () {
     if (i - 1 > 0) {
         i --;
         db.collection('questions').doc('users1_questions' + i).get().then((result) => {
+            // 질문 내용 업데이트
             document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
+            // 질문 유형 업데이트
             document.getElementById("Qtype").innerText= result.data().type;
             db.collection('teststt').doc('user' + i).get().then((result) => {
                 document.getElementById('contents1').value = result.data().수정전내용;
                 document.getElementById('contents2').value = result.data().수정후내용;
             });
+            // 현재 질문의 사이드 바를 하이라이트 설정
+            document.getElementById('QLcontainer' + i).className = "list-group-item bg-primary text-right";
+            document.getElementById('QLcontainer' + i).innerHTML = '<a class= "text-decoration-none text-white align-items-center" href="#">질문' + i + '</a>';
+            // 이전 질문의 사이드 바를 하이라이트 해제
+            document.getElementById('QLcontainer' + (i + 1)).className = "list-group-item bg-light";
+            document.getElementById('QLcontainer' + (i + 1)).innerHTML = '<a class= "text-decoration-none text-dark" href="#">질문' + (i + 1) + '</a>';
         });
     }
     else {
