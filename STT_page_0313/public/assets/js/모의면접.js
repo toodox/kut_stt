@@ -1,51 +1,71 @@
 var isRecoding = false;
 var r = document.getElementById('content');
 var speechRecognizer = new webkitSpeechRecognition();
+var db = firebase.firestore();
+var storage = firebase.storage();
+var user = firebase.auth().currentUser;
+var constraints = { audio: true };
+var mediaRecorder;
+var chunks = [];
+var blob;
+var bloburl;
 
-
-function startConverting() {
-    isRecoding = true;
+function startRecording() {
+    chunks = [];
+    navigator.mediaDevices.getUserMedia(constraints)
+      .then(function(mediaStream) {
+        mediaRecorder = new MediaRecorder(mediaStream);
+  
+        mediaRecorder.ondataavailable = function(e) {
+          chunks.push(e.data);
+          if (mediaRecorder.state == 'inactive') {
+            blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+            // Do something with the blob object, such as uploading it to the server
+          }
+        }
+  
+        mediaRecorder.start();
+      })
+      .catch(function(err) { 
+        console.log(err.name + ": " + err.message); 
+      });
+  }
+  
+  function startConverting() {
+    startRecording();
     r.innerHTML = '';
     if ('webkitSpeechRecognition' in window) {
-        speechRecognizer.continuous = true;
-        speechRecognizer.interimResults = true;
-        speechRecognizer.lang = 'ko-KR';
-        speechRecognizer.start();
-
-        var finalTranscripts = '';
-
-        speechRecognizer.onresult = function (event) {
-            var interimTranscripts = '';
-            for (var i = event.resultIndex; i < event.results.length; i++) {
-                var transcript = event.results[i][0].transcript;
-                transcript.replace("\n", "<br>");
-                if (event.results[i].isFinal) {
-                    finalTranscripts += transcript;
-                }
-                else {
-                    interimTranscripts += transcript;
-                }
-            }
-            r.innerHTML = finalTranscripts + interimTranscripts;
-        };
-
-        speechRecognizer.onerror = function (event) {
-
-        };
-
+      speechRecognizer.continuous = true;
+      speechRecognizer.interimResults = true;
+      speechRecognizer.lang = 'ko-KR';
+      speechRecognizer.start();
+  
+      var finalTranscripts = '';
+  
+      speechRecognizer.onresult = function(event) {
+        var interimTranscripts = '';
+        for (var i = event.resultIndex; i < event.results.length; i++) {
+          var transcript = event.results[i][0].transcript;
+          transcript.replace("\n", "<br>");
+          if (event.results[i].isFinal) {
+            finalTranscripts += transcript;
+          } else {
+            interimTranscripts += transcript;
+          }
+        }
+        r.innerHTML = finalTranscripts + interimTranscripts;
+      };
+  
+      speechRecognizer.onerror = function(event) {};
+    } else {
+      r.innerHTML = 'Your browser is not supported. If google chrome, please upgrade!';
     }
-    else {
-        r.innerHTML = 'Your browser is not supported. If google chrome, please upgrade!';
-    }
-}
-
-
-function stopConverting() {
-    if (isRecoding) {
-        isRecoding = false;
-        speechRecognizer.stop();
-    }
-}
+  }
+  
+  function stopConverting() {
+    speechRecognizer.stop();
+    mediaRecorder.stop();
+  }
 
 
 function createObject(object, variableName) {
@@ -85,7 +105,6 @@ window.onload = function() {
     i ++;
 }
 
-
 $('#send').click(function () {
     var check = pyodideGlobals.get('spellChecker');
     db.collection('questions').doc('users1_questions' + i).get().then((result) => {
@@ -93,18 +112,16 @@ $('#send').click(function () {
             var 저장할거 = {
                 수정전내용: $('#content').val(),
                 날짜: new Date(),
-                유저명: "user",
-                수정후내용: check($('#content').val())
+                수정후내용: check($('#content').val()),
             }
-            // var file = document.querySelector('#mp3').files[0];
-            // var storageRef = storage.ref();
-            // var 저장할경로 = storageRef.child('voicedata/' + new Date()); //추후 유저명+시간으로 음성파일이름 바꿈
-            // var 업로드작업 = 저장할경로.put(file)
-            // var fileCK = $("#mp3").val();
             if (저장할거.수정전내용 != '') //&& fileCK
             {
-                const ok = window.confirm("전송하시겠습니까?");
+                var ok = window.confirm("다음 단계로 넘어가시겠습니까?");
                 if (ok) {
+                    var storageRef = storage.ref();
+                    var user = firebase.auth().currentUser;
+                    var 저장할경로 = storageRef.child('voicedata/' + user.email + " " + (i - 1) + "번 질문" + new Date());
+                    var 업로드작업 = 저장할경로.put(blob);
                     document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
                     document.getElementById("Qtype").innerText= result.data().type;
                     i ++;
@@ -116,7 +133,7 @@ $('#send').click(function () {
 
                     // 사용자가 답변한 내용을 저장할 때 각 문서의 이름 =
                     // 유저명+질문유형+질문번호+(year month day hour minute second)?
-                    db.collection('teststt').doc(저장할거.유저명 + (i - 2)).set(저장할거).then((result) => {
+                    db.collection('teststt').doc(user.email + (i - 2)+ "번 질문").set(저장할거).then((result) => {
                         console.log(result)
                         r.innerHTML = '';
                         alert("정상동작 하였습니다.");
