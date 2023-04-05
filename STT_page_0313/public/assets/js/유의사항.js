@@ -79,9 +79,9 @@ $('#send').click(function () {
     if (ok) {
       var storageRef = storage.ref();
       var user = firebase.auth().currentUser;
-      var 저장할경로 = storageRef.child('sample/' + user.email + " " + new Date()); //추후 유저명+시간으로 음성파일이름 바꿈
+      var 저장할경로 = storageRef.child('sample/' + user.email.split("@")[0] + " " + new Date()); //추후 유저명+시간으로 음성파일이름 바꿈
       var 업로드작업 = 저장할경로.put(blob);
-      db.collection('teststt').doc(user.email).set(저장할거).then((result) => {
+      db.collection('teststt').doc(user.email.split("@")[0]).set(저장할거).then((result) => {
         window.location.href = '모의면접.html';
         console.log(result)
         // alert("정상동작 하였습니다.");
