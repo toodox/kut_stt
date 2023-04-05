@@ -120,7 +120,7 @@ $('#send').click(function () {
                 if (ok) {
                     var storageRef = storage.ref();
                     var user = firebase.auth().currentUser;
-                    var 저장할경로 = storageRef.child('voicedata/' + user.email + " " + (i - 1) + "번 질문");
+                    var 저장할경로 = storageRef.child('voicedata/' + user.email.split("@")[0] + " " + (i - 1) + "번 질문");
                     var 업로드작업 = 저장할경로.put(blob);
                     document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
                     document.getElementById("Qtype").innerText= result.data().type;
@@ -133,7 +133,7 @@ $('#send').click(function () {
 
                     // 사용자가 답변한 내용을 저장할 때 각 문서의 이름 =
                     // 유저명+질문유형+질문번호+(year month day hour minute second)?
-                    db.collection('teststt').doc(user.email + (i - 2)+ "번 질문").set(저장할거).then((result) => {
+                    db.collection('teststt').doc(user.email.split("@")[0] + (i - 2)+ "번 질문").set(저장할거).then((result) => {
                         console.log(result)
                         r.innerHTML='';
                         alert("정상동작 하였습니다.");
