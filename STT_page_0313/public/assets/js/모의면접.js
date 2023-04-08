@@ -33,9 +33,9 @@ function startRecording() {
       .catch(function(err) { 
         console.log(err.name + ": " + err.message); 
       });
-  }
+}
   
-  function startConverting() {
+function startConverting() {
     startRecording();
     first_time=  performance.now();
     r.innerHTML = '';
@@ -65,15 +65,15 @@ function startRecording() {
     } else {
       r.innerHTML = 'Your browser is not supported. If google chrome, please upgrade!';
     }
-  }
+}
   
-  function stopConverting() {
+function stopConverting() {
     speechRecognizer.stop();
     mediaRecorder.stop();
     last_time= performance.now();
     time_gap = Math.round(((last_time - first_time) / 1000)*10) / 10; //ms -> s  단위로 구함 소숫점 한자리로 자름
     total_time +=time_gap;
-  }
+}
 
 
 function createObject(object, variableName) {
@@ -142,7 +142,7 @@ $('#send').click(function () {
 
                     // 사용자가 답변한 내용을 저장할 때 각 문서의 이름 =
                     // 유저명+질문유형+질문번호+(year month day hour minute second)?
-                    db.collection('teststt').doc(user.email.split("@")[0] + (i - 2)+ "번 질문").set(저장할거).then((result) => {
+                    db.collection('answer_stt').doc(user.email.split("@")[0] + (i - 2)+ "번 질문").set(저장할거).then((result) => {
                         console.log(result)
                         r.innerHTML='';
                         alert("정상동작 하였습니다.");
