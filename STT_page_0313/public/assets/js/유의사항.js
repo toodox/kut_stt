@@ -9,6 +9,10 @@ var mediaRecorder;
 var chunks = [];
 var blob;
 var bloburl;
+var total_time;  //총 걸린 시간
+var time_gap;    //문제별 걸린 시간
+var first_time;
+var last_time;
 
 function startRecording() {
   chunks = [];
@@ -33,6 +37,7 @@ function startRecording() {
 
 function startConverting() {
   startRecording();
+  first_time=  performance.now();
   isRecoding = true;
   r.innerHTML = '';
   if ('webkitSpeechRecognition' in window) {
@@ -66,12 +71,16 @@ function startConverting() {
 function stopConverting() {
   speechRecognizer.stop();
   mediaRecorder.stop();
+  last_time= performance.now();
+  time_gap = Math.round(((last_time - first_time) / 1000)*10) / 10; //ms -> s  단위로 구함 소숫점 한자리로 자름
+  total_time +=time_gap;
 }
 
 $('#send').click(function () {
   var 저장할거 = {
     내용: $('#content').val(),
     날짜: new Date(),
+    걸린시간: time_gap,
   };
 
   if (저장할거.내용 != '') {
@@ -81,7 +90,7 @@ $('#send').click(function () {
       var user = firebase.auth().currentUser;
       var 저장할경로 = storageRef.child('sample/' + user.email.split("@")[0] + " " + new Date()); //추후 유저명+시간으로 음성파일이름 바꿈
       var 업로드작업 = 저장할경로.put(blob);
-      db.collection('teststt').doc(user.email.split("@")[0]).set(저장할거).then((result) => {
+      db.collection('teststt').doc(user.email.split("@")[0] + ' '+'test').set(저장할거).then((result) => {
         window.location.href = '모의면접.html';
         console.log(result)
         // alert("정상동작 하였습니다.");

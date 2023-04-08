@@ -9,6 +9,10 @@ var mediaRecorder;
 var chunks = [];
 var blob;
 var bloburl;
+var total_time;  //총 걸린 시간
+var time_gap;    //문제별 걸린 시간
+var first_time;
+var last_time;
 
 function startRecording() {
     chunks = [];
@@ -33,6 +37,7 @@ function startRecording() {
   
   function startConverting() {
     startRecording();
+    first_time=  performance.now();
     r.innerHTML = '';
     if ('webkitSpeechRecognition' in window) {
       speechRecognizer.continuous = true;
@@ -65,6 +70,9 @@ function startRecording() {
   function stopConverting() {
     speechRecognizer.stop();
     mediaRecorder.stop();
+    last_time= performance.now();
+    time_gap = Math.round(((last_time - first_time) / 1000)*10) / 10; //ms -> s  단위로 구함 소숫점 한자리로 자름
+    total_time +=time_gap;
   }
 
 
@@ -113,6 +121,7 @@ $('#send').click(function () {
                 수정전내용: $('#content').val(),
                 날짜: new Date(),
                 수정후내용: check($('#content').val()),
+                걸린시간: time_gap,
             }
             if (저장할거.수정전내용 != '') //&& fileCK
             {
