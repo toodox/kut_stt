@@ -131,7 +131,6 @@ $('#send').click(function () {
                 if (ok) {
                     var storageRef = storage.ref();
                     var user = firebase.auth().currentUser;
-
                     var 저장할경로 = storageRef.child('voicedata/' + user.email.split("@")[0] + " " + (i - 1) + "번 질문");
 
                     var 업로드작업 = 저장할경로.put(blob);
