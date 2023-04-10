@@ -45,7 +45,7 @@ window.onload = function() {
         // 개선이 필요할 듯함
         // ex) 상세결과를 누르자 마자 바로 질문 번호가 나오지 않는 방식으로
         var user = firebase.auth().currentUser;
-        userName = user.email.split("@")[0]
+        userName = user.email.split("@")[0];
 
         // 수정 전/후 텍스트 불러오기
         db.collection('answer_stt').doc(userName + i + "번 질문").get().then((result) => {
