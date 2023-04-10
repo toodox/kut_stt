@@ -39,24 +39,21 @@
                     <li class="nav-item">
                         <a class="nav-link" href="이용안내.html">이용안내</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
-                            aria-expanded="false" href="#">면접연습</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li class="nav-item">
+                        <a class="nav-link" href="유형선택.html">면접연습</a>
+                        <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="유형선택.html">면접 유형 선택</a></li>
                             <li><a class="dropdown-item" href="유의사항.html">유의사항 확인</a></li>
                             <li><a class="dropdown-item" href="모의면접.html">연습 진행</a></li>
-                            <!--완료및제출페이지구현xxx-->
                             <li><a class="dropdown-item" href="완료및제출.html">완료 및 제출</a></li>
-                        </ul>
+                        </ul> -->
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false" href="#">면접결과확인</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li class="nav-item">
+                        <a class="nav-link" href="면접결과확인.html">면접결과확인</a>
+                        <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="면접결과확인.html">완료된 면접</a></li>
                             <li><a class="dropdown-item" href="상세결과.html">면접 결과 상세</a></li>
-                        </ul>
+                        </ul> -->
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
@@ -66,18 +63,23 @@
                             <li><a class="dropdown-item" href="자주하는질문.html">자주하는질문</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="질문등록.html">질문등록/관리</a>
-                    </li>
+                    </li> -->
                 </ul>
+                <!-- <button id="testbtn" class="nav-link" onclick="testbtn_click();">test</button>
+                <button id="testbtn" class="nav-link" onclick="testbtn_click1();">test</button> -->
+                <span class="userinfo hidden" id="userInfoaf"></span>
                 <form class="d-flex">
                     <a href="로그인.html" class="nav-link">
                         <button type="button" class="btn btn-outline-primary me-2 hidden" id="loginbtn">
                             Login</button>
                     </a>
+                    <!-- <a href="" class="nav-link"> -->
                     <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
                         Logout</button>
-                        <a href="회원가입2.html" class="nav-link "><button type="button"
+                    <!-- </a> -->
+                    <a href="회원가입2.html" class="nav-link"><button type="button"
                             class="btn btn-primary hidden"id="signupbtn">Sign-up</button></a>
                     <button type="button" class="btn btn-primary hidden" id="uinfo"></button>
                 </form>
@@ -110,8 +112,8 @@
 
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading fw-normal lh-1">2.모의 면접 진행하기</h2>
-                <p class="lead">상단의 면접연습탭을 이용하여 <br>면접유형선택, 유의사항확인, 연습진행 순서로 진행 후 제출 및 완료합니다.</p>
+                <h2 class="featurette-heading fw-normal lh-1">2. Allow CORS 확장프로그램 설치 및 실행</h2>
+                <p class="lead">구글웹스토어 Allow CORS검색<br>확장프로그램 설치<br>우측상단 확장프로그램에서 Allow CORS 클릭 후 실행</p>
             </div>
             <div class="col-md-5 order-md-1">
                 <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
@@ -128,8 +130,8 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading fw-normal lh-1">3.모의 면접 완료 후 결과가 나올 때까지 대기</h2>
-                <p class="lead">모든 과정을 진행했다면, 면접결과가 나올 때 까지 기다립니다. </p>
+                <h2 class="featurette-heading fw-normal lh-1">3.모의 면접 진행하기</h2>
+                <p class="lead">상단의 면접연습탭을 이용하여 <br>면접유형선택, 유의사항확인, 연습진행 순서로 진행 후 제출 및 완료합니다. </p>
             </div>
             <div class="col-md-5">
                 <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
@@ -141,26 +143,25 @@
 
             </div>
         </div>
-<!-- 
+
         <hr class="featurette-divider">
 
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading fw-normal lh-1">4.</h2>
-                <p class="lead"></p>
+                <h2 class="featurette-heading fw-normal lh-1">4.모의 면접 완료 후 결과가 나올 때까지 대기</h2>
+                <p class="lead">모든 과정을 진행했다면, 면접결과가 나올 때 까지 기다립니다.</p>
             </div>
             <div class="col-md-5 order-md-1">
                 <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
                     height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
                     preserveAspectRatio="xMidYMid slice" focusable="false">
                     <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa"
-                        dy=".3em">500x500</text>
+                    <image href="assets/image/이용안내4.png" width="100%" height="100%" fill="#eee"></image>
                 </svg>
 
             </div>
         </div>
-
+<!-- 
         <hr class="featurette-divider">
         <div class="row featurette">
             <div class="col-md-7">
