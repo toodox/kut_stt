@@ -29,23 +29,36 @@ window.onload = function() {
             qList.appendChild(plusQ);
         }
     });
-    // 질문지 불러오기
-    db.collection('questions').doc('users1_questions' + i).get().then((result) => {
-        $('#questions').html('<h1 id="Qcon">질문1. ' + result.data().content + '</h1>');
-        document.getElementById("Qtype").innerText= result.data().type;
-    });
-    // 수정 전/후 텍스트 불러오기
-    db.collection('teststt').doc(user.email + i).get().then((result) => {
-        document.getElementById('contents1').value = result.data().수정전내용;
-        document.getElementById('contents2').value = result.data().수정후내용;
-    });
-    // 오디오 파일 불러오기
-    storageRef.child('sample/'+ user + " " + i).getDownloadURL().then(function(url) {
-        // 오디오 태그를 사용하여 음성 파일을 표시
-        audioEl.src = url;
-    }).catch((error) => {
-        alert("에러가 발생했습니다");
-    });
+    setTimeout(function() {
+        // 질문지 불러오기
+        db.collection('questions').doc('users1_questions' + i).get().then((result) => {
+            $('#questions').html('<h1 id="Qcon">질문1. ' + result.data().content + '</h1>');
+            document.getElementById("Qtype").innerText= result.data().type;
+        });
+        var storage = firebase.storage();
+        var storageRef = storage.ref();
+        var user = firebase.auth().currentUser;
+
+        // 현재 window.onload를 통해 상세결과를 바로 출력할 시
+        // user의 값이 null로 나오는 경우가 있음
+        // window.onload가 페이지가 로딩되자마자 실행되는 것이라
+        // 로딩되는 즉시 user의 정보를 받아오지 못하는 듯 함
+        // 개선이 필요할 듯함
+        // ex) 상세결과를 누르자 마자 바로 질문 번호가 나오지 않는 방식으로
+
+        // 수정 전/후 텍스트 불러오기
+        db.collection('teststt').doc(user.email + i + "번 질문").get().then((result) => {
+            document.getElementById('contents1').value = result.data().수정전내용;
+            document.getElementById('contents2').value = result.data().수정후내용;
+        });
+        // 오디오 파일 불러오기
+        storageRef.child('voicedata/'+ user.email + " " + i + "번 질문").getDownloadURL().then(function(url) {
+            // 오디오 태그를 사용하여 음성 파일을 표시
+            audioEl.src = url;
+        }).catch((error) => {
+            alert("에러가 발생했습니다");
+        });
+    }, 2023);
 }
 
 
@@ -57,7 +70,7 @@ $('#after').click(function () {
             document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
             // 질문 유형 업데이트
             document.getElementById("Qtype").innerText= result.data().type;
-            db.collection('teststt').doc('user' + i).get().then((result) => {
+            db.collection('teststt').doc(user.email + i + "번 질문").get().then((result) => {
                 document.getElementById('contents1').value = result.data().수정전내용;
                 document.getElementById('contents2').value = result.data().수정후내용;
             });
@@ -82,7 +95,7 @@ $('#before').click(function () {
             document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
             // 질문 유형 업데이트
             document.getElementById("Qtype").innerText= result.data().type;
-            db.collection('teststt').doc('user' + i).get().then((result) => {
+            db.collection('teststt').doc(user.email + i + "번 질문").get().then((result) => {
                 document.getElementById('contents1').value = result.data().수정전내용;
                 document.getElementById('contents2').value = result.data().수정후내용;
             });
