@@ -29,6 +29,7 @@ window.onload = function() {
             qList.appendChild(plusQ);
         }
     });
+
     setTimeout(function() {
         // 질문지 불러오기
         db.collection('questions').doc('users1_questions' + i).get().then((result) => {
