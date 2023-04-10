@@ -48,12 +48,12 @@ window.onload = function() {
         // ex) 상세결과를 누르자 마자 바로 질문 번호가 나오지 않는 방식으로
 
         // 수정 전/후 텍스트 불러오기
-        db.collection('teststt').doc(user.email + i + "번 질문").get().then((result) => {
+        db.collection('answer_stt').doc(user.email.split("@")[0] + i + "번 질문").get().then((result) => {
             document.getElementById('contents1').value = result.data().수정전내용;
             document.getElementById('contents2').value = result.data().수정후내용;
         });
         // 오디오 파일 불러오기
-        storageRef.child('voicedata/'+ user.email + " " + i + "번 질문").getDownloadURL().then(function(url) {
+        storageRef.child('voicedata/'+ user.email.split("@")[0] + " " + i + "번 질문").getDownloadURL().then(function(url) {
             // 오디오 태그를 사용하여 음성 파일을 표시
             audioEl.src = url;
         }).catch((error) => {
@@ -71,7 +71,7 @@ $('#after').click(function () {
             document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
             // 질문 유형 업데이트
             document.getElementById("Qtype").innerText= result.data().type;
-            db.collection('teststt').doc(user.email + i + "번 질문").get().then((result) => {
+            db.collection('answer_stt').doc(user.email.split("@")[0] + i + "번 질문").get().then((result) => {
                 document.getElementById('contents1').value = result.data().수정전내용;
                 document.getElementById('contents2').value = result.data().수정후내용;
             });
@@ -96,7 +96,7 @@ $('#before').click(function () {
             document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
             // 질문 유형 업데이트
             document.getElementById("Qtype").innerText= result.data().type;
-            db.collection('teststt').doc(user.email + i + "번 질문").get().then((result) => {
+            db.collection('answer_stt').doc(user.email.split("@")[0] + i + "번 질문").get().then((result) => {
                 document.getElementById('contents1').value = result.data().수정전내용;
                 document.getElementById('contents2').value = result.data().수정후내용;
             });
