@@ -9,30 +9,35 @@ var mediaRecorder;
 var chunks = [];
 var blob;
 var bloburl;
+var total_time;  //총 걸린 시간
+var time_gap;    //문제별 걸린 시간
+var first_time;
+var last_time;
 
 function startRecording() {
   chunks = [];
   navigator.mediaDevices.getUserMedia(constraints)
-    .then(function(mediaStream) {
+    .then(function (mediaStream) {
       mediaRecorder = new MediaRecorder(mediaStream);
 
-      mediaRecorder.ondataavailable = function(e) {
+      mediaRecorder.ondataavailable = function (e) {
         chunks.push(e.data);
         if (mediaRecorder.state == 'inactive') {
-          blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+          blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' });
           // Do something with the blob object, such as uploading it to the server
         }
       }
 
       mediaRecorder.start();
     })
-    .catch(function(err) { 
-      console.log(err.name + ": " + err.message); 
+    .catch(function (err) {
+      console.log(err.name + ": " + err.message);
     });
 }
 
 function startConverting() {
   startRecording();
+  first_time=  performance.now();
   isRecoding = true;
   r.innerHTML = '';
   if ('webkitSpeechRecognition' in window) {
@@ -43,7 +48,7 @@ function startConverting() {
 
     var finalTranscripts = '';
 
-    speechRecognizer.onresult = function(event) {
+    speechRecognizer.onresult = function (event) {
       var interimTranscripts = '';
       for (var i = event.resultIndex; i < event.results.length; i++) {
         var transcript = event.results[i][0].transcript;
@@ -57,7 +62,7 @@ function startConverting() {
       r.innerHTML = finalTranscripts + interimTranscripts;
     };
 
-    speechRecognizer.onerror = function(event) {};
+    speechRecognizer.onerror = function (event) { };
   } else {
     r.innerHTML = 'Your browser is not supported. If google chrome, please upgrade!';
   }
@@ -66,12 +71,16 @@ function startConverting() {
 function stopConverting() {
   speechRecognizer.stop();
   mediaRecorder.stop();
+  last_time= performance.now();
+  time_gap = Math.round(((last_time - first_time) / 1000)*10) / 10; //ms -> s  단위로 구함 소숫점 한자리로 자름
+  total_time +=time_gap;
 }
 
-$('#send').click(function() {
+$('#send').click(function () {
   var 저장할거 = {
     내용: $('#content').val(),
     날짜: new Date(),
+    걸린시간: time_gap,
   };
 
   if (저장할거.내용 != '') {
@@ -79,9 +88,9 @@ $('#send').click(function() {
     if (ok) {
       var storageRef = storage.ref();
       var user = firebase.auth().currentUser;
-      var 저장할경로 = storageRef.child('sample/' + user.email + " " + new Date()); //추후 유저명+시간으로 음성파일이름 바꿈
+      var 저장할경로 = storageRef.child('sample/' + user.email.split("@")[0] + " " + new Date()); //추후 유저명+시간으로 음성파일이름 바꿈
       var 업로드작업 = 저장할경로.put(blob);
-      db.collection('teststt').doc(user.email).set(저장할거).then((result) =>{
+      db.collection('teststt').doc(user.email.split("@")[0] + ' '+'test').set(저장할거).then((result) => {
         window.location.href = '모의면접.html';
         console.log(result)
         // alert("정상동작 하였습니다.");

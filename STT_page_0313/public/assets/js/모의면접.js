@@ -9,6 +9,10 @@ var mediaRecorder;
 var chunks = [];
 var blob;
 var bloburl;
+var total_time;  //총 걸린 시간
+var time_gap;    //문제별 걸린 시간
+var first_time;
+var last_time;
 
 function startRecording() {
     chunks = [];
@@ -29,10 +33,11 @@ function startRecording() {
       .catch(function(err) { 
         console.log(err.name + ": " + err.message); 
       });
-  }
+}
   
-  function startConverting() {
+function startConverting() {
     startRecording();
+    first_time=  performance.now();
     r.innerHTML = '';
     if ('webkitSpeechRecognition' in window) {
       speechRecognizer.continuous = true;
@@ -60,12 +65,15 @@ function startRecording() {
     } else {
       r.innerHTML = 'Your browser is not supported. If google chrome, please upgrade!';
     }
-  }
+}
   
-  function stopConverting() {
+function stopConverting() {
     speechRecognizer.stop();
     mediaRecorder.stop();
-  }
+    last_time= performance.now();
+    time_gap = Math.round(((last_time - first_time) / 1000)*10) / 10; //ms -> s  단위로 구함 소숫점 한자리로 자름
+    total_time +=time_gap;
+}
 
 
 function createObject(object, variableName) {
@@ -115,6 +123,7 @@ $('#send').click(function () {
                 수정전내용: $('#content').val(),
                 날짜: new Date(),
                 수정후내용: check($('#content').val()),
+                걸린시간: time_gap,
             }
             if (저장할거.수정전내용 != '') //&& fileCK
             {
@@ -122,7 +131,9 @@ $('#send').click(function () {
                 if (ok) {
                     var storageRef = storage.ref();
                     var user = firebase.auth().currentUser;
-                    var 저장할경로 = storageRef.child('voicedata/' + user.email + " " + (i - 1) + "번 질문");
+
+                    var 저장할경로 = storageRef.child('voicedata/' + user.email.split("@")[0] + " " + (i - 1) + "번 질문");
+
                     var 업로드작업 = 저장할경로.put(blob);
                     document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
                     document.getElementById("Qtype").innerText= result.data().type;
@@ -138,7 +149,7 @@ $('#send').click(function () {
 
                     // 사용자가 답변한 내용을 저장할 때 각 문서의 이름 =
                     // 유저명+질문유형+질문번호+(year month day hour minute second)?
-                    db.collection('teststt').doc(user.email + (i - 2)+ "번 질문").set(저장할거).then((result) => {
+                    db.collection('answer_stt').doc(user.email.split("@")[0] + (i - 2)+ "번 질문").set(저장할거).then((result) => {
                         console.log(result)
                         r.innerHTML = '';
                         alert("정상동작 하였습니다.");
