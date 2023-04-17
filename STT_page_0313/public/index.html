@@ -144,7 +144,7 @@
         function admincheck() {
             var user = firebase.auth().currentUser;
             if (user) {
-                if (user.email == 'ki@kang.kr') {   //관리자 아이디일 경우 관리자 페이지 접속
+                if (user.email == 'maste@koreatech.ac.kr') {   //관리자 아이디일 경우 관리자 페이지 접속
                     location.href='관리자페이지.html'
                 }
                 else {
