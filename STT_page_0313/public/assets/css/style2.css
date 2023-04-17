@@ -33,21 +33,33 @@ body {
         padding-top: 10.0rem;
     }
 }
-@media (max-width: 919px) {
-    .collapse {
+@media (max-width: 987px) {
+    nav {
         font-size: 0.9rem;
     }
 
 }
 @media (max-width: 866px) {
-    .collapse {
+    nav {
         font-size: 0.8rem;
     }
 
 }
 @media (max-width: 805px) {
-    .collapse {
+    nav {
         font-size: 0.7rem;
     }
 
+}
+
+@media (max-width: 1050px) {
+    .btn {
+        font-size: 0.8rem;    
+    }
+}
+
+@media (max-width: 936px) {
+    .btn {
+        font-size: 0.7rem;    
+    }
 }
