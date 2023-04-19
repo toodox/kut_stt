@@ -133,20 +133,29 @@
 
                 </div>
             </div>
-            <audio id="voiceFile" controls title="questions1.mp3">Audio Element</audio>
+            <div style="display:flex; align-items:center;">
+                <audio id="voiceFile" controls title="questions1.mp3" style="margin-right:10px;">
+                  <source src="questions1.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+                <span style="font-size:14px;" id="timeCall"></span>
+            </div>
             <!-- <h6>수정 전</h6> -->
             <textarea readonly class="form-control mt-2" id="contents1"></textarea>
             <!-- <h6>수정 후</h6> -->
             <textarea readonly class="form-control mt-2" id="contents2"></textarea>
             <div class="card my-4 border-0">
                 <div class="card-body text-end">
-                    <button type="button" class="btn btn-primary float-end mx-3 " id="after">다음</button>
-                    <button type="button" class="btn btn-primary float-end" id="before">이전</button>
+                    <div>
+                        <button type="button" class="btn btn-primary float-end mx-3 " id="after">다음</button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary float-end" id="before">이전</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     <footer class="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
         <p class="text-center text-muted">© 2023 KOREATECH, Univ</p>

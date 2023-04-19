@@ -7,7 +7,7 @@ var audioEl = document.querySelector("audio");
 var user = firebase.auth().currentUser;
 var qList = document.getElementById("questionLists");
 var userName;
-
+var duration; //걸린시간용 변수
 
 window.onload = function() {
     db.collection('questions').get().then(snap => {
@@ -30,7 +30,6 @@ window.onload = function() {
             qList.appendChild(plusQ);
         }
     });
-
     setTimeout(function() {
         // 질문지 불러오기
         db.collection('questions').doc('users1_questions' + i).get().then((result) => {
@@ -51,7 +50,9 @@ window.onload = function() {
         db.collection('answer_stt').doc(userName + i + "번 질문").get().then((result) => {
             document.getElementById('contents1').value = result.data().수정전내용;
             document.getElementById('contents2').value = result.data().수정후내용;
+            duration = result.data().걸린시간;
         });
+        
         // 오디오 파일 불러오기
         storageRef.child('voicedata/'+ userName + " " + i + "번 질문").getDownloadURL().then(function(url) {
             // 오디오 태그를 사용하여 음성 파일을 표시
@@ -59,6 +60,13 @@ window.onload = function() {
         }).catch((error) => {
             alert("에러가 발생했습니다");
         });
+
+        const audio = document.getElementById("voiceFile");
+        const timeCall = document.getElementById("timeCall");
+        audio.addEventListener("loadedmetadata", () => {
+            timeCall.textContent = `걸린 시간: ${duration}초`;
+        });
+
     }, 2023);
 }
 
@@ -74,6 +82,7 @@ $('#after').click(function () {
             db.collection('answer_stt').doc(userName + i + "번 질문").get().then((result) => {
                 document.getElementById('contents1').value = result.data().수정전내용;
                 document.getElementById('contents2').value = result.data().수정후내용;
+                duration = result.data().걸린시간;
             });
             // 오디오 파일 불러오기
             storageRef.child('voicedata/'+ userName + " " + i + "번 질문").getDownloadURL().then(function(url) {
@@ -81,6 +90,12 @@ $('#after').click(function () {
                 audioEl.src = url;
             }).catch((error) => {
                 alert("에러가 발생했습니다");
+            });
+            //걸린시간 불러오기 23.04.19
+            const audio = document.getElementById("voiceFile");
+            const timeCall = document.getElementById("timeCall");
+            audio.addEventListener("loadedmetadata", () => {
+                timeCall.textContent = `걸린 시간: ${duration}초`;
             });
             // 현재 질문의 사이드 바를 하이라이트 설정
             document.getElementById('QLcontainer' + i).className = "list-group-item bg-primary text-right";
@@ -106,6 +121,7 @@ $('#before').click(function () {
             db.collection('answer_stt').doc(userName + i + "번 질문").get().then((result) => {
                 document.getElementById('contents1').value = result.data().수정전내용;
                 document.getElementById('contents2').value = result.data().수정후내용;
+                duration = result.data().걸린시간;
             });
             // 오디오 파일 불러오기
             storageRef.child('voicedata/'+ userName + " " + i + "번 질문").getDownloadURL().then(function(url) {
@@ -113,6 +129,12 @@ $('#before').click(function () {
                 audioEl.src = url;
             }).catch((error) => {
                 alert("에러가 발생했습니다");
+            });
+            //걸린시간 불러오기 23.04.19
+            const audio = document.getElementById("voiceFile");
+            const timeCall = document.getElementById("timeCall");
+            audio.addEventListener("loadedmetadata", () => {
+                timeCall.textContent = `걸린 시간: ${duration}초`;
             });
             // 현재 질문의 사이드 바를 하이라이트 설정
             document.getElementById('QLcontainer' + i).className = "list-group-item bg-primary text-right";
