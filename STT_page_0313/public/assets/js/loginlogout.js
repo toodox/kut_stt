@@ -1,4 +1,21 @@
 var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
+function admincheck() {
+  var user = firebase.auth().currentUser;
+  if (user) {
+      if (user.email == 'master@koreatech.ac.kr') {   //관리자 아이디일 경우 관리자 페이지 접속
+          location.href='관리자페이지.html'
+      }
+      else {
+          alert("관리자가 아닙니다.")
+      }
+  }
+  else{
+      alert("관리자 아이디로 로그인하세요.")
+  }
+
+}
+
+
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     // 로그인 된 경우
