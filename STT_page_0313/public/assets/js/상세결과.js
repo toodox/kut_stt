@@ -51,6 +51,7 @@ window.onload = function() {
             document.getElementById('contents1').value = result.data().수정전내용;
             document.getElementById('contents2').value = result.data().수정후내용;
             duration = result.data().걸린시간;
+            document.getElementById("timeCall").textContent = `걸린 시간: ${duration}초`;
         });
         
         // 오디오 파일 불러오기
@@ -61,11 +62,6 @@ window.onload = function() {
             alert("에러가 발생했습니다");
         });
 
-        const audio = document.getElementById("voiceFile");
-        const timeCall = document.getElementById("timeCall");
-        audio.addEventListener("loadedmetadata", () => {
-            timeCall.textContent = `걸린 시간: ${duration}초`;
-        });
 
     }, 2023);
 }
@@ -83,6 +79,7 @@ $('#after').click(function () {
                 document.getElementById('contents1').value = result.data().수정전내용;
                 document.getElementById('contents2').value = result.data().수정후내용;
                 duration = result.data().걸린시간;
+                document.getElementById("timeCall").textContent = `걸린 시간: ${duration}초`;
             });
             // 오디오 파일 불러오기
             storageRef.child('voicedata/'+ userName + " " + i + "번 질문").getDownloadURL().then(function(url) {
@@ -90,12 +87,6 @@ $('#after').click(function () {
                 audioEl.src = url;
             }).catch((error) => {
                 alert("에러가 발생했습니다");
-            });
-            //걸린시간 불러오기 23.04.19
-            const audio = document.getElementById("voiceFile");
-            const timeCall = document.getElementById("timeCall");
-            audio.addEventListener("loadedmetadata", () => {
-                timeCall.textContent = `걸린 시간: ${duration}초`;
             });
             // 현재 질문의 사이드 바를 하이라이트 설정
             document.getElementById('QLcontainer' + i).className = "list-group-item bg-primary text-right";
@@ -122,6 +113,7 @@ $('#before').click(function () {
                 document.getElementById('contents1').value = result.data().수정전내용;
                 document.getElementById('contents2').value = result.data().수정후내용;
                 duration = result.data().걸린시간;
+                document.getElementById("timeCall").textContent = `걸린 시간: ${duration}초`;
             });
             // 오디오 파일 불러오기
             storageRef.child('voicedata/'+ userName + " " + i + "번 질문").getDownloadURL().then(function(url) {
@@ -129,12 +121,6 @@ $('#before').click(function () {
                 audioEl.src = url;
             }).catch((error) => {
                 alert("에러가 발생했습니다");
-            });
-            //걸린시간 불러오기 23.04.19
-            const audio = document.getElementById("voiceFile");
-            const timeCall = document.getElementById("timeCall");
-            audio.addEventListener("loadedmetadata", () => {
-                timeCall.textContent = `걸린 시간: ${duration}초`;
             });
             // 현재 질문의 사이드 바를 하이라이트 설정
             document.getElementById('QLcontainer' + i).className = "list-group-item bg-primary text-right";

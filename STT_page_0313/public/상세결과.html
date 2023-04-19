@@ -116,30 +116,28 @@
                     <!-- </h1> -->
                 </div>
             </div>
-            <div class="card my-4 border-0">
-                <div class="card-body">
-
-                </div>
-            </div>
+            <p style="font-size:14px;">음성파일</p>
             <div style="display:flex; align-items:center;">
-                <audio id="voiceFile" controls title="questions1.mp3" style="margin-right:10px;">
-                  <source src="questions1.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
+                <audio id="voiceFile" controls title="questions1.mp3" style="margin-right:10px; width: 300px; height: 50px; background-color: #f2f2f2; color: #333; border: 1px solid #ccc; border-radius: 5px;">
+                <source src="questions1.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
                 </audio>
                 <span style="font-size:14px;" id="timeCall"></span>
             </div>
             <!-- <h6>수정 전</h6> -->
-            <textarea readonly class="form-control mt-2" id="contents1"></textarea>
+            <div style="margin-top:20px;">
+                <p style="font-size:14px;">원본 답변</p>
+                <textarea readonly class="form-control mt-2" id="contents1"></textarea>
+            </div>
             <!-- <h6>수정 후</h6> -->
-            <textarea readonly class="form-control mt-2" id="contents2"></textarea>
+            <div style="margin-top:20px;">
+                <p style="font-size:14px;">수정된 답변</p>
+                <textarea readonly class="form-control mt-2" id="contents2"></textarea>
+            </div>
             <div class="card my-4 border-0">
                 <div class="card-body text-end">
-                    <div>
-                        <button type="button" class="btn btn-primary float-end mx-3 " id="after">다음</button>
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-primary float-end" id="before">이전</button>
-                    </div>
+                    <button type="button" class="btn btn-primary float-end mx-3 " id="after">다음</button>
+                    <button type="button" class="btn btn-primary float-end" id="before">이전</button>
                 </div>
             </div>
         </div>
