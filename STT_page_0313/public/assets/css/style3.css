@@ -16,6 +16,15 @@ a{
     text-decoration: none;
 }
 
+textarea{
+    width: 100%;
+    max-height: 100px;
+}
+
+.btnline{
+    justify-content: space-between;
+}
+
 @media (min-width: 768px) {
     .bd-placeholder-img-lg {
         font-size: 3.5rem;

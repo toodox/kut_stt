@@ -40,7 +40,7 @@
                         <a class="nav-link" href="유형선택.html">면접연습</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="면접결과확인.html">면접결과확인</a>
+                        <a class="nav-link" href="상세결과.html">면접결과확인</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
@@ -83,8 +83,8 @@
                 <!-- 사이드바 메뉴목록1 -->
                 <ul class="list-group text-decoration-none">
                     <li class="list-group-item bg-primary white"><a
-                            class="text-decoration-none text-white align-items-center" href="#">질문유형선택</a></li>
-                    <li class="list-group-item bg-light"><a class="text-decoration-none text-dark" href="#">유의사항확인</a>
+                            class="text-decoration-none text-white align-items-center" href="#">질문1</a></li>
+                    <li class="list-group-item bg-light"><a class="text-decoration-none text-dark" href="#">질문2</a>
                     </li>
                 </ul>
             </div>
@@ -94,23 +94,24 @@
         <div class="col-md-9">
             <div class="card my-4">
                 <div class="card-body text-center">
-                    학생1의 답변 목록들~~~~~~~
+                    koreatech@koreatech.ac.kr 1번 질문
                 </div>
             </div>
             <div class="card my-4">
-                <div class="card-body text-center">
-                    <textarea id="answerbf"></textarea>
-                </div>
+                <textarea id="answerbf"></textarea>
             </div>
             <div class="card my-4">
-                <div class="card-body text-center">
-                    <textarea id="answeraf"></textarea>
+                <textarea id="answeraf"></textarea>
+            </div>
+            <div class="mb-4 me-5 text-end">
+                <div>
+                    
                 </div>
             </div>
-            <div class="card my-4">
-                <div class="card-body text-end">
-                    <button onclick="updateanswer()">수정완료버튼</button>
-                </div>
+            <div class="my-4 d-flex btnline">
+                    <button class="btn btn-primary" onclick="">이전 질문</button>
+                <button class="btn btn-warning" onclick="updateanswer()">수정완료</button>
+                    <button class="btn btn-primary" onclick="">다음 질문</button>
             </div>
         </div>
     </div>
@@ -144,17 +145,17 @@
         function updateanswer() {
             db.collection('teststt').doc("koreatech@koreatech.ac.kr1번 질문").update(
                 {
-                    수정후내용 : document.getElementById('answeraf').value
+                    수정후내용: document.getElementById('answeraf').value
                 }
             ).then(() => {
-                window.location.href='#';
+                alert("수정되었습니다.");
+                window.location.href = '#';
             });
         }
 
         // }
 
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

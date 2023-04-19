@@ -11,9 +11,6 @@
 
 <body>
     <!-- 파이어베이스 관련 스크립트 -->
-
-
-
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
@@ -45,7 +42,7 @@
                         <a class="nav-link" href="유형선택.html">면접연습</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="면접결과확인.html">면접결과확인</a>
+                        <a class="nav-link" href="상세결과.html">면접결과확인</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
@@ -143,21 +140,7 @@
                 window.location.href = '로그인.html';
             }
         });
-        function admincheck() {
-            var user = firebase.auth().currentUser;
-            if (user) {
-                if (user.email == 'master@koreatech.ac.kr') {   //관리자 아이디일 경우 관리자 페이지 접속
-                    location.href='관리자페이지.html'
-                }
-                else {
-                    alert("관리자가 아닙니다.")
-                }
-            }
-            else{
-                alert("관리자 아이디로 로그인하세요.")
-            }
 
-        }
     </script>
 </body>
 
