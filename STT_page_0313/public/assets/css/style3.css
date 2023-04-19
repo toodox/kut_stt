@@ -1,6 +1,6 @@
 body {
     min-height: 75rem;
-    padding-top: 10rem;
+    padding-top: 9rem;
 }
 .head_logo {
     max-width: 400px;
@@ -12,6 +12,9 @@ body {
     display:none;
 }
 
+a{
+    text-decoration: none;
+}
 
 @media (min-width: 768px) {
     .bd-placeholder-img-lg {
