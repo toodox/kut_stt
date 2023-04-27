@@ -7,7 +7,7 @@ var audioEl = document.querySelector("audio");
 var user = firebase.auth().currentUser;
 var qList = document.getElementById("questionLists");
 var userName;
-
+var duration; //걸린시간용 변수
 
 window.onload = function() {
     db.collection('questions').get().then(snap => {
@@ -30,7 +30,6 @@ window.onload = function() {
             qList.appendChild(plusQ);
         }
     });
-
     setTimeout(function() {
         // 질문지 불러오기
         db.collection('questions').doc('users1_questions' + i).get().then((result) => {
@@ -51,14 +50,21 @@ window.onload = function() {
         db.collection('answer_stt').doc(userName + i + "번 질문").get().then((result) => {
             document.getElementById('contents1').value = result.data().수정전내용;
             document.getElementById('contents2').value = result.data().수정후내용;
+            duration = result.data().걸린시간;
+            document.getElementById("timeCall").textContent = `걸린 시간: ${duration}초`;
+        }).catch((error) => {
+            alert("답변을 불러오는 중 오류가 발생했습니다");
         });
+        
         // 오디오 파일 불러오기
         storageRef.child('voicedata/'+ userName + " " + i + "번 질문").getDownloadURL().then(function(url) {
             // 오디오 태그를 사용하여 음성 파일을 표시
             audioEl.src = url;
         }).catch((error) => {
-            alert("에러가 발생했습니다");
+            alert("음성 파일을 불러오는 중 오류가 발생했습니다");
         });
+
+
     }, 2023);
 }
 
@@ -74,13 +80,17 @@ $('#after').click(function () {
             db.collection('answer_stt').doc(userName + i + "번 질문").get().then((result) => {
                 document.getElementById('contents1').value = result.data().수정전내용;
                 document.getElementById('contents2').value = result.data().수정후내용;
+                duration = result.data().걸린시간;
+                document.getElementById("timeCall").textContent = `걸린 시간: ${duration}초`;
+            }).catch((error) => {
+                alert("답변을 불러오는 중 오류가 발생했습니다");
             });
             // 오디오 파일 불러오기
             storageRef.child('voicedata/'+ userName + " " + i + "번 질문").getDownloadURL().then(function(url) {
                 // 오디오 태그를 사용하여 음성 파일을 표시
                 audioEl.src = url;
             }).catch((error) => {
-                alert("에러가 발생했습니다");
+                alert("음성 파일을 불러오는 중 오류가 발생했습니다");
             });
             // 현재 질문의 사이드 바를 하이라이트 설정
             document.getElementById('QLcontainer' + i).className = "list-group-item bg-primary text-right";
@@ -91,7 +101,7 @@ $('#after').click(function () {
         });
     }
     else {
-        alert("질문 끝~");
+        alert("마지막 질문입니다.");
     }
 });
 
@@ -106,13 +116,17 @@ $('#before').click(function () {
             db.collection('answer_stt').doc(userName + i + "번 질문").get().then((result) => {
                 document.getElementById('contents1').value = result.data().수정전내용;
                 document.getElementById('contents2').value = result.data().수정후내용;
+                duration = result.data().걸린시간;
+                document.getElementById("timeCall").textContent = `걸린 시간: ${duration}초`;
+            }).catch((error) => {
+                alert("답변을 불러오는 중 오류가 발생했습니다");
             });
             // 오디오 파일 불러오기
             storageRef.child('voicedata/'+ userName + " " + i + "번 질문").getDownloadURL().then(function(url) {
                 // 오디오 태그를 사용하여 음성 파일을 표시
                 audioEl.src = url;
             }).catch((error) => {
-                alert("에러가 발생했습니다");
+                alert("음성 파일을 불러오는 중 오류가 발생했습니다");
             });
             // 현재 질문의 사이드 바를 하이라이트 설정
             document.getElementById('QLcontainer' + i).className = "list-group-item bg-primary text-right";
@@ -123,6 +137,6 @@ $('#before').click(function () {
         });
     }
     else {
-        alert("처음 질문~");
+        alert("처음 질문입니다.");
     }
 });

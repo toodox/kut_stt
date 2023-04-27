@@ -43,19 +43,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="유형선택.html">면접연습</a>
-                        <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="유형선택.html">면접 유형 선택</a></li>
-                            <li><a class="dropdown-item" href="유의사항.html">유의사항 확인</a></li>
-                            <li><a class="dropdown-item" href="모의면접.html">연습 진행</a></li>
-                            <li><a class="dropdown-item" href="완료및제출.html">완료 및 제출</a></li>
-                        </ul> -->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="면접결과확인.html">면접결과확인</a>
-                        <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="면접결과확인.html">완료된 면접</a></li>
-                            <li><a class="dropdown-item" href="상세결과.html">면접 결과 상세</a></li>
-                        </ul> -->
+                        <a class="nav-link" href="상세결과.html">면접결과확인</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
@@ -63,26 +53,24 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="공지사항.html">공지사항</a></li>
                             <li><a class="dropdown-item" href="자주하는질문.html">자주하는질문</a></li>
+                            <li><a class="dropdown-item" href="관리자페이지.html">관리자페이지</a></li>
+                            <li><a class="dropdown-item" href="관리자페이지2.html">관리자페이지2</a></li>
                         </ul>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="질문등록.html">질문등록/관리</a>
-                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link hidden" id="adminch" onclick="admincheck()" href="#">관리자페이지</a>
+                    </li>
                 </ul>
-                <!-- <button id="testbtn" class="nav-link" onclick="testbtn_click();">test</button>
-                <button id="testbtn" class="nav-link" onclick="testbtn_click1();">test</button> -->
                 <span class="userinfo hidden" id="userInfoaf"></span>
                 <form class="d-flex">
                     <a href="로그인.html" class="nav-link">
                         <button type="button" class="btn btn-outline-primary me-2 hidden" id="loginbtn">
                             Login</button>
                     </a>
-                    <!-- <a href="" class="nav-link"> -->
                     <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
                         Logout</button>
-                    <!-- </a> -->
-                    <a href="회원가입2.html" class="nav-link"><button type="button"
-                            class="btn btn-primary hidden"id="signupbtn">Sign-up</button></a>
+                    <a href="회원가입2.html" class="nav-link"><button type="button" class="btn btn-primary hidden"
+                            id="signupbtn">Sign-up</button></a>
                     <button type="button" class="btn btn-primary hidden" id="uinfo"></button>
                 </form>
             </div>

@@ -53,7 +53,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link hidden" id="adminch" href="관리자페이지.html">관리자페이지</a>
+                        <a class="nav-link hidden" id="adminch" onclick="admincheck()" href="#">관리자페이지</a>
                     </li>
                 </ul>
                 <span class="userinfo hidden" id="userInfoaf"></span>
@@ -64,15 +64,14 @@
                     </a>
                     <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
                         Logout</button>
-                    <a href="회원가입2.html" class="nav-link"><button type="button"
-                            class="btn btn-primary hidden"id="signupbtn">Sign-up</button></a>
+                    <a href="회원가입2.html" class="nav-link"><button type="button" class="btn btn-primary hidden"
+                            id="signupbtn">Sign-up</button></a>
                     <button type="button" class="btn btn-primary hidden" id="uinfo"></button>
                 </form>
             </div>
         </div>
     </nav>
 
-    
     <div class="row mx-4">
         <div class="col-md-3">
             <!-- 사이드 바 메뉴-->
@@ -83,33 +82,36 @@
                 </div> -->
                 <!-- 사이드바 메뉴목록1 -->
                 <ul class="list-group text-decoration-none">
-                    <li class="list-group-item bg-primary white"><a class= "text-decoration-none text-white align-items-center" href="#">면접자 답변 관리</a></li>
-                    <!-- <li class="list-group-item bg-light"><a class= "text-decoration-none text-dark" href="#">유의사항확인</a></li> -->
+                    <li class="list-group-item bg-primary white"><a
+                            class="text-decoration-none text-white align-items-center" href="#">질문1</a></li>
+                    <li class="list-group-item bg-light"><a class="text-decoration-none text-dark" href="#">질문2</a>
+                    </li>
                 </ul>
             </div>
         </div>
 
 
         <div class="col-md-9">
-            <div class="card mb-4">
+            <div class="card my-4">
                 <div class="card-body text-center">
-                    <a href="관리자수정페이지.html">학생1 면접 내용</a>
+                    koreatech@koreatech.ac.kr 1번 질문
                 </div>
             </div>
             <div class="card my-4">
-                <div class="card-body text-center">
-                    학생2 면접 내용
-                </div>
+                <textarea id="answerbf"></textarea>
             </div>
             <div class="card my-4">
-                <div class="card-body text-center">
-                    학생3 면접 내용
+                <textarea id="answeraf"></textarea>
+            </div>
+            <div class="mb-4 me-5 text-end">
+                <div>
+                    
                 </div>
             </div>
-            <div class="card my-4">
-                <div class="card-body text-center">
-                    학생4 면접 내용
-                </div>
+            <div class="my-4 d-flex btnline">
+                    <button class="btn btn-primary" onclick="">이전 질문</button>
+                <button class="btn btn-warning" onclick="updateanswer()">수정완료</button>
+                    <button class="btn btn-primary" onclick="">다음 질문</button>
             </div>
         </div>
     </div>
@@ -133,6 +135,26 @@
                 window.location.href = '로그인.html';
             }
         });
+
+        var db = firebase.firestore();
+        // for (var n = 1; n <= questionsLen; n ++){
+        db.collection('teststt').doc("koreatech@koreatech.ac.kr1번 질문").get().then((result) => {
+            document.getElementById('answerbf').value = result.data().수정전내용;
+            document.getElementById('answeraf').value = result.data().수정후내용;
+        });
+        function updateanswer() {
+            db.collection('teststt').doc("koreatech@koreatech.ac.kr1번 질문").update(
+                {
+                    수정후내용: document.getElementById('answeraf').value
+                }
+            ).then(() => {
+                alert("수정되었습니다.");
+                window.location.href = '#';
+            });
+        }
+
+        // }
+
     </script>
 </body>
 
