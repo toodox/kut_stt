@@ -60,6 +60,7 @@ textarea{
     max-width: 1500px;
     margin-right: auto;
 }
+
 @media (max-width: 767px) {
     body {
         padding-top: 7.0rem;
