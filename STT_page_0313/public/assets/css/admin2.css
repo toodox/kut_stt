@@ -1,6 +1,6 @@
 @import url("style3.css");
 
-.product {  
+.student {  
   display: flex;
   padding: 10px;
 }
@@ -11,15 +11,11 @@
   background-size: cover;
   background-position: center;
 }
-.product .price {
+.student .student_num {
   font-size: 16px;
   font-weight: 600;
 }
-.product .title {
+.student .student_name {
   font-size: 17px;
   font-weight: 600;
-}
-.product .date {
-  color: grey;
-  font-size: 13px;
 }

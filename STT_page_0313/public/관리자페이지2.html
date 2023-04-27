@@ -121,12 +121,12 @@
       결과.forEach((doc) => {
         console.log(doc.data())
         var 템플릿 = `
-          <div class="product">
-            <div class="thumbnail" style="background-image: url('https://via.placeholder.com/350')"></div>
+          <div class="student">
+            <!-- <div class="thumbnail" style="background-image: url('https://via.placeholder.com/350')"></div> -->
             <div class="flex-grow-1 p-4">
-              <h5 class="title">${doc.data().이름}</h5>
-              <p class="price">${doc.data().학번}</p>
-              <button class="btn btn-sm btn-light float-end">🗑️</button>
+              <h5 class="studnet_name">${doc.data().이름}</h5>
+              <p class="student_num">${doc.data().학번}</p>
+              <button class="deleteButton btn btn-sm btn-light float-end">🗑️</button>
             </div>
           </div>
         `;
