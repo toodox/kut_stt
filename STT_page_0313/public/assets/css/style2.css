@@ -1,6 +1,7 @@
 body {
     min-height: 75rem;
     padding-top: 4.5rem;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 .head_logo {
@@ -13,9 +14,10 @@ body {
     width: 100%;
 }
 
-.hidden{
-    display:none;
+.hidden {
+    display: none;
 }
+
 .bi {
     vertical-align: -.125em;
     fill: currentColor;
@@ -33,18 +35,21 @@ body {
         padding-top: 10.0rem;
     }
 }
+
 @media (max-width: 987px) {
     nav {
         font-size: 0.9rem;
     }
 
 }
+
 @media (max-width: 866px) {
     nav {
         font-size: 0.8rem;
     }
 
 }
+
 @media (max-width: 805px) {
     nav {
         font-size: 0.7rem;
@@ -54,12 +59,12 @@ body {
 
 @media (max-width: 1050px) {
     .btn {
-        font-size: 0.8rem;    
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width: 936px) {
     .btn {
-        font-size: 0.7rem;    
+        font-size: 0.7rem;
     }
 }
