@@ -178,7 +178,7 @@ $('#send').click(function () {
             pbfvnow + pbfvmin + pbfvmax + '></div>');
             setTimeout(function() {
                 alert("end of questions");
-                window.location.href = '/완료및제출.html'
+                window.location.href = '완료및제출.html'
             }, 500);
         }
     });
