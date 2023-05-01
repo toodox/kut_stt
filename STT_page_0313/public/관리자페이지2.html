@@ -122,10 +122,9 @@
         console.log(doc.data())
         var 템플릿 = `
           <div class="student">
-            <!-- <div class="thumbnail" style="background-image: url('https://via.placeholder.com/350')"></div> -->
             <div class="flex-grow-1 p-4">
-              <h5 class="studnet_name">${doc.data().이름}</h5>
-              <p class="student_num">${doc.data().학번}</p>
+              <h5 class="studnet_name">이름 : ${doc.data().이름}</h5>
+              <p class="student_num">학번 : ${doc.data().학번}</p>
               <button class="deleteButton btn btn-sm btn-light float-end">🗑️</button>
             </div>
           </div>
