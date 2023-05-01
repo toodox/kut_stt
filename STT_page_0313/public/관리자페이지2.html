@@ -73,25 +73,24 @@
 
   <div class="row mx-4">
     <div class="col-md-3">
-      <!-- 사이드 바 메뉴-->
-      <!-- 패널 타이틀1 -->
-      <div class="panel panel-info">
-        <!-- <div class="panel-heading">
-            <h3 class="panel-title">면접 연습</h3>
-        </div> -->
-        <!-- 사이드바 메뉴목록1 -->
-        <ul class="list-group text-decoration-none">
-          <li class="list-group-item bg-primary white"><a class="text-decoration-none text-white align-items-center"
-              href="#">질문유형선택</a></li>
-          <li class="list-group-item bg-light"><a class="text-decoration-none text-dark" href="#">유의사항확인</a></li>
-        </ul>
-      </div>
+        <!-- 사이드 바 메뉴-->
+        <!-- 패널 타이틀1 -->
+        <div class="panel panel-info">
+            <!-- <div class="panel-heading">
+                <h3 class="panel-title">면접 연습</h3>
+            </div> -->
+            <!-- 사이드바 메뉴목록1 -->
+            <ul class="list-group text-decoration-none">
+                <li class="list-group-item bg-primary white"><a class= "text-decoration-none text-white align-items-center" href="#">면접자 답변 관리</a></li>
+                <!-- <li class="list-group-item bg-light"><a class= "text-decoration-none text-dark" href="#">유의사항확인</a></li> -->
+            </ul>
+        </div>
     </div>
 
 
   <div class="col-md-9">
-    <div class="card my-4">
-      <div class="container mt-3">
+    <div class="card border-0 mb-4">
+      <div class="container">
         <!-- <div class="product">
           <div class="thumbnail" style="background-image: url('https://via.placeholder.com/350')"></div>
           <div class="flex-grow-1 p-4">
@@ -102,9 +101,6 @@
           </div>
         </div> -->
       </div>
-    </div>
-    <div class="card my-4">
-      
     </div>
   </div>
 
@@ -121,7 +117,7 @@
       결과.forEach((doc) => {
         console.log(doc.data())
         var 템플릿 = `
-          <div class="student">
+          <div class="card student mb-4">
             <div class="flex-grow-1 p-4">
               <h5 class="studnet_name">이름 : ${doc.data().이름}</h5>
               <p class="student_num">학번 : ${doc.data().학번}</p>
