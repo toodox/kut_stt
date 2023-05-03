@@ -150,7 +150,7 @@ $('#send').click(function () {
                     // 유저명+질문유형+질문번호+(year month day hour minute second)?
                     db.collection('answer_stt').doc(user.email.split("@")[0] + (i - 2)+ "번 질문").set(저장할거).then((result) => {
                         console.log(result)
-                        r.innerHTML = '';
+                        r.innerHTML = ' ';
                         alert("정상동작 하였습니다.");
                     }).catch((error) => {
                         alert("에러가 발생했습니다");
@@ -178,7 +178,7 @@ $('#send').click(function () {
             pbfvnow + pbfvmin + pbfvmax + '></div>');
             setTimeout(function() {
                 alert("end of questions");
-                window.location.href = '/완료및제출.html'
+                window.location.href = '완료및제출.html'
             }, 500);
         }
     });

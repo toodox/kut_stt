@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STT모의 면접 서비스</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style3.css">
+    <link rel="stylesheet" href="assets/css/total.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -21,6 +24,8 @@
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="assets/js/firebaseset.js"></script>
     <script src="assets/js/loginlogout.js"></script>
+    
+
 
     <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
         <div class="container-xxl">
@@ -90,10 +95,10 @@
         </div>
 
 
-        <div class="col-md-9">
+        <div class="col-md-7">
             <div class="card mb-4">
                 <div class="card-body text-center">
-                    <a href="관리자수정페이지.html">학생1 면접 내용</a>
+                    <a href="관리자수정페이지.html" id="userem">koreatech@koreatech.ac.kr</a>면접내용
                 </div>
             </div>
             <div class="card my-4">
@@ -118,6 +123,7 @@
         <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
         <p class="text-center text-muted">© 2023 KOREATECH, Univ</p>
     </footer>
+    <script src="assets/js/send.js"></script>
     <script>
         $('#logoutbtn').click(function () {
             var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
