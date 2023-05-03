@@ -7,7 +7,7 @@ var qList = document.getElementById("quesLists");
 var userName;
 
 const data = localStorage.getItem('email');
-
+console.log(data);
 
 window.onload = function () {
     db.collection('questions').get().then(snap => {
@@ -48,7 +48,7 @@ window.onload = function () {
 
         // 수정 전/후 텍스트 불러오기
         console.log(data);
-        db.collection('teststt').doc(data + i + "번 질문").get().then((result) => {
+        db.collection('answer_stt').doc(data + i + "번 질문").get().then((result) => {
             document.getElementById('answerbf').value = result.data().수정전내용;
             document.getElementById('answeraf').value = result.data().수정후내용;
         }).catch((error) => {
@@ -68,7 +68,7 @@ $('#after').click(function () {
             // 질문 유형 업데이트
             document.getElementById("Qtype").innerText = result.data().type;
             document.getElementById('useremail').innerText = data + " " + i + "번 질문";
-            db.collection('teststt').doc(data + i + "번 질문").get().then((result) => {
+            db.collection('answer_stt').doc(data + i + "번 질문").get().then((result) => {
                 document.getElementById('answerbf').value = result.data().수정전내용;
                 document.getElementById('answeraf').value = result.data().수정후내용;
             }).catch((error) => {
@@ -96,7 +96,7 @@ $('#before').click(function () {
             // 질문 유형 업데이트
             document.getElementById("Qtype").innerText = result.data().type;
             document.getElementById('useremail').innerText = data + " " + i + "번 질문";
-            db.collection('teststt').doc(data + i + "번 질문").get().then((result) => {
+            db.collection('answer_stt').doc(data + i + "번 질문").get().then((result) => {
                 document.getElementById('answerbf').value = result.data().수정전내용;
                 document.getElementById('answeraf').value = result.data().수정후내용;
             }).catch((error) => {
@@ -116,9 +116,9 @@ $('#before').click(function () {
 });
 
 function updateanswer() {
-    db.collection('teststt').doc(data + i + "번 질문").update(
+    db.collection('answer_stt').doc(data + i + "번 질문").update(
         {
-            수정후내용: document.getElementById('answeraf').value
+            관리자수정후내용: document.getElementById('answeraf').value
         }
     ).then(() => {
         alert("수정되었습니다.");
