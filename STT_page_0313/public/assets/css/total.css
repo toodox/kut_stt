@@ -38,7 +38,7 @@ a {
 textarea{
     resize: none;
     overflow-y: scroll;
-    height: 200px;
+    height: 150px;
 }
 
 .btnline{
@@ -62,18 +62,6 @@ textarea{
         padding-top: 10.0rem;
     }
 }
-
-@media (max-width: 805px) {
-    .btn {
-        font-size: 0.6rem;
-    }
-    nav {
-        font-size: 0.7rem;
-    }
-    
-
-}
-
 @media (max-width: 1024px) {
     .btn {
         font-size: 0.8rem;
@@ -89,5 +77,13 @@ textarea{
     }
     nav {
         font-size: 0.8rem;
+    }
+}
+@media (max-width: 805px) {
+    .btn {
+        font-size: 0.6rem;
+    }
+    nav {
+        font-size: 0.7rem;
     }
 }
