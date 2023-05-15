@@ -101,8 +101,8 @@ function updateProgressBar(currentPercent) {
 }
 
 
-function updateContentAndType(documentName, questionNum) {
-    db.collection('question_' + selectedType).doc(selectedType + documentName + questionNum).get().then((result) => {
+function updateContentAndType(selectedTypes, questionNum) {
+    db.collection('question_' + selectedTypes).doc(selectedTypes + '_question' + questionNum).get().then((result) => {
         if (questionNum == 1) {
             $('#questions').html('<h1 id="Qcon">질문' + questionNum + '. ' + result.data().content + '</h1>');
             document.getElementById("Qtype").innerText = result.data().type;
@@ -138,7 +138,7 @@ window.onload = function() {
         
         updateProgressBar(0);
     });
-    updateContentAndType('_question', QIndex);
+    updateContentAndType(selectedType, QIndex);
 }
 
 
@@ -162,7 +162,7 @@ $('#send').click(function() {
         if (QIndex < questionsLen) {
             let ok = window.confirm("다음 질문으로 넘어가시겠습니까?");
             if (ok) {
-                updateContentAndType('_question', QIndex + 1);
+                updateContentAndType(selectedType, QIndex + 1);
                 updateProgressBar(100 * QIndex / questionsLen);
             }
             QIndex ++;
