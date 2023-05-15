@@ -7,7 +7,6 @@
     <title>STT모의 면접 서비스</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/total.css">
-    <link rel="shortcut icon" href="#">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
@@ -19,17 +18,15 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" 
-    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" 
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="assets/js/firebaseset.js"></script>
+    <!-- 파이어베이스 관련 스크립트 -->
     <script src="assets/js/loginlogout.js"></script>
-    <!-- 파이어베이스 관련 스크립트 -->
-    <script src="assets/js/상세결과.js"></script>
-    <!-- 파이어베이스 관련 스크립트 -->
-    
+    <!-- 로그인로그아웃버튼바뀌기 -->
     <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
         <div class="container-xxl">
             <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -54,9 +51,8 @@
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
                             aria-expanded="false" href="#">고객센터</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/announcement">공지사항</a></li>
+                            <!--<li><a class="dropdown-item" href="/announcement">공지사항</a></li>-->
                             <li><a class="dropdown-item" href="/questions">자주하는질문</a></li>
-                            <li><a class="dropdown-item" href="/admin-page1">관리자페이지</a></li>
                             <li><a class="dropdown-item" href="/admin-page2">관리자페이지2</a></li>
                         </ul>
                     </li>
@@ -79,67 +75,50 @@
             </div>
         </div>
     </nav>
+    <div class="mainposter ">
+        <img src="assets/image/메인포스터.png">
+    </div>
 
-    <div class="row mx-4">
-        <div class="col-md-3">
-            <!-- 사이드 바 메뉴-->
-            <!-- 패널 타이틀1 -->
-            <div class="panel panel-info">
-                <!-- <div class="panel-heading">
-                    <h3 class="panel-title">면접 연습</h3>
-                </div> -->
-                <!-- 사이드바 메뉴목록1 -->
-                <ul class="list-group text-decoration-none" id="questionLists">
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-md-7">
-            <div class="shadow card my-2 rounded-pill bg-warning border-0">
-                <div class="card-body text-center">
-                    <h6 id="Qtype"></h6>
+    <div class="container px-4 py-5" id="featured-3">
+        <h2 class="pb-2 border-bottom text-center">서비스소개</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="feture col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3">
+                        <h3 class="my-0 fw-normal text-center">실제와 유사한 질문</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <p>
+                            학생들이 실제 대학 입시 면접에서 만날 수 있는 상황을 경험하고 이를 토대로 면접 준비에 도움을 주는 것입니다. 면접 상황에서 경험할 수 있는 각종 질문들을 미리
+                            경험할 수 있도록 도와줍니다.
+                        </p>
+                    </div>
                 </div>
             </div>
-            <!--질문 진도 표시-->
-            <div class="progress" id="QProgress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" 
-                    role="progressbar" 
-                    style="width: 0%" 
-                    aria-valuenow="0" 
-                    aria-valuemin="0" 
-                    aria-valuemax="100">
+            <div class="feture col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3">
+                        <h3 class="my-0 fw-normal text-center">Speech-To-Text 기능</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <p>
+                            실시간으로 학생들이 면접 질문에 대답한 음성 파일을 텍스트로 변환하여 저장할 수 있습니다. 이를 통해 면접 후 다시 한번 자신의 면접 내용을 돌아보며, 미흡한 부분을
+                            체크하고 보완할 수 있습니다.
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="card my-2 border-0">
-                <div class="card-body" id="questions">
-                    <!-- <h1> -->
-                        <!-- 질문1. 우리 학교 지원 동기는 무엇입니까? -->
-                        <!-- 단순 h1형식으로 하는게 아니라 질문DB에서 따와서 불러와야 됨-->
-                    <!-- </h1> -->
-                </div>
-            </div>
-            <p style="font-size:14px;">면접 질문 녹음 파일</p>
-            <div style="display:flex; align-items:center;">
-                <audio id="voiceFile" controls title="questions1.mp3" style="margin-right:10px; width: 300px; height: 50px; background-color: #f2f2f2; color: #333; border: 1px solid #ccc; border-radius: 5px;">
-                <source src="questions1.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-                </audio>
-                <span style="font-size:14px;" id="timeCall"></span>
-            </div>
-            <!-- <h6>수정 전</h6> -->
-            <div style="margin-top:20px;">
-                <p style="font-size:14px;">원본 답변</p>
-                <textarea readonly class="form-control mt-2" id="contents1"></textarea>
-            </div>
-            <!-- <h6>수정 후</h6> -->
-            <div style="margin-top:20px;">
-                <p style="font-size:14px;">수정된 답변</p>
-                <textarea readonly class="form-control mt-2" id="contents2"></textarea>
-            </div>
-            <div class="card my-4 border-0">
-                <div class="card-body text-end">
-                    <button type="button" class="btn btn-primary float-end mx-3 " id="after">다음</button>
-                    <button type="button" class="btn btn-primary float-end" id="before">이전</button>
+            <div class="feture col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3">
+                        <h3 class="my-0 fw-normal text-center">키워드 분석 및 검사</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <p>
+                            피면접자들이 응답한 데이터들을 바탕으로 키워드를 분석하여 결과 피드백을 제공합니다. 또한, 맞춤법 검사 기능도 동작하여 면접 응답 중 부적절한 단어를 검출하여
+                            피드백을 제공합니다.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -163,10 +142,8 @@
                 window.location.href = '/login';
             }
         });
-    </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/상세결과.js"></script>
+    </script>
 </body>
 
 </html>
