@@ -1,0 +1,89 @@
+body {
+    min-height: 75rem;
+    padding-top: 7rem;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.head_logo {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+}
+.panel{
+    max-width: 350px;
+    margin-left: auto;
+}
+.box, .form-control{
+    max-width: 1500px;
+    margin-right: auto;
+}
+
+.mainposter img {
+    width: 100%;
+}
+
+
+.bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+}
+textarea{
+    resize: none;
+    overflow-y: scroll;
+    height: 150px;
+}
+
+.btnline{
+    justify-content: space-between;
+}
+.center{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items : center;
+}
+
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+@media (max-width: 479px) {
+    body {
+        padding-top: 10.0rem;
+    }
+}
+@media (max-width: 1024px) {
+    .btn {
+        font-size: 0.8rem;
+    }
+    nav {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 936px) {
+    .btn {
+        font-size: 0.7rem;
+    }
+    nav {
+        font-size: 0.8rem;
+    }
+}
+@media (max-width: 805px) {
+    .btn {
+        font-size: 0.6rem;
+    }
+    nav {
+        font-size: 0.7rem;
+    }
+}

@@ -5,6 +5,10 @@
   },
   "hosting": {
     "public": "public",
+    "rewrites": [{
+      "source": "**",
+      "function": "api"
+    }],
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -13,5 +17,17 @@
   },
   "storage": {
     "rules": "storage.rules"
-  }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ]
+    }
+  ]
 }
