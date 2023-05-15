@@ -13,7 +13,7 @@ var total_time;  //총 걸린 시간
 var time_gap;    //문제별 걸린 시간
 var first_time;
 var last_time;
-
+var selectedType;
 function startRecording() {
     chunks = [];
     navigator.mediaDevices.getUserMedia(constraints)
@@ -96,7 +96,8 @@ var pbfvmax = ' aria-valuemax="100"';
 
 
 window.onload = function() {
-    db.collection('questions').get().then(snap => {
+    selectedType = localStorage.getItem("selectedType");
+    db.collection('question_' + selectedType).get().then(snap => {
         size = snap.size
         questionsLen = size;
         if (size == 1)
@@ -108,7 +109,7 @@ window.onload = function() {
         pbfstyle + currP + 
         pbfvnow + pbfvmin + pbfvmax + '></div>');
     });
-    db.collection('questions').doc('users1_questions' + i).get().then((result) => {
+    db.collection('question_' + selectedType).doc(selectedType + '_question' + i).get().then((result) => {
         $('#questions').html('<h1 id="Qcon">질문1. ' + result.data().content + '</h1>');
         document.getElementById("Qtype").innerText= result.data().type;
     });
@@ -117,7 +118,7 @@ window.onload = function() {
 
 $('#send').click(function () {
     var check = pyodideGlobals.get('spellChecker');
-    db.collection('questions').doc('users1_questions' + i).get().then((result) => {
+    db.collection('question_' + selectedType).doc(selectedType + '_question' + i).get().then((result) => {
         if (i - 1 < questionsLen) {
             var 저장할거 = {
                 수정전내용: $('#content').val(),
@@ -148,7 +149,7 @@ $('#send').click(function () {
 
                     // 사용자가 답변한 내용을 저장할 때 각 문서의 이름 =
                     // 유저명+질문유형+질문번호+(year month day hour minute second)?
-                    db.collection('answer_stt').doc(user.email.split("@")[0] + (i - 2)+ "번 질문").set(저장할거).then((result) => {
+                    db.collection('answer').doc(user.email.split("@")[0] + selectedType + (i - 2)).set(저장할거).then((result) => {
                         console.log(result)
                         r.innerHTML = ' ';
                         alert("정상동작 하였습니다.");
