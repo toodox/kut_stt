@@ -13,7 +13,7 @@ var blob, bloburl;
 var total_time;   // 총 걸린 시간
 var time_gap;     // 문제별 걸린 시간
 var first_time, last_time;
-
+var selectedType;  //문제타입변수
 var QIndex = 1;
 var questionsLen = 1;
 
@@ -101,8 +101,8 @@ function updateProgressBar(currentPercent) {
 }
 
 
-function updateContentAndType(documentName, questionNum) {
-    db.collection('questions').doc(documentName + questionNum).get().then((result) => {
+function updateContentAndType(selectedTypes, questionNum) {
+    db.collection('question_' + selectedTypes).doc(selectedTypes + '_question' + questionNum).get().then((result) => {
         if (questionNum == 1) {
             $('#questions').html('<h1 id="Qcon">질문' + questionNum + '. ' + result.data().content + '</h1>');
             document.getElementById("Qtype").innerText = result.data().type;
@@ -128,7 +128,8 @@ function fixWrongSpell(orgSentence, tokens, suggestions) {
 
 
 window.onload = function() {
-    db.collection('questions').get().then(snap => {
+    selectedType = localStorage.getItem("selectedType");
+    db.collection('question_' + selectedType).get().then(snap => {
         size = snap.size;
         questionsLen = size;
 
@@ -137,7 +138,7 @@ window.onload = function() {
         
         updateProgressBar(0);
     });
-    updateContentAndType('users1_questions', QIndex);
+    updateContentAndType(selectedType, QIndex);
 }
 
 
@@ -161,7 +162,7 @@ $('#send').click(function() {
         if (QIndex < questionsLen) {
             let ok = window.confirm("다음 질문으로 넘어가시겠습니까?");
             if (ok) {
-                updateContentAndType('users1_questions', QIndex + 1);
+                updateContentAndType(selectedType, QIndex + 1);
                 updateProgressBar(100 * QIndex / questionsLen);
             }
             QIndex ++;
@@ -192,7 +193,7 @@ $('#send').click(function() {
                     날짜: new Date(), 
                     걸린시간: 0, 
                 }
-                db.collection('teststt').doc(userName + ' ' + currentQNum + "번 질문").set(저장할거).then((result) => {
+                db.collection('answer').doc(userName + selectedType + currentQNum).set(저장할거).then((result) => {
                     console.log(result);
                     if (currentQNum < questionsLen)
                         alert("정상동작 하였습니다.");
