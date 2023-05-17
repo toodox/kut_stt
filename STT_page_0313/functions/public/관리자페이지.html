@@ -4,7 +4,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STT모의 면접 서비스 면접연습</title>
+    <title>STT모의 면접 서비스</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/total.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,6 @@
 </head>
 
 <body>
-    <!-- 파이어베이스 관련 스크립트 -->
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
@@ -24,8 +23,9 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="assets/js/firebaseset.js"></script>
-    <!-- 파이어베이스 관련 스크립트 -->
     <script src="assets/js/loginlogout.js"></script>
+
+
 
     <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
         <div class="container-xxl">
@@ -58,7 +58,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link hidden" id="adminch" onclick="admincheck()" href="#">관리자페이지</a>
+                        <a class="nav-link hidden" id="adminch" href="/admin-page1">관리자페이지</a>
                     </li>
                 </ul>
                 <span class="userinfo hidden" id="userInfoaf"></span>
@@ -77,94 +77,70 @@
         </div>
     </nav>
 
-    
+
     <div class="row mx-4">
-        <div class="col-md-1"></div>
         <div class="col-md-3">
             <!-- 사이드 바 메뉴-->
+            <!-- 패널 타이틀1 -->
             <div class="panel panel-info">
+                <!-- <div class="panel-heading">
+                    <h3 class="panel-title">면접 연습</h3>
+                </div> -->
                 <!-- 사이드바 메뉴목록1 -->
                 <ul class="list-group text-decoration-none">
-                    <li class="list-group-item bg-primary"><a class= "text-decoration-none text-white" href="#">질문유형선택</a></li>
-                    <li class="list-group-item bg-light"><a class= "text-decoration-none text-dark" href="#">유의사항확인</a></li>
-                    <li class="list-group-item bg-light"><a class= "text-decoration-none text-dark" href="#">모의면접</a></li>
-                    <li class="list-group-item bg-light"><a class= "text-decoration-none text-dark" href="#">완료 및 제출</a></li>
+                    <li class="list-group-item bg-primary white"><a
+                            class="text-decoration-none text-white align-items-center" href="#">면접자 답변 관리</a></li>
+                    <!-- <li class="list-group-item bg-light"><a class= "text-decoration-none text-dark" href="#">유의사항확인</a></li> -->
                 </ul>
             </div>
         </div>
-        <div class="col-md-7 box">
-            <div class="shadow card my-4 bg-info border-0">
-                <a class = "link-dark" href="유의사항.html" id="typeA">
-                    <div class="card-body text-center">
-                        <h5>대입 수시 면접 A형</h5>
-                    </div>                    
-                </a>
-            </div>
 
-            <div class="shadow card my-4 bg-primary border-0">
-                <a class = "link-dark" href="유의사항.html" id="typeB">
-                    <div class="card-body text-center">
-                        <h5>대입 수시 면접 B형</h5>
-                    </div>                    
-                </a>
-            </div>
 
-            <div class="shadow card my-4 bg-primary border-0">
-                <a class = "link-dark" href="유의사항.html" id="typeC">
-                    <div class="card-body text-center">
-                        <h5>대입 수시 면접 C형</h5>
-                    </div>                    
-                </a>
+        <div class="col-md-7">
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <a href="/admin-edit-page" class="us" id="userem1">master</a>면접내용
+                </div>
             </div>
-            <!-- <div class="shadow card my-4 rounded-pill bg-warning border-0">
-                <a class = "link-dark" href="/notice">
-                    <div class="card-body text-center">
-                        <h5>대입 수시 면접</h5>
-                    </div>                    
-                </a>
+            <div class="card my-4">
+                <div class="card-body text-center">
+                    <a href="/admin-edit-page" class="us" id="userem2">ki</a>면접내용
+                </div>
             </div>
-            <div class="shadow card my-4 rounded-pill bg-warning border-0">
-                <a class = "link-dark" href="/notice">
-                    <div class="card-body text-center">
-                        <h5>대입 수시 면접</h5>
-                    </div>                    
-                </a>
+            <div class="card my-4">
+                <div class="card-body text-center">
+                    학생3 면접 내용
+                </div>
             </div>
-            <div class="shadow card my-4 rounded-pill bg-warning border-0">
-                <a class = "link-dark" href="/notice">
-                    <div class="card-body text-center">
-                        <h5>대입 수시 면접</h5>
-                    </div>                    
-                </a>
-            </div> -->
-            <!-- <div class="my-4 right">
-                <a href="/notice"><button type="button" class="btn btn-primary float-end" id="send">다음 단계</button></a>
-            </div> -->
+            <div class="card my-4">
+                <div class="card-body text-center">
+                    학생4 면접 내용
+                </div>
+            </div>
         </div>
-
     </div>
 
     <footer class="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
         <p class="text-center text-muted">© 2023 KOREATECH, Univ</p>
     </footer>
+    <script src="assets/js/send.js"></script>
     <script>
         $('#logoutbtn').click(function () {
             var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
             if (user) {
-              firebase.auth().signOut().then(function () { // signOut() 메소드 호출 시 then()을 사용하여 로그아웃 성공 시 처리할 작업을 추가합니다.
-                alert("로그아웃 되었습니다.");
-                window.location.href = '/';
-              }).catch(function (error) { // 로그아웃 실패 시 오류 메시지를 표시합니다.
-                alert(error.message);
-              });
+                firebase.auth().signOut().then(function () { // signOut() 메소드 호출 시 then()을 사용하여 로그아웃 성공 시 처리할 작업을 추가합니다.
+                    alert("로그아웃 되었습니다.");
+                    window.location.href = '/';
+                }).catch(function (error) { // 로그아웃 실패 시 오류 메시지를 표시합니다.
+                    alert(error.message);
+                });
             }
             else {
-              window.location.href = '/login';
+                window.location.href = '/login';
             }
-          });
+        });
     </script>
-    <script src="assets/js/유형선택.js"></script>
 </body>
 
 </html>
