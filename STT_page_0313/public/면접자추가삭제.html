@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STT모의 면접 서비스</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/total.css">
+    <link rel="stylesheet" href="assets/css/admin2.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
@@ -24,9 +24,6 @@
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="assets/js/firebaseset.js"></script>
     <script src="assets/js/loginlogout.js"></script>
-
-
-
     <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
         <div class="container-xxl">
             <a href="index.html" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -45,7 +42,7 @@
                         <a class="nav-link" href="유형선택.html">면접연습</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="상세결과.html">면접결과확인</a>
+                        <a class="nav-link" href="면접결과확인.html">면접결과확인</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
@@ -53,8 +50,6 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="공지사항.html">공지사항</a></li>
                             <li><a class="dropdown-item" href="자주하는질문.html">자주하는질문</a></li>
-                            <li><a class="dropdown-item" href="관리자페이지.html">관리자페이지</a></li>
-                            <li><a class="dropdown-item" href="관리자페이지2.html">관리자페이지2</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -80,67 +75,62 @@
 
     <div class="row mx-4">
         <div class="col-md-3">
-            <!-- 사이드 바 메뉴-->
-            <!-- 패널 타이틀1 -->
             <div class="panel panel-info">
-                <!-- <div class="panel-heading">
-                    <h3 class="panel-title">면접 연습</h3>
-                </div> -->
-                <!-- 사이드바 메뉴목록1 -->
                 <ul class="list-group text-decoration-none">
-                    <li class="list-group-item bg-primary white"><a
-                            class="text-decoration-none text-white align-items-center" href="#">면접자 답변 관리</a></li>
-                    <!-- <li class="list-group-item bg-light"><a class= "text-decoration-none text-dark" href="#">유의사항확인</a></li> -->
+                    <li class="list-group-item bg-light "><a class="text-decoration-none text-black align-items-center"
+                            href="관리자페이지2.html">면접자 답변 관리</a></li>
+                    <li class="list-group-item bg-primary white"><a class="text-decoration-none text-white" href="#">면접자
+                            추가/삭제</a></li>
                 </ul>
             </div>
         </div>
 
 
-        <div class="col-md-7">
+        <div class="col-md-8">
             <div class="card mb-4">
-                <div class="card-body text-center">
-                    <a href="관리자수정페이지.html" class="us" id="userem1">master</a>
+                <div class="card-body">
+                    <input type="text" id='stname' placeholder="이름을 입력해주세요.">
+                    <input type="text" id='stnum' onKeyup="this.value=this.value.replace(/[^-0-9]/g,'');"
+                        placeholder="학번을 입력해주세요.">
                 </div>
+                <button class="btn btn-warning" onclick="addlist()">추가</button>
             </div>
-            <div class="card my-4">
-                <div class="card-body text-center">
-                    <a href="관리자수정페이지.html" class="us" id="userem2">ki</a>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <input type="text" id='rstname' placeholder="이름을 입력해주세요.">
+                    <input type="text" id='rstnum' onKeyup="this.value=this.value.replace(/[^-0-9]/g,'');"
+                        placeholder="학번을 입력해주세요.">
                 </div>
-            </div>
-            <div class="card my-4">
-                <div class="card-body text-center">
-                    학생3 면접 내용
-                </div>
-            </div>
-            <div class="card my-4">
-                <div class="card-body text-center">
-                    학생4 면접 내용
-                </div>
+                <button class="btn btn-warning" onclick="checkuser()">확인</button>
             </div>
         </div>
-    </div>
 
-    <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
-        <p class="text-center text-muted">© 2023 KOREATECH, Univ</p>
-    </footer>
-    <script src="assets/js/send.js"></script>
-    <script>
-        $('#logoutbtn').click(function () {
-            var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
-            if (user) {
-                firebase.auth().signOut().then(function () { // signOut() 메소드 호출 시 then()을 사용하여 로그아웃 성공 시 처리할 작업을 추가합니다.
-                    alert("로그아웃 되었습니다.");
-                    window.location.href = 'index.html';
-                }).catch(function (error) { // 로그아웃 실패 시 오류 메시지를 표시합니다.
-                    alert(error.message);
-                });
-            }
-            else {
-                window.location.href = '로그인.html';
-            }
-        });
-    </script>
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+            <p class="text-center text-muted">© 2023 KOREATECH, Univ</p>
+        </footer>
+        <script>
+            $('#logoutbtn').click(function () {
+                var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
+                if (user) {
+                    firebase.auth().signOut().then(function () { // signOut() 메소드 호출 시 then()을 사용하여 로그아웃 성공 시 처리할 작업을 추가합니다.
+                        alert("로그아웃 되었습니다.");
+                        window.location.href = 'index.html';
+                    }).catch(function (error) { // 로그아웃 실패 시 오류 메시지를 표시합니다.
+                        alert(error.message);
+                    });
+                }
+                else {
+                    window.location.href = '로그인.html';
+                }
+            });
+        </script>
+
+<script src="assets/js/면접자추가삭제.js"></script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
