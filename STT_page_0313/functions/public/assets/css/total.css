@@ -1,7 +1,21 @@
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     min-height: 75rem;
     padding-top: 7rem;
-    font-family: 'Nanum Gothic', sans-serif;
+    /*font-family: 'Nanum Gothic', sans-serif;*/
 }
 
 .head_logo {
@@ -86,4 +100,11 @@ textarea{
     nav {
         font-size: 0.7rem;
     }
+}
+
+
+/*홈화면_장준호*/
+
+.fontcolor {
+    color: orange;
 }
