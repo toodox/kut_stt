@@ -8,11 +8,13 @@ var user = firebase.auth().currentUser;
 var qList = document.getElementById("questionLists");
 var userName;
 var duration; //걸린시간용 변수
+var resultType; //선택한 타입
 
 window.onload = function() {
-    db.collection('questions').get().then(snap => {
-        size = snap.size
-        questionsLen = size;
+    resultType = localStorage.getItem("resultType");
+    db.collection('question_' + resultType).get().then(result => {
+        questionsLen = result.size;
+        console.log(questionsLen);
         // 사이드바 생성
         for (var n = 1; n <= questionsLen; n ++) {
             if (n == i) {
@@ -32,7 +34,7 @@ window.onload = function() {
     });
     setTimeout(function() {
         // 질문지 불러오기
-        db.collection('questions').doc('users1_questions' + i).get().then((result) => {
+        db.collection('question_' + resultType).doc(resultType + '_question' + i).get().then((result) => {
             $('#questions').html('<h1 id="Qcon">질문1. ' + result.data().content + '</h1>');
             document.getElementById("Qtype").innerText= result.data().type;
         });
@@ -48,7 +50,7 @@ window.onload = function() {
         console.log(userName);
 
         // 수정 전/후 텍스트 불러오기
-        db.collection('teststt').doc(userName + ' '+ i + "번 질문").get().then((result) => {
+        db.collection('answer').doc(userName + resultType + i).get().then((result) => {
             document.getElementById('contents1').value = result.data().수정전내용;
             document.getElementById('contents2').value = result.data().수정후내용;
             duration = result.data().걸린시간;
@@ -74,12 +76,12 @@ window.onload = function() {
 $('#after').click(function () {
     if (i < questionsLen) {
         i ++;
-        db.collection('questions').doc('users1_questions' + i).get().then((result) => {
+        db.collection('question_' + resultType).doc(resultType + '_question' + i).get().then((result) => {
             // 질문 내용 업데이트
             document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
             // 질문 유형 업데이트
             document.getElementById("Qtype").innerText= result.data().type;
-            db.collection('teststt').doc(userName + ' ' + i + "번 질문").get().then((result) => {
+            db.collection('answer').doc(userName + resultType + i).get().then((result) => {
                 document.getElementById('contents1').value = result.data().수정전내용;
                 document.getElementById('contents2').value = result.data().수정후내용;
                 duration = result.data().걸린시간;
@@ -110,12 +112,12 @@ $('#after').click(function () {
 $('#before').click(function () {
     if (i - 1 > 0) {
         i --;
-        db.collection('questions').doc('users1_questions' + i).get().then((result) => {
+        db.collection('question_' + resultType).doc(resultType + '_question' + i).get().then((result) => {
             // 질문 내용 업데이트
             document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
             // 질문 유형 업데이트
             document.getElementById("Qtype").innerText= result.data().type;
-            db.collection('teststt').doc(userName + ' ' + i + "번 질문").get().then((result) => {
+            db.collection('answer').doc(userName + resultType + i).get().then((result) => {
                 document.getElementById('contents1').value = result.data().수정전내용;
                 document.getElementById('contents2').value = result.data().수정후내용;
                 duration = result.data().걸린시간;
