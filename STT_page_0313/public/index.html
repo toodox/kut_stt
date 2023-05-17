@@ -2,213 +2,263 @@
 <html>
 
 <head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STT모의 면접 서비스</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/total.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>STT모의 면접 서비스</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/total.css">
+
+	<!--구글 폰트 적용-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+	
+	<style>
+		@font-face {
+			font-family: 'GmarketSansMedium';
+			src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+			font-weight: normal;
+			font-style: normal;
+	}
+	</style>
+
 </head>
 
-<body>
-    <!-- 파이어베이스 관련 스크립트 -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+<body style="font-family : 'GmarketSansMedium'">
+	<!-- 파이어베이스 관련 스크립트 -->
+	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
-        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <script src="assets/js/firebaseset.js"></script>
-    <!-- 파이어베이스 관련 스크립트 -->
-    <script src="assets/js/loginlogout.js"></script>
-    <!-- 로그인로그아웃버튼바뀌기 -->
-    <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
-        <div class="container-xxl">
-            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                <img src="assets/image/로고.png" class="head_logo" alt="">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto ms-2 mb-2 mb-md-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/info-use">이용안내</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/select-type">면접연습</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/results">면접결과확인</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
-                            aria-expanded="false" href="#">고객센터</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <!--<li><a class="dropdown-item" href="/announcement">공지사항</a></li>-->
-                            <li><a class="dropdown-item" href="/questions">자주하는질문</a></li>
-                            <li><a class="dropdown-item" href="/admin-page2">관리자페이지2</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link hidden" id="adminch" onclick="admincheck()" href="#">관리자페이지</a>
-                    </li>
-                </ul>
-                <span class="userinfo hidden" id="userInfoaf"></span>
-                <form class="d-flex">
-                    <a href="/login" class="nav-link">
-                        <button type="button" class="btn btn-outline-primary me-2 hidden" id="loginbtn">
-                            Login</button>
-                    </a>
-                    <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
-                        Logout</button>
-                    <a href="/sign-up" class="nav-link"><button type="button" class="btn btn-primary hidden"
-                            id="signupbtn">Sign-up</button></a>
-                    <button type="button" class="btn btn-primary hidden" id="uinfo"></button>
-                </form>
-            </div>
-        </div>
-    </nav>
-    <div class="mainposter ">
-        <img src="assets/image/메인포스터.png">
-    </div>
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+		integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+	<script src="assets/js/firebaseset.js"></script>
+	<!-- 파이어베이스 관련 스크립트 -->
+	<script src="assets/js/loginlogout.js"></script>
+	<!-- 로그인로그아웃버튼바뀌기 -->
+	<nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
+		<div class="container-xxl">
+			<a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+				<img src="assets/image/로고.png" class="head_logo" alt="">
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+				aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav me-auto ms-2 mb-2 mb-md-0">
+					<li class="nav-item">
+						<a class="nav-link" href="/info-use">이용안내</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/select-type">면접연습</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/results">면접결과확인</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
+							aria-expanded="false" href="#">고객센터</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<!--<li><a class="dropdown-item" href="/announcement">공지사항</a></li>-->
+							<li><a class="dropdown-item" href="/questions">자주하는질문</a></li>
+							<li><a class="dropdown-item" href="/admin-page2">관리자페이지2</a></li>
+						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link hidden" id="adminch" onclick="admincheck()" href="#">관리자페이지</a>
+					</li>
+				</ul>
+				<span class="userinfo hidden" id="userInfoaf"></span>
+				<form class="d-flex">
+					<a href="/login" class="nav-link">
+						<button type="button" class="btn btn-outline-primary me-2 hidden" id="loginbtn">
+							Login</button>
+					</a>
+					<button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
+						Logout</button>
+					<a href="/sign-up" class="nav-link"><button type="button" class="btn btn-primary hidden"
+							id="signupbtn">Sign-up</button></a>
+					<button type="button" class="btn btn-primary hidden" id="uinfo"></button>
+				</form>
+			</div>
+		</div>
+	</nav>
 
-    <div class="container px-4 py-5" id="featured-3">
-        <h2 class="pb-2 border-bottom text-center">서비스소개</h2>
-        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-            <div class="feture col">
-                <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
-                        <h3 class="my-0 fw-normal text-center">실제와 유사한 질문</h3>
-                    </div>
-                    <div class="card-body text-center">
-                        <p>
-                            학생들이 실제 대학 입시 면접에서 만날 수 있는 상황을 경험하고 이를 토대로 면접 준비에 도움을 주는 것입니다. 면접 상황에서 경험할 수 있는 각종 질문들을 미리
-                            경험할 수 있도록 도와줍니다.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="feture col">
-                <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
-                        <h3 class="my-0 fw-normal text-center">Speech-To-Text 기능</h3>
-                    </div>
-                    <div class="card-body text-center">
-                        <p>
-                            실시간으로 학생들이 면접 질문에 대답한 음성 파일을 텍스트로 변환하여 저장할 수 있습니다. 이를 통해 면접 후 다시 한번 자신의 면접 내용을 돌아보며, 미흡한 부분을
-                            체크하고 보완할 수 있습니다.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="feture col">
-                <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
-                        <h3 class="my-0 fw-normal text-center">키워드 분석 및 검사</h3>
-                    </div>
-                    <div class="card-body text-center">
-                        <p>
-                            피면접자들이 응답한 데이터들을 바탕으로 키워드를 분석하여 결과 피드백을 제공합니다. 또한, 맞춤법 검사 기능도 동작하여 면접 응답 중 부적절한 단어를 검출하여
-                            피드백을 제공합니다.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<section class="kmock-sec-1">
+		<div class="mainposter ">
+			<img src="assets/image/메인포스터.png">
+		</div>
+	</section>
 
-    <div class="container bg-primary">
-        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class="active"
-                    aria-current="true"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="#777"></rect>
-                    </svg>
-        
-                    <div class="container2">
-                        <div class="carousel-caption text-start">
-                            <h1>Example headline.</h1>
-                            <p>Some representative placeholder content for the first slide of the carousel.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="#777"></rect>
-                    </svg>
-        
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1>Another example headline.</h1>
-                            <p>Some representative placeholder content for the second slide of the carousel.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item active">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="#777"></rect>
-                    </svg>
-        
-                    <div class="container">
-                        <div class="carousel-caption text-end">
-                            <h1>One more for good measure.</h1>
-                            <p>Some representative placeholder content for the third slide of this carousel.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>  
+	<section class="kmock-sec-2 bg-primary">
+		<div class="container px-4 py-5" id="featured-3">
+			<h1 class="pb-2 border-bottom text-center fw-bold">지금 서비스를 이용해야 하는 이유!</h1>
+			<div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+				<div class="feture col">
+					<div class="card mb-4 rounded-3 shadow-sm">
+						<div class="card-header py-3">
+							<h3 class="my-0 fw-normal text-center">실제와 유사한 질문</h3>
+						</div>
+						<div class="card-body text-center">
+							<p>
+								학생들이 실제 대학 입시 면접에서 만날 수 있는 상황을 경험하고 이를 토대로 면접 준비에 도움을 주는 것입니다. 면접 상황에서 경험할 수 있는 각종 질문들을 미리
+								경험할 수 있도록 도와줍니다.
+							</p>
+						</div>
+					</div>
+				</div>
 
-    <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
-        <p class="text-center text-muted">© 2023 KOREATECH, Univ</p>
-    </footer>
-    <script>
-        $('#logoutbtn').click(function () {
-            var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
-            if (user) {
-                firebase.auth().signOut().then(function () { // signOut() 메소드 호출 시 then()을 사용하여 로그아웃 성공 시 처리할 작업을 추가합니다.
-                    alert("로그아웃 되었습니다.");
-                    window.location.href = '/';
-                }).catch(function (error) { // 로그아웃 실패 시 오류 메시지를 표시합니다.
-                    alert(error.message);
-                });
-            }
-            else {
-                window.location.href = '/login';
-            }
-        });
 
-    </script>
+				<div class="feture col">
+					<div class="container card mb-4 rounded-3 shadow-sm">
+						<div class="card-header py-3">
+							<h3 class="my-0 fw-normal text-center">Speech-To-Text 기능</h3>
+						</div>
+						<div class="card-body text-center">
+							<p>
+								실시간으로 학생들이 면접 질문에 대답한 음성 파일을 텍스트로 변환하여 저장할 수 있습니다. 이를 통해 면접 후 다시 한번 자신의 면접 내용을 돌아보며, 미흡한 부분을
+								체크하고 보완할 수 있습니다.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="feture col">
+					<div class="card mb-4 rounded-3 shadow-sm">
+						<div class="card-header py-3">
+							<h3 class="my-0 fw-normal text-center">키워드 분석 및 검사</h3>
+						</div>
+						<div class="card-body text-center">
+							<p>
+								피면접자들이 응답한 데이터들을 바탕으로 키워드를 분석하여 결과 피드백을 제공합니다. 또한, 맞춤법 검사 기능도 동작하여 면접 응답 중 부적절한 단어를 검출하여
+								피드백을 제공합니다.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="kmock-sec-3 bg-warning">
+		<div class="container px-4 py-5" id="featured-3">
+
+			<div class="row justify-content-center">
+				<h2 class="pb-2 text-center">눈으로 보고 미리 경험하는</h2>
+				<h2 class="pb-2 text-center">한기대 대입 면접 특화 K-MOCK 서비스</h2>
+			</div>
+
+			<div class="row justify-content-center">
+				<div class="mb-4 rounded-3 bg-info text-center col-sm-3">
+					<h3>
+						#응시화면
+					</h3>
+				</div>
+			</div>
+
+			<div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+				<!--하단 인디케이터 버튼-->
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+					<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""
+						aria-current="true"></button>
+				</div>
+				
+				<!--캐러셀 내부-->
+				<div class="carousel-inner">
+					
+					<!--첫번째 화면-->
+					<div class="carousel-item active">
+						<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+							aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+							<rect width="100%" height="100%" fill="#777"></rect>
+						</svg>
+	
+						<div class="container">
+
+							<!-- 각 화면 별 설명 문구-->
+							<div class="carousel-caption text-center d-none d-md-block">
+								<p>첫번째</p>
+								<h5>Second slide label</h5>
+								<p>Some representative placeholder content for the second slide.</p>
+							</div>
+						</div>
+					</div>
+					
+					<!--두번쨰 화면-->
+					<div class="carousel-item">
+						<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+							aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+							<rect width="100%" height="100%" fill="#777"></rect>
+						</svg>
+	
+						<div class="container">
+
+							<!-- 각 화면 별 설명 문구-->
+							<div class="carousel-caption">
+								<p>두번째</p>
+								<h5>Second slide label</h5>
+								<p>Some representative placeholder content for the second slide.</p>
+							</div>
+						</div>
+					</div>
+					
+
+					<!--세번째 화면, 초기값-->
+					<div class="carousel-item">
+						<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+							aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+							<rect width="100%" height="100%" fill="#777"></rect>
+						</svg>
+	
+						<div class="container">
+							<div class="carousel-caption text-center">
+								<p>세번째</p>
+							</div>
+						</div>
+					</div>
+				</div>
+	
+				<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+	
+			</div>
+		</div>
+	</section>
+
+	<footer class="py-3 my-4">
+		<ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+		<p class="text-center text-muted">© 2023 KOREATECH, Univ</p>
+	</footer>
+
+
+	<script>
+		$('#logoutbtn').click(function () {
+			var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
+			if (user) {
+				firebase.auth().signOut().then(function () { // signOut() 메소드 호출 시 then()을 사용하여 로그아웃 성공 시 처리할 작업을 추가합니다.
+					alert("로그아웃 되었습니다.");
+					window.location.href = '/';
+				}).catch(function (error) { // 로그아웃 실패 시 오류 메시지를 표시합니다.
+					alert(error.message);
+				});
+			}
+			else {
+				window.location.href = '/login';
+			}
+		});
+	</script>
+
+
 </body>
-
 </html>
