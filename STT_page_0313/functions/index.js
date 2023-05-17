@@ -78,6 +78,10 @@ app.get('/admin-page2', (req, res) => {
     res.sendFile(path.join(__dirname + filePath + '관리자페이지2.html'));
 });
 
+app.get('/choiceresults', (req, res) => {
+    res.sendFile(path.join(__dirname + filePath + '상세결과면접선택.html'));
+});
+
 app.post('/submitForm', (req, res) => {
     const { sentence } = req.body;
     const spellCheck = async function(results) {
