@@ -6,10 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>STT모의 면접 서비스</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/total.css">
+  <link rel="stylesheet" href="assets/css/indexplus.css">
 
   <!--파비콘-->
-  <link rel="icon" href="/STT_page_0313/functions/public/assets/image/favi.png" type="image/x-icon">
+  <link rel="icon" href="./assets/image/서브시그니처1.ico" type="image/x-icon">
+
+  <!--스와이프 슬라이더-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
   <!--구글 폰트 적용-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -81,14 +85,160 @@
     </div>
   </nav>
 
-  <section class="kmock-sec-1">
+  <section class="kmock-sec-2">
     <div class="mainposter">
       <span class="fontcolor border-bottom text-center">모의333면접서비스</span>
       <img src="assets/image/메인포스터.png">
     </div>
   </section>
 
-  <section class="kmock-sec-2 bg-primary">
+
+  <section class="kmock-sec-3">
+    <div class="container px-4 py-5" id="featured-3">
+
+      <div class="row justify-content-center">
+        <p class="fontcolor text-center text-wrap">눈으로 보고 미리 경험하는</p>
+        <p class="text-center text-wrap">한기대 대입 면접 특화 K-MOCK 서비스
+        </p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="mb-4 rounded-3 bg-info text-center col-sm-3">
+          <p class="box-text">
+            #응시화면
+          </p>
+        </div>
+      </div>
+
+
+      <div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <!--캐러셀 내부-->
+        <div class="carousel-inner">
+
+          <!--첫번째 화면-->
+          <div class="carousel-item active">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <rect width="100%" height="100%" fill="#777"></rect>
+            </svg>
+
+            <div class="container">
+              <!-- 각 화면 별 설명 문구-->
+              <div class="carousel-caption text-center">
+                <p class="mt-4">-1-</p>
+              </div>
+            </div>
+          </div>
+
+          <!--두번쨰 화면-->
+          <div class="carousel-item">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <rect width="100%" height="100%" fill="#777"></rect>
+            </svg>
+
+            <div class="container">
+              <!-- 각 화면 별 설명 문구-->
+              <div class="carousel-caption text-center">
+                <p>-2-</p>
+              </div>
+            </div>
+          </div>
+
+
+          <!--세번째 화면, 초기값-->
+          <div class="carousel-item">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <rect width="100%" height="100%" fill="#777"></rect>
+            </svg>
+            <div class="container">
+              <div class="carousel-caption text-center">
+                <p>-3-</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--하단 인디케이터 버튼-->
+        <div class="carousel-indicators-container">
+          <ol class="carousel-indicators">
+            <li type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"></li>
+            <li type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></li>
+            <li type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""
+              aria-current="true"></li>
+          </ol>
+        </div>
+
+        <!--Next / Previous 버튼-->
+        <!-- <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button> -->
+      </div>
+    </div>
+  </section>
+
+  <section class="kmock-sec-2">
+    <div class="container px-4 py-5" id="featured-3">
+      <div class="container">
+        <h2>Carousel practice</h2>
+      </div>
+      <div id="demo" class="carousel slide" data-ride="carousel">
+  
+        <div class="carousel-inner">
+          <!-- 슬라이드 쇼 -->
+          <div class="carousel-item active">
+            <!--가로-->
+            <img class="d-block w-100"
+              src="https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+              alt="First slide">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>TEST</h5>
+              <p>testtesttest</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100"
+              src="https://images.pexels.com/photos/2355519/pexels-photo-2355519.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+              alt="Second slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100"
+              src="https://images.pexels.com/photos/2544554/pexels-photo-2544554.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+              alt="Third slide">
+          </div>
+  
+          <!-- / 슬라이드 쇼 끝 -->
+  
+          <!-- 왼쪽 오른쪽 화살표 버튼 -->
+          <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <!-- <span>Previous</span> -->
+          </a>
+          <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <!-- <span>Next</span> -->
+          </a>
+          <!-- / 화살표 버튼 끝 -->
+  
+          <!-- 인디케이터 -->
+          <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li> <!--0번부터시작-->
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+          </ul>
+          <!-- 인디케이터 끝 -->
+        </div>
+      </div>
+  </section>
+
+
+  <section class="kmock-sec-2">
     <div class="container px-4 py-5" id="featured-3">
       <p class="fontcolor border-bottom text-center">지금 서비스를 이용해야 하는 이유!</p>
       <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
@@ -138,103 +288,13 @@
     </div>
   </section>
 
-  <section class="kmock-sec-3 bg-warning">
-    <div class="container px-4 py-5" id="featured-3">
-
-      <div class="row justify-content-center">
-        <p class="fontcolor text-center text-wrap">눈으로 보고 미리 경험하는</p>
-        <p style="font-family : 'GmarketSansBold'" class="text-center text-wrap">한기대 대입 면접 특화 K-MOCK 서비스
-        </p>
-      </div>
-
-      <div class="row justify-content-center">
-        <div class="mb-4 rounded-3 bg-info text-center col-sm-3">
-          <p>
-            #응시화면
-          </p>
-        </div>
-      </div>
-
-      <div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <!--하단 인디케이터 버튼-->
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
-            aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"
-            class=""></button>
-          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""
-            aria-current="true"></button>
-        </div>
-
-        <!--캐러셀 내부-->
-        <div class="carousel-inner">
-
-          <!--첫번째 화면-->
-          <div class="carousel-item active">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <rect width="100%" height="100%" fill="#777"></rect>
-            </svg>
-
-            <div class="container">
-
-              <!-- 각 화면 별 설명 문구-->
-              <div class="carousel-caption text-center">
-                <p class="mt-4">-1-</p>
-              </div>
-            </div>
-          </div>
-
-          <!--두번쨰 화면-->
-          <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <rect width="100%" height="100%" fill="#777"></rect>
-            </svg>
-
-            <div class="container">
-
-              <!-- 각 화면 별 설명 문구-->
-              <div class="carousel-caption text-center">
-                <p>-2-</p>
-              </div>
-            </div>
-          </div>
 
 
-          <!--세번째 화면, 초기값-->
-          <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <rect width="100%" height="100%" fill="#777"></rect>
-            </svg>
-
-            <div class="container">
-              <div class="carousel-caption text-center">
-                <p>-3-</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-
-      </div>
-    </div>
-  </section>
-
-  <footer class="py-3 my-4">
-    <ul class="justify-content-center border-bottom pb-3 mb-3"></ul>
+  <footer class="mb-4">
+    <ul class="justify-content-center border-bottom mb-3"></ul>
     <p class="text-center">© 2023 KOREATECH, Univ</p>
+    <p class="footer-notice text-center">본 서비스는 chrome 브라우저 사용을 권장합니다.</p>
   </footer>
-
 
   <script>
     $('#logoutbtn').click(function () {
@@ -253,7 +313,45 @@
     });
   </script>
 
+  <script>
+    var swiperTopNum = $('.gallery-top').find('.swiper-slide');
+    var swiperSubNum = $('.gallery-thumbs').find('.gallery-thumbs');
+  
+    var galleryTop = new Swiper('.gallery-top', {
+        spaceBetween: 10,	//슬라이드 간격
+          pagination: {	//페이징 사용자 설정
+            el: ".swiper-pagination",	//페이징 태그 클래스 설정 
+        clickable: true,	//버튼 클릭 여부
+        type : 'bullets',	//페이징 타입 설정(종류: bullets, fraction, progressbar)
+        // Bullet Numbering 설정
+            renderBullet: function (index, className) {
+              return '<span class="' + className + '">' + (index + 1) + "</span>";
+            },
+      },
+      loop: true,	//슬라이드 반복
+      loopedSlides: swiperTopNum.length	//loop 시 파라미터 duplicate 개수 - 정적으로 숫자 4 표현 가능
+      });
+  
+      var galleryThumbs = new Swiper('.gallery-thumbs', {
+        spaceBetween: 0,	//슬라이드 간격
+        navigation: {	//네비게이션 사용자 설정
+          nextEl: '.swiper-button-next',	//다음 버튼 클래스 설정
+            prevEl: '.swiper-button-prev',	//이전 버튼 클래스 설정
+        },
+        centeredSlides: true,	//슬라이드 중앙 배치
+        slidesPerView: 'auto',	//한번에 보여지는 슬라이드 개수(auto 가능)
+        touchRatio: 0.2,	//드래그 비율 설정(기본값: 1, 기본값을 0으로 설정할 경우 드래그 불가능)
+        slideToClickedSlide: true,	//슬라이드가 여러개 나열되어 있을 경우, 클릭 시 해당 슬라이드 위치로 이동
+      loop: true,	//슬라이드 반복
+      loopedSlides: swiperSubNum.length //loop 시 파라미터 duplicate 개수 - 정적으로 숫자 4 표현 가능
+      });
+  </script>
 
+  <script>
+    $('.carousel').carousel({
+      interval: 2000 //기본 5초
+    })
+  </script>
 </body>
 
 </html>
