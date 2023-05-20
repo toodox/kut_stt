@@ -61,7 +61,7 @@ window.onload = function() {
         });
         
         // 오디오 파일 불러오기
-        storageRef.child('voicedata/'+ userName + " " + i + "번 질문").getDownloadURL().then(function(url) {
+        storageRef.child('voicedata/'+ userName + " " + i + "번 질문" + resultType).getDownloadURL().then(function(url) {
             // 오디오 태그를 사용하여 음성 파일을 표시
             audioEl.src = url;
         }).catch((error) => {
@@ -90,7 +90,7 @@ $('#after').click(function () {
                 alert("답변을 불러오는 중 오류가 발생했습니다");
             });
             // 오디오 파일 불러오기
-            storageRef.child('voicedata/'+ userName + " " + i + "번 질문").getDownloadURL().then(function(url) {
+            storageRef.child('voicedata/'+ userName + " " + i + "번 질문" + resultType).getDownloadURL().then(function(url) {
                 // 오디오 태그를 사용하여 음성 파일을 표시
                 audioEl.src = url;
             }).catch((error) => {
@@ -126,7 +126,7 @@ $('#before').click(function () {
                 alert("답변을 불러오는 중 오류가 발생했습니다");
             });
             // 오디오 파일 불러오기
-            storageRef.child('voicedata/'+ userName + " " + i + "번 질문").getDownloadURL().then(function(url) {
+            storageRef.child('voicedata/'+ userName + " " + i + "번 질문" + resultType).getDownloadURL().then(function(url) {
                 // 오디오 태그를 사용하여 음성 파일을 표시
                 audioEl.src = url;
             }).catch((error) => {

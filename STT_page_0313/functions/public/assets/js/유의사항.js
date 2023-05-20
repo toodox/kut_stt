@@ -13,9 +13,11 @@ var total_time; //총 걸린 시간
 var time_gap; //문제별 걸린 시간
 var first_time;
 var last_time;
+var recodeing = 0; //녹음중인지 확인하는 변수
 
 function startRecording() {
   chunks = [];
+  recodeing = 1;
   navigator.mediaDevices
     .getUserMedia(constraints)
     .then(function (mediaStream) {
@@ -71,6 +73,7 @@ function startConverting() {
 }
 
 function stopConverting() {
+  recodeing = 0;
   speechRecognizer.stop();
   mediaRecorder.stop();
   last_time = performance.now();
@@ -85,7 +88,7 @@ $("#send").click(function () {
     걸린시간: (time_gap ? typeof time_gap != "undefined" : 0),
   };
 
-  if (저장할거.내용 != "") {
+  if (저장할거.내용 != "" &&  recodeing == 0) {
     var ok = window.confirm("모의면접을 시작하시겠습니까?");
     if (ok) {
       var storageRef = storage.ref();
@@ -112,6 +115,8 @@ $("#send").click(function () {
     }
   } else if (저장할거.내용 == "") {
     alert("공백은 제출할 수 없습니다.");
+  } else if(recodeing = 1)  {
+      alert("녹음 진행 중입니다. 종료 버튼을 눌러주세요.");
   } else {
     alert("제출하는 중 에러가 발생했습니다.");
   }
