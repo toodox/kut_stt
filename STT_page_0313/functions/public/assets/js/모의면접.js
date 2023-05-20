@@ -100,7 +100,6 @@ function updateProgressBar(currentPercent) {
     );
 }
 
-
 function updateContentAndType(selectedTypes, questionNum) {
     db.collection('question_' + selectedTypes).doc(selectedTypes + '_question' + questionNum).get().then((result) => {
         if (questionNum == 1) {
@@ -129,6 +128,7 @@ function fixWrongSpell(orgSentence, tokens, suggestions) {
 
 window.onload = function() {
     selectedType = localStorage.getItem("selectedType");
+    console.log(selectedType);
     db.collection('question_' + selectedType).get().then(snap => {
         size = snap.size;
         questionsLen = size;
@@ -191,7 +191,7 @@ $('#send').click(function() {
                     수정전내용: contentVal, 
                     수정후내용: fixedSentence, 
                     날짜: new Date(), 
-                    걸린시간: 0, 
+                    걸린시간: (time_gap ? typeof time_gap != "undefined" : 0),
                 }
                 db.collection('answer').doc(userName + selectedType + currentQNum).set(저장할거).then((result) => {
                     console.log(result);

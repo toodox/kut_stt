@@ -2,10 +2,10 @@ const db = firebase.firestore();
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
-  const buttons = ["typeA", "typeB", "typeC"];
+  const buttons = ["A", "B", "C"];
 
   buttons.forEach(function (type) {
-    document.getElementById(type).addEventListener("click", function () {
+    document.getElementById(`type${type}`).addEventListener("click", function () {
       saveSelectedType(type);
     });
   });
