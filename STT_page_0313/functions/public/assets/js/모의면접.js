@@ -16,10 +16,11 @@ var first_time, last_time;
 var selectedType;  //문제타입변수
 var QIndex = 1;
 var questionsLen = 1;
-
+var recodeing = 0; //녹음중인지 확인하는 변수
 
 function startRecording() {
     chunks = [];
+    recodeing = 1;
     navigator.mediaDevices.getUserMedia(constraints).then(
         function(mediaStream) {
             mediaRecorder = new MediaRecorder(mediaStream);
@@ -78,6 +79,7 @@ function startConverting() {
 
 
 function stopConverting() {
+    recodeing = 0;
     speechRecognizer.stop();
     mediaRecorder.stop();
     last_time = performance.now();
@@ -145,7 +147,7 @@ window.onload = function() {
 $('#send').click(function() {
     let contentVal = $('#content').val();
     let currentQNum = QIndex;
-    if (contentVal != '') {
+    if (contentVal != '' && recodeing ==0) {
         let user = firebase.auth().currentUser;
         let userName = user.email.split('@')[0];
         let storageRef = storage.ref();
@@ -191,7 +193,7 @@ $('#send').click(function() {
                     수정전내용: contentVal, 
                     수정후내용: fixedSentence, 
                     날짜: new Date(), 
-                    걸린시간: (time_gap ? typeof time_gap != "undefined" : 0),
+                    걸린시간: (time_gap ? time_gap : 0),
                 }
                 db.collection('answer').doc(userName + selectedType + currentQNum).set(저장할거).then((result) => {
                     console.log(result);
@@ -204,7 +206,16 @@ $('#send').click(function() {
             }
         }
     }
-    else {
+    else if(contentVal = '')
+    {
         alert("공백은 제출할 수 없습니다.");
+    }
+    else if(recodeing = 1)
+    {
+        alert("녹음 진행 중입니다. 종료 버튼을 눌러주세요.");
+    }
+    else 
+    {
+        alert("제출하는 중 에러가 발생했습니다.");
     }
 });
