@@ -1,7 +1,9 @@
 const functions = require("firebase-functions");
 
 const admin = require("firebase-admin");
+
 admin.initializeApp();
+var db = admin.firestore();
 
 const express = require('express');
 const app = express();
@@ -21,8 +23,8 @@ const extractor = keyword();
 
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
-    organization: "org-ZoKreamHYgnbKIQaEGLNKbK6",
-    apiKey: "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",
+    organization: "org-CpTXH19w06wnH2LNbSDz4wKk",
+    apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
 
@@ -96,7 +98,7 @@ app.get('/admin-ans-edit', (req, res) => {
 });
 
 app.post('/submitForm', (req, res) => {
-    const { sentence } = req.body;
+    const { sentence , num} = req.body;
     const spellCheck = async function(results) {
         var tokens = [];
         var suggestions = [];
@@ -124,6 +126,17 @@ app.post('/submitForm', (req, res) => {
                 keyword1: keyObj[0], 
                 moreQuestions: moreQuestions
             };
+            let GPT추가질문 = {
+                type: "GPT",
+                content: moreQuestions,
+                keyword: keyObj[0], 
+            }
+            db.collection('question_GPT').doc("GPT_question" + num).set(GPT추가질문).then((result) => {
+                console.log(result);
+            }).catch((error) => {
+                console.log(error);
+                alert("오류가 발생하였습니다.");
+            })
 
             console.log(response);
             console.log("done");
@@ -131,7 +144,7 @@ app.post('/submitForm', (req, res) => {
             res.send(JSON.stringify(response));
         }
 
-        runGPT(keyObj[0] + "을(를) 키워드로 나올 수 있는 추가 면접 질문을 " + keyObj[0] + "을(를) 질문 문장에 포함해서 2개 알려줘.")
+        runGPT(keyObj[0] + "을(를) 키워드로 나올 수 있는 대입 수시 면접 질문을 한개만 알려줘.")
     };
 
     hanspell.spellCheckByDAUM(sentence, 6000, spellCheck, checkEnd, checkError);
@@ -139,7 +152,6 @@ app.post('/submitForm', (req, res) => {
 });
 
 app.post('/getCollections', (req, res) => {
-    var db = admin.firestore();
     db.listCollections().then(snapshot => {
         let collectionName = [];
         snapshot.forEach(snaps => {
