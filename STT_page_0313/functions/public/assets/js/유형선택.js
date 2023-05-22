@@ -1,5 +1,3 @@
-const db = firebase.firestore();
-
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
   const buttons = ["A", "B", "C"];
