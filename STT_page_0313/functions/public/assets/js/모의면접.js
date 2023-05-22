@@ -11,7 +11,7 @@ var mediaRecorder;
 var chunks = [];
 var blob, bloburl;
 var total_time;   // 총 걸린 시간
-var time_gap;     // 문제별 걸린 시간
+var time_gap = 0; // 문제별 걸린 시간
 var first_time, last_time;
 var selectedType;  //문제타입변수
 var QIndex = 1;
@@ -128,6 +128,15 @@ function fixWrongSpell(orgSentence, tokens, suggestions) {
 }
 
 
+function createFixArr(tokens, suggestions) {
+    let changedObj = {};
+    tokens.forEach((token, idx) => {
+        changedObj[token] = suggestions[idx].join(" / ");
+    });
+    return changedObj;
+}
+
+
 window.onload = function() {
     selectedType = localStorage.getItem("selectedType");
     console.log(selectedType);
@@ -147,7 +156,7 @@ window.onload = function() {
 $('#send').click(function() {
     let contentVal = $('#content').val();
     let currentQNum = QIndex;
-    if (contentVal != '' && recodeing ==0) {
+    if (contentVal != '' && recodeing == 0) {
         let user = firebase.auth().currentUser;
         let userName = user.email.split('@')[0];
         let storageRef = storage.ref();
@@ -183,22 +192,26 @@ $('#send').click(function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 console.log(xhr.response);
                 console.log(JSON.parse(xhr.response));
-                let { tokens, suggestions } = JSON.parse(xhr.response);
+                let { tokens, suggestions, keyword1, moreQuestions } = JSON.parse(xhr.response);
                 console.log(tokens);
                 console.log(suggestions);
+                console.log(keyword1);
+                console.log(moreQuestions);
 
                 let fixedSentence = fixWrongSpell(contentVal, tokens, suggestions);
+                let fixArr = JSON.stringify(createFixArr(tokens, suggestions));
 
                 let 저장할거 = {
                     수정전내용: contentVal, 
                     수정후내용: fixedSentence, 
+                    수정할내용: fixArr, 
+                    키워드: keyword1, 
+                    추가질문: moreQuestions, 
                     날짜: new Date(), 
-                    걸린시간: (time_gap ? time_gap : 0),
+                    걸린시간: time_gap, 
                 }
                 db.collection('answer').doc(userName + selectedType + currentQNum).set(저장할거).then((result) => {
                     console.log(result);
-                    if (currentQNum < questionsLen)
-                        alert("정상동작 하였습니다.");
                 }).catch((error) => {
                     console.log(error);
                     alert("오류가 발생하였습니다.");
