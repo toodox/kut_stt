@@ -22,7 +22,7 @@ const extractor = keyword();
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
     organization: "org-ZoKreamHYgnbKIQaEGLNKbK6",
-    apiKey: "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",
+    apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
 
