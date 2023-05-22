@@ -118,7 +118,7 @@ $('#before').click(function () {
 function updateanswer() {
     db.collection('answer_stt').doc(data + i + "번 질문").update(
         {
-            관리자수정후내용: document.getElementById('answeraf').value
+            수정후내용: document.getElementById('answeraf').value
         }
     ).then(() => {
         alert("수정되었습니다.");
