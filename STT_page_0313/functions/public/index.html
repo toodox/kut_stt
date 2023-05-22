@@ -87,19 +87,21 @@
   </nav>
 
   <section class="kmock-sec-1">
-    <main class="my-bg">
-      <div class="position-relative overflow-hidden p-3 p-md-5 text-left">
-        <div class="col-md-9 p-lg-5 mx-auto my-5">
-          <h1 class="display-4">한국기술교육대학교</h1>
-          <h1 class="display-4">모의면접서비스</h1>
-          <p class="lead fw-normal">얼른 졸업작품 끝내고 싶다.</p>
-          <a class="btn btn-outline-secondary" href="#">Coming soon</a>
+    <div class="container" id="featured-3">
+      <main class="main_bg">
+        <div class="position-relative overflow-hidden p-3 p-md-5 text-left">
+          <div class="col-md-9 p-lg-5 mx-auto my-5">
+            <h1 class="display-4">한국기술교육대학교</h1>
+            <h1 class="display-4">모의면접서비스</h1>
+            <p class="lead fw-normal">얼른 졸업작품 끝내고 싶다.</p>
+            <a class="btn btn-outline-secondary" href="#">Coming soon</a>
+          </div>
+          <div class="product-device shadow-sm d-none d-md-block">
+          </div>
+          <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
         </div>
-        <div class="product-device shadow-sm d-none d-md-block">
-        </div>
-        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
-      </div>
-    </main>
+      </main>
+    </div>
   </section>
 
 
@@ -114,6 +116,9 @@
   <section class="kmock-sec-3">
     <div class="container px-4 py-5" id="featured-3">
 
+
+      <div class="position-relative overflow-hidden">
+
       <div class="justify-content-center">
         <h1 class="display-3 font-orange text-center text-wrap">눈으로 보고 미리 경험하는</h1>
         <p class="fs-3 font-white text-center text-wrap">한기대 대입 면접 특화 K-MOCK 서비스
@@ -121,13 +126,97 @@
       </div>
 
       <div class="row justify-content-center">
-        <div class="box-gray col-2 mb-4 rounded-3 text-center">
-            <p class="fs-4 m-2 font-white">응시화면</p>
+        <div class="sec-3-box col-lg-4 col-md-4 col-sm-6 mb-4 rounded-3 text-center">
+            <p class="f-bold fs-3 m-2 font-navy">응시 화면</p>
         </div>
       </div>
 
+      <!--캐러셀 1-->
 
-      <div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <div id="myCarousel-1" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <!--캐러셀 내부-->
+        <div class="carousel-inner">
+
+          <!--첫번째 화면-->
+          <div class="carousel-item active">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <rect width="100%" height="100%" fill="#777"></rect>
+            </svg>
+
+            <div class="container">
+              <!-- 각 화면 별 설명 문구-->
+              <div class="carousel-caption text-center">
+                <p class="mt-4">-1-</p>
+              </div>
+            </div>
+          </div>
+
+          <!--두번쨰 화면-->
+          <div class="carousel-item">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <rect width="100%" height="100%" fill="#777"></rect>
+            </svg>
+
+            <div class="container">
+              <!-- 각 화면 별 설명 문구-->
+              <div class="carousel-caption text-center">
+                <p>-2-</p>
+              </div>
+            </div>
+          </div>
+
+
+          <!--세번째 화면, 초기값-->
+          <div class="carousel-item">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <rect width="100%" height="100%" fill="#777"></rect>
+            </svg>
+            <div class="container">
+              <div class="carousel-caption text-center">
+                <p>-3-</p>
+              </div>
+            </div>
+          </div>
+
+        <div class="box-gray col-2 mb-4 rounded-3 text-center">
+            <p class="fs-4 m-2 font-white">응시화면</p>
+        </div>
+
+        <!--하단 인디케이터 버튼-->
+        <div class="carousel-indicators-container">
+          <ol class="carousel-indicators">
+            <li type="button" data-bs-target="#myCarousel-1" data-bs-slide-to="0" class="active" aria-label="Slide 1"></li>
+            <li type="button" data-bs-target="#myCarousel-1" data-bs-slide-to="1" aria-label="Slide 2" class=""></li>
+            <li type="button" data-bs-target="#myCarousel-1" data-bs-slide-to="2" aria-label="Slide 3" class=""
+              aria-current="true"></li>
+          </ol>
+        </div>
+
+        <!-- Next / Previous 버튼-->
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel-1" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel-1" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="container px-4 py-5" id="featured-3">
+      <div class="row justify-content-center">
+        <div class="sec-3-box col-lg-4 col-md-4 col-sm-6 mb-4 rounded-3 text-center">
+            <p class="f-bold fs-3 m-2 font-navy">결과 화면</p>
+        </div>
+      </div>
+
+      <!--캐러셀 2-->
+      
+      <div id="myCarousel-2" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <!--캐러셀 내부-->
         <div class="carousel-inner">
 
@@ -179,30 +268,31 @@
         <!--하단 인디케이터 버튼-->
         <div class="carousel-indicators-container">
           <ol class="carousel-indicators">
-            <li type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"></li>
-            <li type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></li>
-            <li type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""
+            <li type="button" data-bs-target="#myCarousel-2" data-bs-slide-to="0" class="active" aria-label="Slide 1"></li>
+            <li type="button" data-bs-target="#myCarousel-2" data-bs-slide-to="1" aria-label="Slide 2" class=""></li>
+            <li type="button" data-bs-target="#myCarousel-2" data-bs-slide-to="2" aria-label="Slide 3" class=""
               aria-current="true"></li>
           </ol>
         </div>
 
         <!-- Next / Previous 버튼-->
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel-2" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel-2" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+
     </div>
   </section>
 
 
   <section class="kmock-sec-2">
     <div class="container px-4 py-5" id="featured-3">
-      <p class="fontcolor border-bottom text-center">지금 서비스를 이용해야 하는 이유!</p>
+      <h1 class="display-5 font-navy text-wrap border-bottom border-warning border-3 text-center">지금 서비스를 이용해야 하는 이유!</h1>
       <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
 
         <div class="feature col">
@@ -249,8 +339,6 @@
       </div>
     </div>
   </section>
-
-
 
   <footer class="mb-4">
     <ul class="justify-content-center border-bottom mb-3"></ul>
