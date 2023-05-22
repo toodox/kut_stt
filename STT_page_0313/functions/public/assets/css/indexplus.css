@@ -11,11 +11,14 @@
 
   색상
   - 노랑 : #FF9900
-  - 주황 메인 : #FF8000 #FF5900 #FF4000
+  - 주황 메인 : #FF7f00
   - 파랑 메인 : #0D4DBF
   - 서브 파랑 : #1966FF
   - 서브 연회 : #B3B3AA
   - 서브 진회 : #4D4D4D
+
+  - 남색 메인 : #0D5289
+  - 파랑 공홈 : #1758a8
 */
 
 
@@ -56,14 +59,13 @@
   color: #0D5289;
 }
 
-.footer-notice {
+.footer-notice, .font-blue {
   color : #0d4dbf
 }
 
 .box-text {
   text-align: center;
 }
-
 
 
 .display-1, .display-2, .display-3, .display-4, .display-5, .display-6, .f-bold {

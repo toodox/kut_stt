@@ -108,16 +108,16 @@ textarea {
   }
 
   nav {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 805px) {
   .btn {
-    font-size: 0.6rem;
+    font-size: 1.2rem;
   }
 
   nav {
-    font-size: 0.7rem;
+    font-size: 1.2rem;
   }
 }
