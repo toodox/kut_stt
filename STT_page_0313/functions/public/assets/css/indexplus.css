@@ -19,14 +19,20 @@
 */
 
 .kmock-sec-3 {
-  background-color: #1966ff;
+  /* background: linear-gradient(-54deg, #e7def9 0, #e7def9 45%, #f8f3ff 45%, #f8f3ff 100%); */
+  background-color: #0D5289;
 }
 
+.box-gray{
+  background-color: #4c4c4c;
+}
 
-.fontcolor {
+.font-orange {
   color: #ff9900;
-  font-family: 'GmarketSansBold';
-  font-size: 3rem;
+}
+
+.font-white {
+  color: #fff;
 }
 
 .footer-notice {
@@ -38,7 +44,7 @@
 }
 
 
-.display-1, .display-2, .display-3, .display-4, .display-5 {
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
   font-family: GmarketSansBold;
 }
 
