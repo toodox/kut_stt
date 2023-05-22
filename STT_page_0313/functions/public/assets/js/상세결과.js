@@ -10,11 +10,28 @@ var userName;
 var duration; //걸린시간용 변수
 var resultType; //선택한 타입
 
+
+function updateProgressBar(currentPercent) {
+    $('#QProgress').html(
+        '<div ' 
+        + 'class="progress-bar progress-bar-striped progress-bar-animated" ' 
+        + 'role="progressbar" ' 
+        + 'style="width: '
+        + currentPercent
+        + '%" aria-valuenow="0"' 
+        + ' aria-valuemin="0"' 
+        + ' aria-valuemax="100"' 
+        + '></div>'
+    );
+}
+
+
 window.onload = function() {
     resultType = localStorage.getItem("resultType");
     db.collection('question_' + resultType).get().then(result => {
         questionsLen = result.size;
         console.log(questionsLen);
+        updateProgressBar(100 * 1 / questionsLen);
         // 사이드바 생성
         for (var n = 1; n <= questionsLen; n ++) {
             if (n == i) {
@@ -100,6 +117,7 @@ window.onload = function() {
 $('#after').click(function () {
     if (i < questionsLen) {
         i ++;
+        updateProgressBar(100 * i / questionsLen);
         db.collection('question_' + resultType).doc(resultType + '_question' + i).get().then((result) => {
             // 질문 내용 업데이트
             document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
@@ -160,6 +178,7 @@ $('#after').click(function () {
 $('#before').click(function () {
     if (i - 1 > 0) {
         i --;
+        updateProgressBar(100 * i / questionsLen);
         db.collection('question_' + resultType).doc(resultType + '_question' + i).get().then((result) => {
             // 질문 내용 업데이트
             document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
