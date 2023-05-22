@@ -1,5 +1,3 @@
-
-
 /*눈누 폰트 적용*/
 @font-face {
   font-family: 'GmarketSansMedium';
@@ -61,6 +59,13 @@ textarea {
   resize: none;
   overflow-y: scroll;
   height: 150px;
+}
+
+.admintextarea {
+  resize: none;
+  height: 30px;
+  width: 100%;
+  overflow-y: hidden;
 }
 
 .btnline {

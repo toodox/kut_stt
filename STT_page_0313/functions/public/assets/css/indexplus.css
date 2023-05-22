@@ -30,8 +30,13 @@
   background-color: #0D5289;
 }
 
+
 .sec-3-box{
   background-color: #ff9900;
+}
+
+.box-gray{
+  background-color: #4c4c4c;
 }
 
 .font-orange {
@@ -40,6 +45,7 @@
 
 .font-white {
   color: #fff;
+
 }
 
 .font-navy{
@@ -53,6 +59,7 @@
 .box-text {
   text-align: center;
 }
+
 
 
 .display-1, .display-2, .display-3, .display-4, .display-5, .display-6, .f-bold {
