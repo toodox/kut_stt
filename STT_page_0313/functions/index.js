@@ -160,22 +160,3 @@ const api = functions.https.onRequest(app);
 module.exports = {
     api
 }
-
-const admin = require("firebase-admin");
-admin.initializeApp();
-
-app.post('/getCollections', (req, res) => {
-    var db = admin.firestore();
-    db.listCollections().then(snapshot => {
-        let collectionName = [];
-        snapshot.forEach(snaps => {
-            console.log(snaps["_queryOptions"].collectionId);
-            collectionName.push(snaps["_queryOptions"].collectionId);
-        });
-
-        let response = {
-            names: collectionName
-        }
-        res.send(JSON.stringify(response));
-    });
-});
