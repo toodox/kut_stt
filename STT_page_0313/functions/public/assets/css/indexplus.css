@@ -18,9 +18,21 @@
   - 서브 진회 : #4D4D4D
 */
 
+
+.main_bg {
+  background-image: url(../image/main_img_fin.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .kmock-sec-3 {
   /* background: linear-gradient(-54deg, #e7def9 0, #e7def9 45%, #f8f3ff 45%, #f8f3ff 100%); */
   background-color: #0D5289;
+}
+
+
+.sec-3-box{
+  background-color: #ff9900;
 }
 
 .box-gray{
@@ -33,6 +45,11 @@
 
 .font-white {
   color: #fff;
+
+}
+
+.font-navy{
+  color: #0D5289;
 }
 
 .footer-notice {
@@ -44,14 +61,21 @@
 }
 
 
-.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6, .f-bold {
   font-family: GmarketSansBold;
 }
 
-.lead {
+.lead, .f-medium {
   font-family: GmarketSansMedium;
 }
 
 .my-bg {
   background-image: url(/STT_page_0313/functions/public/assets/image/메인포스터.png);
 }
+
+.kmock-sec-2 {
+  margin-top: 120px;
+}
+
+
