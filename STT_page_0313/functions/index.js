@@ -91,6 +91,10 @@ app.get('/choiceresults', (req, res) => {
     res.sendFile(path.join(__dirname + filePath + '상세결과면접선택.html'));
 });
 
+app.get('/admin-ans-edit', (req, res) => {
+    res.sendFile(path.join(__dirname + filePath + '관리자질문유형수정.html'));
+});
+
 app.post('/submitForm', (req, res) => {
     const { sentence } = req.body;
     const spellCheck = async function(results) {
@@ -156,3 +160,22 @@ const api = functions.https.onRequest(app);
 module.exports = {
     api
 }
+
+const admin = require("firebase-admin");
+admin.initializeApp();
+
+app.post('/getCollections', (req, res) => {
+    var db = admin.firestore();
+    db.listCollections().then(snapshot => {
+        let collectionName = [];
+        snapshot.forEach(snaps => {
+            console.log(snaps["_queryOptions"].collectionId);
+            collectionName.push(snaps["_queryOptions"].collectionId);
+        });
+
+        let response = {
+            names: collectionName
+        }
+        res.send(JSON.stringify(response));
+    });
+});
