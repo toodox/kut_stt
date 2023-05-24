@@ -113,6 +113,7 @@ textarea {
 }
 
 @media (max-width: 805px) {
+
   .btn {
     font-size: 1.2rem;
   }
