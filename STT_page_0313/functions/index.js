@@ -20,9 +20,10 @@ const keyword = require("keyword-extractor-korean");
 const extractor = keyword();
 
 const { Configuration, OpenAIApi } = require("openai");
+const { organization, apiKey } = require("./public/assets/js/openAIConfig.js");
 const configuration = new Configuration({
-    organization: "org-ZoKreamHYgnbKIQaEGLNKbK6",
-    apiKey: "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",
+    organization: organization,
+    apiKey: apiKey,
 });
 const openai = new OpenAIApi(configuration);
 
@@ -121,7 +122,7 @@ app.post('/submitForm', (req, res) => {
             let response = {
                 tokens: tokens, 
                 suggestions: suggestions, 
-                keyword1: keyObj[0], 
+                keyword1: (keyObj[0] == undefined ? '' : keyObj[0]), 
                 moreQuestions: moreQuestions
             };
 
@@ -130,8 +131,25 @@ app.post('/submitForm', (req, res) => {
 
             res.send(JSON.stringify(response));
         }
+        try {
+            if (keyObj[0] != undefined)
+                runGPT(keyObj[0] + "을(를) 키워드로 나올 수 있는 추가 면접 질문을 " + keyObj[0] + "을(를) 질문 문장에 포함해서 2개 알려줘.");
+            else
+                runGPT('' + "을(를) 키워드로 나올 수 있는 추가 면접 질문을 " + '' + "을(를) 질문 문장에 포함해서 2개 알려줘.");
+        }
+        catch (error) {
+            console.log("GPT error" + error);
 
-        runGPT(keyObj[0] + "을(를) 키워드로 나올 수 있는 추가 면접 질문을 " + keyObj[0] + "을(를) 질문 문장에 포함해서 2개 알려줘.")
+            let response = {
+                tokens: tokens, 
+                suggestions: suggestions, 
+                keyword1: (keyObj[0] == undefined ? '' : keyObj[0]), 
+                moreQuestions: ''
+            };
+
+            console.log(response);
+            res.send(JSON.stringify(response));
+        }
     };
 
     hanspell.spellCheckByDAUM(sentence, 6000, spellCheck, checkEnd, checkError);
