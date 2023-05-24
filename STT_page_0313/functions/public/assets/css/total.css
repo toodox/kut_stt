@@ -63,7 +63,7 @@ textarea {
 
 .admintextarea {
   resize: none;
-  height: 30px;
+  height: 100%;
   width: 100%;
   overflow-y: hidden;
 }
