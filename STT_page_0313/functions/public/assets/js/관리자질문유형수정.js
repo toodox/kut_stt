@@ -22,7 +22,7 @@ xhr.onreadystatechange = () => {
                     + '" aria-expanded="false"aria-controls="panelsStayOpen-collapse' + itype[1] + '">' + name + '</button></h2><div id="panelsStayOpen-collapse'
                     + itype[1] + '" class="accordion-collapse collapse"aria-labelledby="panelsStayOpen-heading'
                     + itype[1] + '"><div class="accordion-body" id="qnum"><div id="qqq'
-                    + itype[1] + '"></div><button class="btn btn-outline-warning modbtn" id="' + itype[1] + '">수정완료</button></div></div></div>';
+                    + itype[1] + '"></div><button class="btn btn-warning modbtn" id="' + itype[1] + '">수정완료</button></div></div></div>';
                 que.append(newdiv);
                 db.collection(name).get().then(snap => {
                     for (let quenum = 1; quenum < snap.size + 2; quenum++) {
@@ -31,14 +31,14 @@ xhr.onreadystatechange = () => {
                             let newp = document.createElement('div');
                             if (quenum == snap.size + 1) {
                                 newp.innerHTML = itype[1] + '_' + itype[0] + quenum
-                                    + ' <button class="btn btn-outline-success newbtn" id="add_' + itype[1]
+                                    + ' <input type="text" id="'+itype[1]+'type" placeholder="면접질문 유형"></input> <button class="btn btn-outline-success newbtn" id="add_' + itype[1]
                                     + '" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">추가</button><textarea class="admintextarea my-2" id="'
-                                    + itype[1] + '_question' + quenum + '"></textarea>';
+                                    + itype[1] + '_question' + quenum + '" placeholder="추가할 면접 질문을 입력해주세요." ></textarea>';
                                 chp.append(newp);
                             }
                             else {
                                 newp.innerHTML = itype[1] + '_' + itype[0] + quenum
-                                    + ' <button class="btn btn-outline-danger" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">삭제</button><textarea class="admintextarea my-2" id="'
+                                    + ' <button class="btn btn-outline-danger delbtn" id="del_' + itype[1] + '_' + quenum + '" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">삭제</button><textarea class="admintextarea my-2" id="'
                                     + itype[1] + '_question' + quenum + '">'
                                     + result.data().content + '</textarea>';
                                 chp.append(newp);
@@ -51,12 +51,12 @@ xhr.onreadystatechange = () => {
         })
     }
 
-   
+
 
     //질문 목록 수정하고 완료버튼 누르면 db에 저장
-    
+
 }
-$(document).on('click', '.modbtn',function (b) {
+$(document).on('click', '.modbtn', function (b) {
     let col = 'question_' + b.target.id;
     let coln = b.target.id + '_question';
     db.collection(col).get().then(snap => {
@@ -74,22 +74,35 @@ $(document).on('click', '.modbtn',function (b) {
 });
 
 $(document).on('click', '.newbtn', function (ad) {
-    console.log(ad.target.id);
+
     let addtype = ad.target.id.split('_', 2);
     let adcol = 'question_' + addtype[1];
     let adcoln = addtype[1] + '_question';
-
     db.collection(adcol).get().then(snap => {
         size = snap.size + 1;
         if (document.getElementById(adcoln + size).value == "")
             alert("추가할 면접 질문을 입력해주세요");
         else {
-            db.collection(adcol).doc(adcoln+size).set({
-                content: document.getElementById(adcoln + size).value
+            db.collection(adcol).doc(adcoln + size).set({
+                content: document.getElementById(adcoln + size).value,
+                type: document.getElementById(addtype[1]+'type').value
             });
             alert("추가되었습니다.");
-            setTimeout(() => window.location.href = "/admin-ans-edit", 1000);s
+            setTimeout(() => window.location.href = "/admin-ans-edit", 1000); s
         }
     });
-   
+
+});
+
+$(document).on('click', '.delbtn', function (del) {
+    let deltg = del.target.id.split("_", 3);
+    let delcol = 'question_' + deltg[1];
+    let delcoln = deltg[1] + '_question';
+    let delnum = deltg[2];
+    db.collection(adcol).get().then(snap => {
+        let size = snap.size;
+        for (let i = delnum; i < size + 1; i++) {
+
+        }
+    });
 });
