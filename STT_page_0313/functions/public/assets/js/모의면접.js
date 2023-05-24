@@ -164,7 +164,7 @@ $('#send').click(function() {
 
         let 업로드작업 = 저장할경로.put(blob);
         
-        let data = JSON.stringify({sentence: $('#content').val()});
+        let data = JSON.stringify({sentence: $('#content').val(), num: currentQNum});
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/submitForm', true);
         xhr.setRequestHeader('Content-type', 'application/json');
@@ -184,7 +184,11 @@ $('#send').click(function() {
             updateProgressBar(100);
             setTimeout(function() {
                 alert("마지막 질문입니다.");
-                window.location.href = "/submit"
+                let interviewEND = window.confirm("제출하시겠습니까? 처리 중에는 5초 정도 시간이 걸릴 수 있습니다.");
+                if(interviewEND)
+                {
+                    setTimeout(() => window.location.href = "/submit", 5000);
+                }
             }, 500);
         }
 
