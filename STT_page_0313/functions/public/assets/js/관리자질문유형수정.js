@@ -17,7 +17,12 @@ xhr.onreadystatechange = () => {
                 let que = document.getElementById('queli');
                 let newdiv = document.createElement('div');
                 let itype = name.split('_', 2);
-                newdiv.innerHTML = '<div class="accordion-item"><h2 class="accordion-header" id="panelsStayOpen-heading' + itype[1] + '"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"data-bs-target="#panelsStayOpen-collapse' + itype[1] + '" aria-expanded="false"aria-controls="panelsStayOpen-collapse' + itype[1] + '">' + name + '</button></h2><div id="panelsStayOpen-collapse' + itype[1] + '" class="accordion-collapse collapse"aria-labelledby="panelsStayOpen-heading' + itype[1] + '"><div class="accordion-body" id="qnum"><div class="card my-4 "><div class="card-body" id="qqq' + itype[1] + '"></div></div><button class="btn btn-outline-primary modbtn" id="' + itype[1] + '">수정완료</button></div></div></div>';
+                newdiv.innerHTML = '<div class="accordion-item"><h2 class="accordion-header" id="panelsStayOpen-heading' + itype[1] 
+                + '"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"data-bs-target="#panelsStayOpen-collapse' + itype[1] 
+                + '" aria-expanded="false"aria-controls="panelsStayOpen-collapse' + itype[1] + '">' + name + '</button></h2><div id="panelsStayOpen-collapse' 
+                + itype[1] + '" class="accordion-collapse collapse"aria-labelledby="panelsStayOpen-heading' 
+                + itype[1] + '"><div class="accordion-body" id="qnum"><div id="qqq' 
+                + itype[1] + '"></div><button class="btn btn-warning modbtn" id="' + itype[1] + '">수정완료</button></div></div></div>';
                 que.append(newdiv);
                 db.collection(name).get().then(snap => {
 
@@ -25,7 +30,10 @@ xhr.onreadystatechange = () => {
                         db.collection(name).doc(itype[1] + '_' + itype[0] + quenum).get().then((result) => {
                             let chp = document.getElementById('qqq' + itype[1]);
                             let newp = document.createElement('div');
-                            newp.innerHTML = itype[1] + '_' + itype[0] + quenum + '<textarea class="admintextarea mb-2" id="' + itype[1] + '_question' + quenum + '">' + result.data().content + '</textarea>';
+                            newp.innerHTML = itype[1] + '_' + itype[0] + quenum 
+                            + ' <button type="button" class="btn btn-outline-danger" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">삭제</button><textarea class="admintextarea my-2" id="' 
+                            + itype[1] + '_question' + quenum + '">' 
+                            + result.data().content + '</textarea>';
                             chp.append(newp);
                         });
                     }
@@ -34,7 +42,7 @@ xhr.onreadystatechange = () => {
             }
         })
     }
-
+    //질문 목록 수정하고 완료버튼 누르면 db에 저장
     $('.modbtn').on('click', function (b) {
         let col = 'question_' + b.target.id;
         let coln = b.target.id + '_question';
@@ -49,11 +57,11 @@ xhr.onreadystatechange = () => {
                 );
             }
             alert("수정되었습니다.");
-            setTimeout(() => window.location.href = "/admin-ans-edit", 1000);
+            setTimeout(() => window.location.href = "#", 1000);
         });
-        
+
     });
-   
+
 }
 
 
