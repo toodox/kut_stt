@@ -63,7 +63,7 @@ textarea {
 
 .admintextarea {
   resize: none;
-  height: 30px;
+  height: 100%;
   width: 100%;
   overflow-y: hidden;
 }
@@ -80,17 +80,29 @@ textarea {
 }
 
 
+/*시맨틱 웹 스크린 크기 조절*/
+
+/*
+    모바일 : 425px
+    태블릿 : 768px
+    스크린(소) : 1024px
+    스크린(중) : 1440px
+    4k : 2560px -- 고려 안함
+*/
+
+@media (max-width: 479px) {
+  body {
+    padding-top: 10.0rem;
+    /*10 이하는 홈피 본문 타이틀이 씹힘*/
+  }
+}
+
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
 }
 
-@media (max-width: 479px) {
-  body {
-    padding-top: 10.0rem;
-  }
-}
 
 @media (max-width: 1024px) {
   .btn {
@@ -102,6 +114,8 @@ textarea {
   }
 }
 
+
+/* 드래그해서 줄일 때 용도*/
 @media (max-width: 936px) {
   .btn {
     font-size: 0.7rem;
@@ -113,6 +127,7 @@ textarea {
 }
 
 @media (max-width: 805px) {
+
   .btn {
     font-size: 1.2rem;
   }
@@ -120,4 +135,48 @@ textarea {
   nav {
     font-size: 1.2rem;
   }
+}
+
+/*참고_장준호*/
+
+/*
+  폰트
+  - GmarketSansBold
+  - GmarketSansMedium
+
+
+  색상
+  - 노랑 : #FF9900
+  - 주황 메인 : #FF7f00
+  - 파랑 메인 : #0D4DBF
+  - 서브 파랑 : #1966FF
+  - 서브 연회 : #B3B3AA
+  - 서브 진회 : #4D4D4D
+
+  - 남색 메인 : #0D5289
+  - 파랑 공홈 : #1758a8
+*/
+
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6, .f-bold {
+  font-family: GmarketSansBold;
+}
+.font-orange {
+  color: #ff9900;
+}
+
+.font-white {
+  color: #fff;
+
+}
+
+.font-navy{
+  color: #0D5289;
+}
+
+.footer-notice, .font-blue {
+  color : #0d4dbf
+}
+
+.lead, .f-medium {
+  font-family: GmarketSansMedium;
 }

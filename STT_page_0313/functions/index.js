@@ -1,7 +1,9 @@
 const functions = require("firebase-functions");
 
 const admin = require("firebase-admin");
+
 admin.initializeApp();
+var db = admin.firestore();
 
 const express = require('express');
 const app = express();
@@ -35,10 +37,10 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + filePath + 'index.html'));
 });
-
-app.get('/info-use', (req, res) => {
-    res.sendFile(path.join(__dirname + filePath + '이용안내.html'));
-});
+// 이용안내 페이지 삭제
+// app.get('/info-use', (req, res) => { 
+//     res.sendFile(path.join(__dirname + filePath + '이용안내.html'));
+// });
 
 app.get('/select-type', (req, res) => {
     res.sendFile(path.join(__dirname + filePath + '유형선택.html'));
@@ -97,7 +99,7 @@ app.get('/admin-ans-edit', (req, res) => {
 });
 
 app.post('/submitForm', (req, res) => {
-    const { sentence } = req.body;
+    const { sentence , num} = req.body;
     const spellCheck = async function(results) {
         var tokens = [];
         var suggestions = [];
@@ -125,6 +127,17 @@ app.post('/submitForm', (req, res) => {
                 keyword1: (keyObj[0] == undefined ? '' : keyObj[0]), 
                 moreQuestions: moreQuestions
             };
+            let GPT추가질문 = {
+                type: "GPT",
+                content: moreQuestions,
+                keyword: keyObj[0], 
+            }
+            db.collection('question_GPT').doc("GPT_question" + num).set(GPT추가질문).then((result) => {
+                console.log(result);
+            }).catch((error) => {
+                console.log(error);
+                alert("오류가 발생하였습니다.");
+            })
 
             console.log(response);
             console.log("done");
@@ -157,7 +170,6 @@ app.post('/submitForm', (req, res) => {
 });
 
 app.post('/getCollections', (req, res) => {
-    var db = admin.firestore();
     db.listCollections().then(snapshot => {
         let collectionName = [];
         snapshot.forEach(snaps => {

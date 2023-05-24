@@ -1,38 +1,35 @@
 @import url(../css/total.css);
 
-
-/*홈화면_장준호*/
-
-/*
-  폰트
-  - GmarketSansBold
-  - GmarketSansMedium
-
-
-  색상
-  - 노랑 : #FF9900
-  - 주황 메인 : #FF7f00
-  - 파랑 메인 : #0D4DBF
-  - 서브 파랑 : #1966FF
-  - 서브 연회 : #B3B3AA
-  - 서브 진회 : #4D4D4D
-
-  - 남색 메인 : #0D5289
-  - 파랑 공홈 : #1758a8
-*/
-
-
 .main_bg {
   background-image: url(../image/main_img_fin.png);
+
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
+
+  @media (max-width: 769px) {
+    background-image: url(../image/title_tablet.png);
+  }
+
+  @media (max-width: 1025px) {
+    background-image: url(../image/title_notebook.png);
+  }
+
 }
 
-.kmock-sec-3 {
+.kmock-sec-2 {
   /* background: linear-gradient(-54deg, #e7def9 0, #e7def9 45%, #f8f3ff 45%, #f8f3ff 100%); */
   background-color: #0D5289;
-}
 
+  @media (max-width: 1025px) {
+    #h1 {
+      font-size : 0.7rem;
+    }
+  }
+}
+.kmock-sec-3 {
+  margin-top: 120px;
+}
 
 .sec-3-box{
   background-color: #ff9900;
@@ -42,46 +39,9 @@
   background-color: #ff7f00;
 }
 
-.box-gray{
+/* .box-gray{
   background-color: #4c4c4c;
-}
+} */
 
-.font-orange {
-  color: #ff9900;
-}
-
-.font-white {
-  color: #fff;
-
-}
-
-.font-navy{
-  color: #0D5289;
-}
-
-.footer-notice, .font-blue {
-  color : #0d4dbf
-}
-
-.box-text {
-  text-align: center;
-}
-
-
-.display-1, .display-2, .display-3, .display-4, .display-5, .display-6, .f-bold {
-  font-family: GmarketSansBold;
-}
-
-.lead, .f-medium {
-  font-family: GmarketSansMedium;
-}
-
-.my-bg {
-  background-image: url(/STT_page_0313/functions/public/assets/image/메인포스터.png);
-}
-
-.kmock-sec-2 {
-  margin-top: 120px;
-}
 
 
