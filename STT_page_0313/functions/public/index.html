@@ -8,19 +8,20 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/indexplus.css">
 
-  <!--파비콘-->
-  <link rel="icon" href="./assets/image/favicon_kut.ico" type="image/x-icon">
-
+  
   <!--스와이프 슬라이더-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
   <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-
+  
   <!--구글 폰트 적용-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
-
-  <!--fadein효과 주기-->
+  
+  <!--파비콘-->
+  <link rel="icon" href="./assets/image/favicon_kut.ico" type="image/x-icon">
+  
+  <!--애니메이션 효과 주기-->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
@@ -126,10 +127,10 @@
 
 
   <section class="kmock-sec-2">
-    <div data-aos="fade-up" data-aos-duration="1300" data-aos-delay = "700" class="container px-4 py-5" id="featured-3">
+    <div data-aos="fade-up" data-aos-duration="2000" class="container px-4 py-5" id="featured-3">
 
       <div class="position-relative overflow-hidden">
-        <h1 class="display-4 font-orange text-center text-wrap">한기대 대입 면접 특화 K-MOCK 서비스</h1>
+        <h1 class="display-5 font-orange text-center">한기대 대입 면접 특화 K-MOCK 서비스</h1>
 
       <div class="justify-content-center">
         <p class="fs-3 font-white text-center text-wrap">한 눈에 확인하기<i>!</i>
@@ -366,6 +367,9 @@
     <p class="text-center">© 2023 KOREATECH, Univ</p>
     <p class="footer-notice text-center">본 서비스는 chrome 브라우저 사용을 권장합니다.</p>
   </footer>
+
+
+  
   <script>
     $('#logoutbtn').click(function () {
       var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
@@ -417,6 +421,8 @@
       });
   </script>
 
+
+  <!--애니메이션 효과-->
   <script>
     AOS.init();
   </script>
