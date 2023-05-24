@@ -8,17 +8,24 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/indexplus.css">
 
-  <!--파비콘-->
-  <link rel="icon" href="./assets/image/서브시그니처1.ico" type="image/x-icon">
-
+  
   <!--스와이프 슬라이더-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
   <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-
+  
   <!--구글 폰트 적용-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+  
+  <!--파비콘-->
+  <link rel="icon" href="./assets/image/favicon_kut.ico" type="image/x-icon">
+  
+  <!--애니메이션 효과 주기-->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
 </head>
 
 <body>
@@ -36,9 +43,9 @@
   <!-- 파이어베이스 관련 스크립트 -->
   <script src="assets/js/loginlogout.js"></script>
   <!-- 로그인로그아웃버튼바뀌기 -->
-  <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
-    <div class="container-xxl">
-      <a href="/" class="d-flex align-items-center col-md-3 mb-md-0 text-dark text-decoration-none">
+  <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary f-bold fs-5">
+    <div class="container-xl">
+      <a href="/" class="align-items-center col-md-3 mb-md-0 text-dark text-decoration-none">
         <img src="assets/image/로고.png" class="head_logo" alt="">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -59,7 +66,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
               aria-expanded="false" href="#">고객센터</a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul class="dropdown-menu f-medium" aria-labelledby="navbarDropdown">
               <!--<li><a class="dropdown-item" href="/announcement">공지사항</a></li>-->
               <li><a class="dropdown-item" href="/questions">자주하는질문</a></li>
               <li><a class="dropdown-item" href="/admin-page2">관리자페이지2</a></li>
@@ -71,7 +78,7 @@
           </li>
         </ul>
         <span class="userinfo hidden" id="userInfoaf"></span>
-        <form class="d-flex">
+        <form class="d-flex f-medium">
           <a href="/login" class="nav-link">
             <button type="button" class="btn btn-outline-primary me-2 hidden" id="loginbtn">
               Login</button>
@@ -88,13 +95,19 @@
 
   <section class="kmock-sec-1">
     <div class="container" id="featured-3">
-      <main class="main_bg">
-        <div class="position-relative overflow-hidden p-3 p-md-5 text-left">
-          <div class="col-md-9 p-lg-5 mx-auto my-5">
+      <main data-aos="fade-up" data-aos-duration="1000" class="main_bg">
+        <div class="position-relative overflow-hidden p-md-5 text-left">
+          <div data-aos="fade-up" data-aos-duration="1300" data-aos-delay = "500" class="col-md-9 p-lg-5 mx-auto my-5">
             <h1 class="display-4">한국기술교육대학교</h1>
             <h1 class="display-4">모의면접서비스</h1>
-            <p class="lead fw-normal">얼른 졸업작품 끝내고 싶다.</p>
-            <a class="btn btn-outline-secondary" href="#">Coming soon</a>
+            <h1 class="display-4 font-blue">K-MOCK</h1>
+            <p class="lead fw-normal text-secondary">
+              'K-MOCK' 이라는 이름은 <br>
+              'KOREATECH Mock Interview'에서 착안하였고, <br>
+              'KOREATECH'의 'K'와 <br>
+              '모의' 라는 뜻의 'Mock'를 합성하여 만들어졌습니다.<br>
+            </p>
+            <!-- <a class="btn btn-outline-secondary" href="#">Coming soon</a> -->
           </div>
           <div class="product-device shadow-sm d-none d-md-block">
           </div>
@@ -113,56 +126,56 @@
   </section> -->
 
 
-  <section class="kmock-sec-3">
-    <div class="container px-4 py-5" id="featured-3">
-
+  <section class="kmock-sec-2">
+    <div data-aos="fade-up" data-aos-duration="2000" class="container px-4 py-5" id="featured-3">
 
       <div class="position-relative overflow-hidden">
+        <h1 class="display-5 font-orange text-center">한기대 대입 면접 특화 K-MOCK 서비스</h1>
 
       <div class="justify-content-center">
-        <h1 class="display-3 font-orange text-center text-wrap">눈으로 보고 미리 경험하는</h1>
-        <p class="fs-3 font-white text-center text-wrap">한기대 대입 면접 특화 K-MOCK 서비스
+        <p class="fs-3 font-white text-center text-wrap">한 눈에 확인하기<i>!</i>
         </p>
       </div>
 
       <div class="row justify-content-center">
-        <div class="sec-3-box col-lg-4 col-md-4 col-sm-6 mb-4 rounded-3 text-center">
+        <div class="sec-3-box col-lg-4 col-md-4 col-sm-6 mb-4 rounded-3 text-center shadow">
             <p class="f-bold fs-3 m-2 font-navy">응시 화면</p>
         </div>
       </div>
 
       <!--캐러셀 1-->
 
-      <div id="myCarousel-1" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <div id="myCarousel-1" class="carousel slide carousel-fade shadow" data-bs-ride="carousel">
         <!--캐러셀 내부-->
         <div class="carousel-inner">
 
           <!--첫번째 화면-->
           <div class="carousel-item active">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+            <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
               <rect width="100%" height="100%" fill="#777"></rect>
-            </svg>
-
-            <div class="container">
+            </svg> -->
+            <img class="d-block w-100 h-50" src="../public/assets/image/gk한기맼.jpg" alt="" srcset="">
+            <div class="container col-lg-4 col-md-4 col-sm-6 mb-4 rounded-3 text-center">
               <!-- 각 화면 별 설명 문구-->
-              <div class="carousel-caption text-center">
-                <p class="mt-4">-1-</p>
+              <div class="carousel-caption text-center bg-dark mb-5 opacity-75">
+                <p class="lead fs-4 mt-4">가나다라마바사</p>
               </div>
             </div>
           </div>
 
           <!--두번쨰 화면-->
           <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+            <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
               <rect width="100%" height="100%" fill="#777"></rect>
-            </svg>
+            </svg> -->
+            <img class="d-block w-100 h-50" src="../public/assets/image/한기대_1.jpg" alt="" srcset="">
 
-            <div class="container">
+            <div class="container col-lg-4 col-md-4 col-sm-6 mb-4 rounded-3 text-center">
               <!-- 각 화면 별 설명 문구-->
-              <div class="carousel-caption text-center">
-                <p>-2-</p>
+              <div class="carousel-caption text-center bg-dark mb-5 opacity-75">
+                <p class="lead fs-4 mt-4">이미지 크기가 너무 큰데</p>
               </div>
             </div>
           </div>
@@ -170,20 +183,22 @@
 
           <!--세번째 화면, 초기값-->
           <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+            <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
               <rect width="100%" height="100%" fill="#777"></rect>
-            </svg>
-            <div class="container">
-              <div class="carousel-caption text-center">
-                <p>-3-</p>
+            </svg> -->
+            <img class="d-block w-100 h-50" src="../public/assets/image/한기대_2.jpg" alt="" srcset="">
+            <div class="container col-lg-4 col-md-4 col-sm-6 mb-4 rounded-3 text-center">
+              <div class="carousel-caption text-center bg-dark mb-5 opacity-75">
+                <p class="lead fs-4 mt-4">오히려 좋은가?</p>
               </div>
             </div>
           </div>
-
-        <div class="box-gray col-2 mb-4 rounded-3 text-center">
+        
+        <!--쓸데없어보임 - 지워도 될듯-->
+        <!-- <div class="box-gray col-2 mb-4 rounded-3 text-center">
             <p class="fs-4 m-2 font-white">응시화면</p>
-        </div>
+        </div> -->
 
         <!--하단 인디케이터 버튼-->
         <div class="carousel-indicators-container">
@@ -207,16 +222,16 @@
       </div>
     </div>
 
-    <div class="container px-4 py-5" id="featured-3">
+    <div class="py-5" id="featured-3">
       <div class="row justify-content-center">
-        <div class="sec-3-box col-lg-4 col-md-4 col-sm-6 mb-4 rounded-3 text-center">
+        <div class="sec-3-box col-lg-4 col-md-4 col-sm-6 mb-4 rounded-3 text-center shadow">
             <p class="f-bold fs-3 m-2 font-navy">결과 화면</p>
         </div>
       </div>
 
       <!--캐러셀 2-->
       
-      <div id="myCarousel-2" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <div id="myCarousel-2" class="carousel slide carousel-fade shadow" data-bs-ride="carousel">
         <!--캐러셀 내부-->
         <div class="carousel-inner">
 
@@ -242,7 +257,7 @@
               <rect width="100%" height="100%" fill="#777"></rect>
             </svg>
 
-            <div class="container">
+            <div class="container ">
               <!-- 각 화면 별 설명 문구-->
               <div class="carousel-caption text-center">
                 <p>-2-</p>
@@ -285,22 +300,22 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-
-    </div>
   </section>
 
 
-  <section class="kmock-sec-2">
+  <section class="kmock-sec-3">
     <div class="container px-4 py-5" id="featured-3">
-      <h1 class="display-5 font-navy text-wrap border-bottom border-warning border-3 text-center">지금 서비스를 이용해야 하는 이유!</h1>
-      <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div data-aos="fade-down" data-aos-duration="1300">
+        <h1 class="display-5 font-navy text-wrap border-bottom border-warning border-3 text-center">서비스 주요 기능</h1>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      </div>
 
         <div class="feature col">
-          <div class="card mb-4 rounded-3 shadow-sm">
-            <div class="card-header py-3">
-              <p class="my-0 fw-normal text-center">실제와 유사한 질문</p>
+          <div data-aos="fade-up" data-aos-duration="1300" data-aos-delay = "600" class="card border border-warning mb-4 rounded-3 shadow">
+            <div class="card-header border-warning py-3">
+              <p class="my-0 f-bold fs-2 text-center font-navy">실제와 유사한 질문</p>
             </div>
-            <div class="card-body text-center">
+            <div class="lead card-body text-center text-wrap">
               <p>
                 학생들이 실제 대학 입시 면접에서 만날 수 있는 상황을 경험하고 이를 토대로 면접 준비에 도움을 주는 것입니다. 면접 상황에서 경험할 수 있는 각종 질문들을 미리
                 경험할 수 있도록 도와줍니다.
@@ -311,11 +326,11 @@
 
 
         <div class="feature col">
-          <div class="container card mb-4 rounded-3 shadow-sm">
+          <div data-aos="fade-up" data-aos-duration="1300" data-aos-delay = "800" class="card border border-warning mb-4 rounded-3 shadow">
             <div class="card-header py-3">
-              <p class="my-0 fw-normal text-center">Speech-To-Text 기능</p>
+              <p class="my-0 f-bold fs-2 font-navy text-center">Speech-To-Text</p>
             </div>
-            <div class="card-body text-center">
+            <div class="lead card-body text-center text-wrap">
               <p>
                 실시간으로 학생들이 면접 질문에 대답한 음성 파일을 텍스트로 변환하여 저장할 수 있습니다. 이를 통해 면접 후 다시 한번 자신의 면접 내용을 돌아보며, 미흡한 부분을
                 체크하고 보완할 수 있습니다.
@@ -324,11 +339,11 @@
           </div>
         </div>
         <div class="feature col">
-          <div class="card mb-4 rounded-3 shadow-sm">
+          <div data-aos="fade-up"data-aos-duration="1200" data-aos-delay = "1000" class="card border border-warning mb-4 rounded-3 shadow-sm">
             <div class="card-header py-3">
-              <p class="my-0 fw-normal text-center">키워드 분석 및 검사</p>
+              <p class="my-0 f-bold fs-2 font-navy text-center">키워드 분석 및 검사</p>
             </div>
-            <div class="card-body text-center">
+            <div class="lead card-body text-center text-wrap">
               <p>
                 피면접자들이 응답한 데이터들을 바탕으로 키워드를 분석하여 결과 피드백을 제공합니다. 또한, 맞춤법 검사 기능도 동작하여 면접 응답 중 부적절한 단어를 검출하여
                 피드백을 제공합니다.
@@ -340,12 +355,21 @@
     </div>
   </section>
 
+  <section class="kmock-sec-4">
+    <div class="container px-4 py-5" id="featured-3">
+      <h1 class="display-5 font-white text-wrap border-bottom border-light border-3 text-center">기능 구성</h1>
+      <div class="bg-light text-center">여기다가 구성도 넣기</div>
+    </div>
+  </section>
+
   <footer class="mb-4">
     <ul class="justify-content-center border-bottom mb-3"></ul>
     <p class="text-center">© 2023 KOREATECH, Univ</p>
     <p class="footer-notice text-center">본 서비스는 chrome 브라우저 사용을 권장합니다.</p>
   </footer>
 
+
+  
   <script>
     $('#logoutbtn').click(function () {
       var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
@@ -395,6 +419,12 @@
       loop: true,	//슬라이드 반복
       loopedSlides: swiperSubNum.length //loop 시 파라미터 duplicate 개수 - 정적으로 숫자 4 표현 가능
       });
+  </script>
+
+
+  <!--애니메이션 효과-->
+  <script>
+    AOS.init();
   </script>
 
 </body>

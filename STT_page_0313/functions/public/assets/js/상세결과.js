@@ -96,6 +96,11 @@ window.onload = function() {
             
             duration = result.data().걸린시간;
             document.getElementById("timeCall").textContent = `걸린 시간: ${duration}초`;
+            document.getElementById("keyword").textContent = "키워드: " + result.data().키워드;
+
+            ques = result.data().추가질문.split("2.");
+            document.getElementById("aQ1Label").textContent = ques[0];
+            document.getElementById("aQ2Label").textContent = '2.' + ques[1];
         }).catch((error) => {
             alert("답변을 불러오는 중 오류가 발생했습니다");
             console.log(error);
