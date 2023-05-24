@@ -31,53 +31,51 @@
     <script src="assets/js/상세결과.js"></script>
     <!-- 파이어베이스 관련 스크립트 -->
     
-    <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
-        <div class="container-xxl">
-            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                <img src="assets/image/로고.png" class="head_logo" alt="">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto ms-2 mb-2 mb-md-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/info-use">이용안내</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/select-type">면접연습</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/results">면접결과확인</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
-                            aria-expanded="false" href="#">고객센터</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/announcement">공지사항</a></li>
-                            <li><a class="dropdown-item" href="/questions">자주하는질문</a></li>
-                            <li><a class="dropdown-item" href="/admin-page1">관리자페이지</a></li>
-                            <li><a class="dropdown-item" href="/admin-page2">관리자페이지2</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link hidden" id="adminch" onclick="admincheck()" href="#">관리자페이지</a>
-                    </li>
+    <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary f-bold fs-5">
+        <div class="container-xl">
+          <a href="/" class="align-items-center col-md-3 mb-md-0 text-dark text-decoration-none">
+            <img src="assets/image/로고.png" class="head_logo" alt="">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto ms-2 mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link" href="/select-type">면접연습</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/choiceresults">면접결과확인</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
+                  aria-expanded="false" href="#">고객센터</a>
+                <ul class="dropdown-menu f-medium" aria-labelledby="navbarDropdown">
+                  <!--<li><a class="dropdown-item" href="/announcement">공지사항</a></li>-->
+                  <li><a class="dropdown-item" href="/announcement">공지사항</a></li>
+                  <li><a class="dropdown-item" href="/questions">자주하는질문</a></li>
+                  <li><a class="dropdown-item" href="/admin-page2">관리자페이지2</a></li>
+                  <li><a class="dropdown-item" href="/admin-ans-edit">관리자질문유형수정</a></li>
                 </ul>
-                <span class="userinfo hidden" id="userInfoaf"></span>
-                <form class="d-flex">
-                    <a href="/login" class="nav-link">
-                        <button type="button" class="btn btn-outline-primary me-2 hidden" id="loginbtn">
-                            Login</button>
-                    </a>
-                    <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
-                        Logout</button>
-                    <a href="/sign-up" class="nav-link"><button type="button" class="btn btn-primary hidden"
-                            id="signupbtn">Sign-up</button></a>
-                    <button type="button" class="btn btn-primary hidden" id="uinfo"></button>
-                </form>
-            </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link hidden" id="adminch" onclick="admincheck()" href="#">관리자페이지</a>
+              </li>
+            </ul>
+            <span class="userinfo hidden" id="userInfoaf"></span>
+            <form class="d-flex f-medium">
+              <a href="/login" class="nav-link">
+                <button type="button" class="btn btn-outline-primary me-2 hidden" id="loginbtn">
+                  Login</button>
+              </a>
+              <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
+                Logout</button>
+              <a href="/sign-up" class="nav-link"><button type="button" class="btn btn-primary hidden"
+                  id="signupbtn">Sign-up</button></a>
+              <button type="button" class="btn btn-primary hidden" id="uinfo"></button>
+            </form>
+          </div>
         </div>
     </nav>
 
@@ -153,8 +151,30 @@
             </div>
             <div class="card my-4 border-0">
                 <div class="card-body text-end">
-                    <button type="button" class="btn btn-primary float-end mx-3 " id="after">다음</button>
+                    <button type="button" class="btn btn-primary float-end" id="cart" href="#additionalQLayer">장바구니</button>
+                    <button type="button" class="btn btn-primary float-end mx-3" id="after">다음</button>
                     <button type="button" class="btn btn-primary float-end" id="before">이전</button>
+                    <div id="additionalQLayer" class="examine_layer" style="margin-left: -320px; margin-top: -206.5px; display: none;">
+                        <div class="inner_examine_layer">
+                            <div class="layer_head">
+                                <strong class="layer_list_title">
+                                    <span class="title">추가된 예상 질문 목록</span>
+                                </strong>
+                            </div>
+                            <div class="layer_body">
+                                <div class="cont_qList">
+                                    <div>
+                                        <li>테스트</li>
+                                    </div>
+                                </div>
+                                <div class="btn_wrap">
+                                    <div class="img_btn" href="#none" id="closeBtn">
+                                        <a>확인</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <button type="button" class="btn btn-primary float-end" href="#" id="gpt">GPT 기반 2차 면접 진행</button>

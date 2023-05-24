@@ -2,12 +2,17 @@
 
 .main_bg {
   background-image: url(../image/main_img_fin.png);
+
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 
-  @media (max-width: 805px) {
-    background-image: none;
+  @media (max-width: 769px) {
+    background-image: url(../image/title_tablet.png);
+  }
+
+  @media (max-width: 1025px) {
+    background-image: url(../image/title_notebook.png);
   }
 
 }
