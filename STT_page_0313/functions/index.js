@@ -37,10 +37,10 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + filePath + 'index.html'));
 });
-
-app.get('/info-use', (req, res) => {
-    res.sendFile(path.join(__dirname + filePath + '이용안내.html'));
-});
+// 이용안내 페이지 삭제
+// app.get('/info-use', (req, res) => { 
+//     res.sendFile(path.join(__dirname + filePath + '이용안내.html'));
+// });
 
 app.get('/select-type', (req, res) => {
     res.sendFile(path.join(__dirname + filePath + '유형선택.html'));
