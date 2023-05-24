@@ -147,7 +147,7 @@
 
   <div class="row mx-4">
     <div class="col-md-1"></div>
-    <div class="col-md-3">
+    <div class="col-md-3 mb-5">
       <!-- 사이드 바 메뉴-->
       <div class="panel panel-info">
         <!-- 사이드바 메뉴목록1 -->
@@ -159,11 +159,40 @@
         </ul>
       </div>
     </div>
-
-
+    
+    
     <div class="col-md-7 box">
 
-      <div class="select-box card my-4 border-1 border-warning shadow">
+      <!-- <div data-aos="fade-down" data-aos-duration="1300">
+        <p class="display-5 font-navy text-wrap text-center">유형을 선택해주세요</p>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      </div> -->
+
+      <!-- start -->
+  
+      <div class="row columns f-bold lead">
+        <ul class="menu align-center expanded text-center SMN_effect-8 list-unstyled">
+          <li class="select-list">
+            <a href="/notice" id="typeA" data-hover="대입 수시 면접 A형">
+            <span>대입 수시 면접 A형</span>
+            </a>
+          </li>
+          <li class="select-list">
+            <a href="/notice" id="typeB" data-hover="대입 수시 면접 B형">
+              <span>대입 수시 면접 B형</span>
+            </a>
+          </li>
+          <li class="select-list">
+            <a href="/notice" id="typeC" data-hover="대입 수시 면접 C형">
+            <span>대입 수시 면접 C형</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+  
+      <!-- // end -->
+
+      <!-- <div class="select-box card my-4 border-1 border-warning shadow">
         <a class="lead link-dark" href="/notice" id="typeA">
           <div class="card-body text-center">
             <h5>대입 수시 면접 A형</h5>
@@ -185,7 +214,11 @@
             <h5>대입 수시 면접 C형</h5>
           </div>
         </a>
-      </div>
+      </div> -->
+
+
+
+
 
       <!-- <div class="button-4">
         <div class="eff-4"></div>
@@ -195,38 +228,16 @@
       </div> -->
 
       
-      <!-- <div class="shadow card my-4 rounded-pill bg-warning border-0">
-                <a class = "link-dark" href="/notice">
-                    <div class="card-body text-center">
-                        <h5>대입 수시 면접</h5>
-                    </div>                    
-                </a>
-            </div>
-            <div class="shadow card my-4 rounded-pill bg-warning border-0">
-                <a class = "link-dark" href="/notice">
-                    <div class="card-body text-center">
-                        <h5>대입 수시 면접</h5>
-                    </div>                    
-                </a>
-            </div>
-            <div class="shadow card my-4 rounded-pill bg-warning border-0">
-                <a class = "link-dark" href="/notice">
-                    <div class="card-body text-center">
-                        <h5>대입 수시 면접</h5>
-                    </div>                    
-                </a>
-            </div> -->
-      <!-- <div class="my-4 right">
-                <a href="/notice"><button type="button" class="btn btn-primary float-end" id="send">다음 단계</button></a>
-            </div> -->
     </div>
 
   </div>
 
-  <footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
-    <p class="text-center text-muted">© 2023 KOREATECH, Univ</p>
+  <footer class="mb-4">
+    <ul class="justify-content-center border-bottom mb-3"></ul>
+    <p class="text-center">2023 KOREATECH</p>
+    <p class="footer-notice text-center">본 서비스는 chrome 브라우저 사용을 권장합니다.</p>
   </footer>
+
   <script>
     $('#logoutbtn').click(function () {
       var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
