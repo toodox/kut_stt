@@ -80,17 +80,29 @@ textarea {
 }
 
 
+/*시맨틱 웹 스크린 크기 조절*/
+
+/*
+    모바일 : 425px
+    태블릿 : 768px
+    스크린(소) : 1024px
+    스크린(중) : 1440px
+    4k : 2560px -- 고려 안함
+*/
+
+@media (max-width: 479px) {
+  body {
+    padding-top: 10.0rem;
+    /*10 이하는 홈피 본문 타이틀이 씹힘*/
+  }
+}
+
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
 }
 
-@media (max-width: 479px) {
-  body {
-    padding-top: 10.0rem;
-  }
-}
 
 @media (max-width: 1024px) {
   .btn {
@@ -102,6 +114,8 @@ textarea {
   }
 }
 
+
+/* 드래그해서 줄일 때 용도*/
 @media (max-width: 936px) {
   .btn {
     font-size: 0.7rem;
