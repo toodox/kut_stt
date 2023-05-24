@@ -122,6 +122,26 @@
                 }
             });
         </script>
+        <script>
+            $('.newbtn').on('click', function (b) {
+        console.log(ad.target.id);
+        let addtype = ad.target.id.split('_', 2);
+        let adcol = 'question_' + addtype[1];
+        let adcoln = addtype[1] + '_question';
+        if (document.getElementById(adcoln + size).value == "")
+            alert("추가할 면접 질문을 입력해주세요");
+        else {
+            db.collection(col).get().then(snap => {
+                size = snap.size + 1;
+                db.collection(adcol).doc(adcoln).set({
+                    contet: document.getElementById(adcoln + size).value
+                });
+            });
+            alert("추가되었습니다.");
+            setTimeout(() => window.location.href = "/admin-ans-edit", 1000);
+        }
+    });
+        </script>
 </body>
 
 </html>
