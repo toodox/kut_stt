@@ -10,6 +10,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+
+  <!--구글 폰트 적용-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+  
+  <!--파비콘-->
+  <link rel="icon" href="./assets/image/favicon_kut.ico" type="image/x-icon">
+  
+  <!--애니메이션 효과 주기-->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 </head>
 
 <body>
@@ -111,7 +124,7 @@
       -->
         
       <!--질문 진도 표시-->
-      <div class="progress mt-5" id="QProgress">
+      <div class="progress mt-4" id="QProgress">
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"
           aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
         </div>
@@ -174,6 +187,11 @@
     });
   </script>
   <script src="assets/js/모의면접.js"></script>
+
+  <!--애니메이션 효과-->
+  <script>
+    AOS.init();
+  </script>
 </body>
 
 </html>
