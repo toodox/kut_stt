@@ -69,3 +69,67 @@
     margin-left: auto;
     margin-right: auto;
 }
+.examine_layer {
+    position: relative;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    top: 50%;
+    left: 65%;
+    z-index: 9999;
+}
+.inner_examine_layer {
+    overflow: hidden;
+    width: 512px;
+    padding: 0 40px;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: rgba(67, 76, 106, 0.95);
+    border-radius: 4px;
+    background-color: rgba(67, 76, 106, 0.95);
+}
+.layer_head {
+    overflow: hidden;
+    position: relative;
+    padding-top: 35px;
+}
+.layer_list_title {
+    display: block;
+    overflow: hidden;
+    padding-right: 60px;
+    font-size: 25px;
+    line-height: 36px;
+}
+.title {
+    overflow: hidden;
+    float: left;
+    max-width: 450px;
+    color: #fff;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.layer_body {
+    padding: 19px 0 40px;
+}
+.cont_qList {
+    text-align: left;
+    color: #fff;
+    font-size: 15px;
+}
+.btn_wrap {
+    overflow: hidden;
+    margin: 23px auto 0;
+    text-align: center;
+}
+.img_btn {
+    width: 54px;
+    height: 36px;
+    font-size: 15px;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+    background-color: #999;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}

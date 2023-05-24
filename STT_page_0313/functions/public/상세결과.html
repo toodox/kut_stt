@@ -153,8 +153,30 @@
             </div>
             <div class="card my-4 border-0">
                 <div class="card-body text-end">
-                    <button type="button" class="btn btn-primary float-end mx-3 " id="after">다음</button>
+                    <button type="button" class="btn btn-primary float-end" id="cart" href="#additionalQLayer">장바구니</button>
+                    <button type="button" class="btn btn-primary float-end mx-3" id="after">다음</button>
                     <button type="button" class="btn btn-primary float-end" id="before">이전</button>
+                    <div id="additionalQLayer" class="examine_layer" style="margin-left: -320px; margin-top: -206.5px; display: none;">
+                        <div class="inner_examine_layer">
+                            <div class="layer_head">
+                                <strong class="layer_list_title">
+                                    <span class="title">추가된 예상 질문 목록</span>
+                                </strong>
+                            </div>
+                            <div class="layer_body">
+                                <div class="cont_qList">
+                                    <div>
+                                        <li>테스트</li>
+                                    </div>
+                                </div>
+                                <div class="btn_wrap">
+                                    <div class="img_btn" href="#none" id="closeBtn">
+                                        <a>확인</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <button type="button" class="btn btn-primary float-end" href="#" id="gpt">GPT 기반 2차 면접 진행</button>

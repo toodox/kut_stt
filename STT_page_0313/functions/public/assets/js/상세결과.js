@@ -242,6 +242,19 @@ $('#before').click(function () {
 });
 
 
+var target = document.getElementById('cart');
+var targetID;
+
+$('#cart').click(function() {
+    targetID = this.getAttribute('href');
+    document.querySelector(targetID).style.display = 'block';
+});
+
+$('#closeBtn').click(function() {
+    document.querySelector(targetID).style.display = 'none';
+});
+
+
 $('#gpt').click(function () {
     function saveSelectedType(type) {
         localStorage.setItem("selectedType", type); // 웹 브라우저에 변수를 저장
