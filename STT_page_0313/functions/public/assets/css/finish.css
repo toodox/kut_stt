@@ -1,23 +1,40 @@
 @import url(./indexplus.css);
 
 .fin_bg {
-    background-image: url(../image/DJI_0023.jpg);
+	background-image: url(../image/DJI_0023.jpg);
 
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 
-    /* position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url(bg.jpg);
-    -webkit-filter: blur(5px); 
-    -moz-filter: blur(5px); 
-    -o-filter: blur(5px); 
-    -ms-filter: blur(5px); 
-    filter: blur(5px);
-    z-index: -1; 
-    content: ""; */
+/* position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: url(bg.jpg);
+	-webkit-filter: blur(5px); 
+	-moz-filter: blur(5px); 
+	-o-filter: blur(5px); 
+	-ms-filter: blur(5px); 
+	filter: blur(5px);
+	z-index: -1; 
+	content: ""; */
+
+	/* width: 100%;
+	height: 100%;
+	position: relative; */
+
 }
+
+/* .fin_bg::after {
+	width: 100%;
+	height: 100%;
+	content: "";
+	background: url(../image/DJI_0023.jpg);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	opacity: 0.5;
+} */
