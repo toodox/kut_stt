@@ -1,13 +1,13 @@
 @import url(./indexplus.css);
 
 .fin_bg {
-    background-image: url(../image/koreatech_skyview.jpg);
+    background-image: url(../image/DJI_0023.jpg);
 
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 
-    position: fixed;
+    /* position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -19,5 +19,5 @@
     -ms-filter: blur(5px); 
     filter: blur(5px);
     z-index: -1; 
-    content: "";
+    content: ""; */
 }
