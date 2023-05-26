@@ -118,11 +118,19 @@ window.onload = function() {
             // document.getElementById("keyword").textContent = "키워드: " + result.data().키워드;
             document.getElementById("keyword").innerHTML = '키워드: <mark class="marking">' + result.data().키워드 + '</mark>';
 
-            ques = result.data().추가질문.split("2.");
+            ques = result.data().추가질문.split("2. ");
             document.getElementById("aQ1Label").innerHTML = markingKeyword(result.data().키워드, ques[0]);
-            document.getElementById("aQ2Label").innerHTML = markingKeyword(result.data().키워드, '2.' + ques[1]);
+            document.getElementById("aQ2Label").innerHTML = markingKeyword(result.data().키워드, '2. ' + ques[1]);
+            $('input[name=additionalQ1]').attr('value', ques[0].replace('1. ', ''));
+            $('input[name=additionalQ2]').attr('value', ques[1]);
+            currQ1 = ques[0].replace('1. ', '');
+            currQ2 = ques[1];
         }).catch((error) => {
-            alert("답변을 불러오는 중 오류가 발생했습니다");
+            swal({
+                title: "Error",
+                text: "답변을 불러오는 중 오류가 발생했습니다",
+                icon: "error", //"info,success,warning,error" 중 택1
+            });
             console.log(error);
         });
         
@@ -131,7 +139,11 @@ window.onload = function() {
             // 오디오 태그를 사용하여 음성 파일을 표시
             audioEl.src = url;
         }).catch((error) => {
-            alert("음성 파일을 불러오는 중 오류가 발생했습니다");
+            swal({
+                title: "Error",
+                text: "음성 파일을 불러오는 중 오류가 발생했습니다",
+                icon: "error", //"info,success,warning,error" 중 택1
+            });
         });
 
 
@@ -157,15 +169,41 @@ $('#after').click(function () {
                 
                 duration = result.data().걸린시간;
                 document.getElementById("timeCall").textContent = `걸린 시간: ${duration}초`;
+                document.getElementById("keyword").innerHTML = '키워드: <mark class="marking">' + result.data().키워드 + '</mark>';
+
+                ques = result.data().추가질문.split("2. ");
+                document.getElementById("aQ1Label").innerHTML = markingKeyword(result.data().키워드, ques[0]);
+                document.getElementById("aQ2Label").innerHTML = markingKeyword(result.data().키워드, '2. ' + ques[1]);
+                $('input[name=additionalQ1]').attr('value', ques[0].replace('1. ', ''));
+                $('input[name=additionalQ2]').attr('value', ques[1]);
+                currQ1 = ques[0].replace('1. ', '');
+                currQ2 = ques[1];
+                if (addQuestionList.indexOf(ques[0].replace('1. ', '')) != -1)
+                    $('input[name="additionalQ1"]').prop("checked", true);
+                else
+                    $('input[name="additionalQ1"]').prop("checked", false);
+                
+                if (addQuestionList.indexOf(ques[1]) != -1)
+                    $('input[name="additionalQ2"]').prop("checked", true);
+                else
+                    $('input[name="additionalQ2"]').prop("checked", false);
             }).catch((error) => {
-                alert("답변을 불러오는 중 오류가 발생했습니다");
+                swal({
+                    title: "Error",
+                    text: "답변을 불러오는 중 오류가 발생했습니다",
+                    icon: "error", //"info,success,warning,error" 중 택1
+                });
             });
             // 오디오 파일 불러오기
             storageRef.child('voicedata/'+ userName + " " + i + "번 질문" + resultType).getDownloadURL().then(function(url) {
                 // 오디오 태그를 사용하여 음성 파일을 표시
                 audioEl.src = url;
             }).catch((error) => {
-                alert("음성 파일을 불러오는 중 오류가 발생했습니다");
+                swal({
+                    title: "Error",
+                    text: "음성 파일을 불러오는 중 오류가 발생했습니다",
+                    icon: "error", //"info,success,warning,error" 중 택1
+                });
             });
             // 현재 질문의 사이드 바를 하이라이트 설정
             document.getElementById('QLcontainer' + i).className = "list-group-item bg-primary text-right";
@@ -176,9 +214,14 @@ $('#after').click(function () {
         });
     }
     else {
-        alert("마지막 질문입니다.");
+        swal({
+            title: "알림",
+            text: "마지막 질문입니다.",
+            icon: "info", //"info,success,warning,error" 중 택1
+        });
     }
 });
+
 
 $('#before').click(function () {
     if (i - 1 > 0) {
@@ -198,15 +241,41 @@ $('#before').click(function () {
                 
                 duration = result.data().걸린시간;
                 document.getElementById("timeCall").textContent = `걸린 시간: ${duration}초`;
+                document.getElementById("keyword").innerHTML = '키워드: <mark class="marking">' + result.data().키워드 + '</mark>';
+
+                ques = result.data().추가질문.split("2. ");
+                document.getElementById("aQ1Label").innerHTML = markingKeyword(result.data().키워드, ques[0]);
+                document.getElementById("aQ2Label").innerHTML = markingKeyword(result.data().키워드, '2. ' + ques[1]);
+                $('input[name=additionalQ1]').attr('value', ques[0].replace('1. ', ''));
+                $('input[name=additionalQ2]').attr('value', ques[1]);
+                currQ1 = ques[0].replace('1. ', '');
+                currQ2 = ques[1];
+                if (addQuestionList.indexOf(ques[0].replace('1. ', '')) != -1)
+                    $('input[name="additionalQ1"]').prop("checked", true);
+                else
+                    $('input[name="additionalQ1"]').prop("checked", false);
+                
+                if (addQuestionList.indexOf(ques[1]) != -1)
+                    $('input[name="additionalQ2"]').prop("checked", true);
+                else
+                    $('input[name="additionalQ2"]').prop("checked", false);
             }).catch((error) => {
-                alert("답변을 불러오는 중 오류가 발생했습니다");
+                swal({
+                    title: "Error",
+                    text: "답변을 불러오는 중 오류가 발생했습니다",
+                    icon: "error", //"info,success,warning,error" 중 택1
+                });
             });
             // 오디오 파일 불러오기
             storageRef.child('voicedata/'+ userName + " " + i + "번 질문" + resultType).getDownloadURL().then(function(url) {
                 // 오디오 태그를 사용하여 음성 파일을 표시
                 audioEl.src = url;
             }).catch((error) => {
-                alert("음성 파일을 불러오는 중 오류가 발생했습니다");
+                swal({
+                    title: "Error",
+                    text: "음성 파일을 불러오는 중 오류가 발생했습니다",
+                    icon: "error", //"info,success,warning,error" 중 택1
+                });
             });
             // 현재 질문의 사이드 바를 하이라이트 설정
             document.getElementById('QLcontainer' + i).className = "list-group-item bg-primary text-right";
@@ -217,13 +286,59 @@ $('#before').click(function () {
         });
     }
     else {
-        alert("처음 질문입니다.");
+        swal({
+            title: "알림",
+            text: "처음 질문입니다.",
+            icon: "info", //"info,success,warning,error" 중 택1
+        });
     }
 });
 
 
 var target = document.getElementById('cart');
 var targetID;
+var addQContL = document.getElementById('join_ques');
+var currQ1 = '', currQ2= '';
+
+$('#aQ1').click(function() {
+    let check = 'input[name="additionalQ1"]:checked';
+    let isChecked = document.querySelector(check);
+
+    console.log(isChecked);
+    if (isChecked != null) {
+        addQuestionList.push(currQ1);
+        let addQ = document.createElement('li');
+        addQ.id = currQ1;
+        addQ.textContent = currQ1;
+        addQContL.appendChild(addQ);
+    }
+    else {
+        addQuestionList.splice(addQuestionList.indexOf(currQ1), 1);
+        let temp1 = document.getElementById(currQ1);
+        addQContL.removeChild(temp1);
+    }
+});
+
+
+$('#aQ2').click(function() {
+    let check = 'input[name="additionalQ2"]:checked';
+    let isChecked = document.querySelector(check);
+
+    console.log(isChecked);
+    if (isChecked != null) {
+        addQuestionList.push(currQ2);
+        let addQ = document.createElement('li');
+        addQ.id = currQ2;
+        addQ.textContent = currQ2;
+        addQContL.appendChild(addQ);
+    }
+    else {
+        addQuestionList.splice(addQuestionList.indexOf(currQ2), 1);
+        let temp2 = document.getElementById(currQ2);
+        addQContL.removeChild(temp2);
+    }
+});
+
 
 $('#aQ1').click(function() {
     let check = 'input[name="additionalQ1"]:checked';
