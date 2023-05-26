@@ -44,4 +44,9 @@
 } */
 
 
+.namecard:hover{
+  transform: translateY(-10px) scale(1.2, 1.2);
+}
+
+
 
