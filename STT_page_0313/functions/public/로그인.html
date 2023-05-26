@@ -38,7 +38,8 @@
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="assets/js/firebaseset.js"></script>
     <!-- 파이어베이스 관련 스크립트 -->
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- sweetalert 알림창 디자인 -->
     <!-- 파이어베이스 관련 스크립트 -->
     <main class="form-signin w-100 m-auto">
         <form>
@@ -87,14 +88,26 @@
                 .then((userCredential) => {
                     // Signed in
                     console.log('로그인 성공')
-                    alert("로그인 성공");
+                    swal({
+                        title: "Login",
+                        text: "로그인 성공",
+                        icon: "success", //"info,success,warning,error" 중 택1
+                    }).then((ok) => {
+                        if (ok) {
+                            window.location.href = '/';
+                        /* "YES"클릭시 로직 */
+                        }
+                    });
                     console.log(userCredential)
                     var user = userCredential.user;
-                    window.location.href = '/'
                 })
                 .catch((error) => {
                     console.log('로그인 실패')
-                    alert("로그인 실패");
+                    swal({
+                        title: "Error",
+                        text: "로그인 실패",
+                        icon: "error", //"info,success,warning,error" 중 택1
+                    });
                     var errorCode = error.code;
                     var errorMessage = error.message;
                 });
