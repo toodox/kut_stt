@@ -128,6 +128,9 @@ window.onload = function () {
         document.getElementById(
           "timeCall"
         ).textContent = `재생 시간: ${duration}초`;
+        document.getElementById(
+            "join_feedback"
+        ).textContent = result.data().피드백;
         // document.getElementById("keyword").textContent = "키워드: " + result.data().키워드;
         document.getElementById("keyword").innerHTML =
           '키워드: <mark class="marking">' + result.data().GPT키워드 + "</mark>";
@@ -199,6 +202,9 @@ $("#after").click(function () {
             document.getElementById(
               "timeCall"
             ).textContent = `걸린 시간: ${duration}초`;
+            document.getElementById(
+                "join_feedback"
+            ).textContent = result.data().피드백;
             document.getElementById("keyword").innerHTML =
               '키워드: <mark class="marking">' +
               result.data().GPT키워드 +
@@ -300,6 +306,9 @@ $("#before").click(function () {
             document.getElementById(
               "timeCall"
             ).textContent = `걸린 시간: ${duration}초`;
+            document.getElementById(
+                "join_feedback"
+            ).textContent = result.data().피드백;
             document.getElementById("keyword").innerHTML =
               '키워드: <mark class="marking">' +
               result.data().GPT키워드 +
