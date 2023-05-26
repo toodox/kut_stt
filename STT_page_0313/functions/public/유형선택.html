@@ -27,69 +27,21 @@
 </head>
 
 <body>
-    <!-- 파이어베이스 관련 스크립트 -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+  <!-- 파이어베이스 관련 스크립트 -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
-        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <script src="assets/js/firebaseset.js"></script>
-    <!-- 파이어베이스 관련 스크립트 -->
-    <script src="assets/js/loginlogout.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <!-- sweetalert 알림창 디자인 -->
-    <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary fs-6 f-bold">
-      <div class="container-xl">
-        <a href="/" class="align-items-center col-md-3 mb-md-0 text-dark text-decoration-none">
-          <img src="assets/image/로고.png" class="head_logo" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav me-auto ms-2 mb-2 mb-md-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#" id="mockinterview">면접연습</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" id="result">면접결과확인</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
-                aria-expanded="false" href="#">고객센터</a>
-              <ul class="dropdown-menu f-medium" aria-labelledby="navbarDropdown">
-                <!--<li><a class="dropdown-item" href="/announcement">공지사항</a></li>-->
-                <li><a class="dropdown-item" href="/announcement">공지사항</a></li>
-                <li><a class="dropdown-item" href="/questions">자주하는질문</a></li>
-                <li><a class="dropdown-item" href="/admin-page2">관리자페이지2</a></li>
-                <li><a class="dropdown-item" href="/admin-ans-edit">관리자질문유형수정</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link hidden" id="adminch" onclick="admincheck()" href="#">관리자페이지</a>
-            </li>
-          </ul>
-          <span class="userinfo hidden" id="userInfoaf"></span>
-          <form class="d-flex f-medium">
-            <a href="/login" class="nav-link">
-              <button type="button" class="btn btn-outline-primary me-2 hidden" id="loginbtn">
-                Login</button>
-            </a>
-            <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
-              Logout</button>
-            <a href="/sign-up" class="nav-link"><button type="button" class="btn btn-primary hidden"
-                id="signupbtn">Sign-up</button></a>
-            <button type="button" class="btn btn-primary hidden" id="uinfo"></button>
-          </form>
-        </div>
-      </div>
-    </nav>
-
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="assets/js/firebaseset.js"></script>
+  <!-- 파이어베이스 관련 스크립트 -->
+  <script src="assets/js/loginlogout.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- sweetalert 알림창 디자인 -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.6.3.min.js"
@@ -98,7 +50,7 @@
   <!-- 파이어베이스 관련 스크립트 -->
   <script src="assets/js/loginlogout.js"></script>
 
-  <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary f-bold fs-5">
+  <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary fs-6 f-bold">
     <div class="container-xl">
       <a href="/" class="align-items-center col-md-3 mb-md-0 text-dark text-decoration-none">
         <img src="assets/image/로고.png" class="head_logo" alt="">
@@ -110,16 +62,17 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto ms-2 mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link" href="/select-type">면접연습</a>
+            <a class="nav-link" href="#" id="mockinterview">면접연습</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/choiceresults">면접결과확인</a>
+            <a class="nav-link" href="#" id="result">면접결과확인</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
               aria-expanded="false" href="#">고객센터</a>
             <ul class="dropdown-menu f-medium" aria-labelledby="navbarDropdown">
               <!--<li><a class="dropdown-item" href="/announcement">공지사항</a></li>-->
+              <li><a class="dropdown-item" href="/announcement">공지사항</a></li>
               <li><a class="dropdown-item" href="/questions">자주하는질문</a></li>
               <li><a class="dropdown-item" href="/admin-page2">관리자페이지2</a></li>
               <li><a class="dropdown-item" href="/admin-ans-edit">관리자질문유형수정</a></li>
