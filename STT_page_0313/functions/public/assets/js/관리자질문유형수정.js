@@ -70,6 +70,8 @@ $(document).on('click', '.modbtn', function (b) {
             );
         }
         alert("수정되었습니다.");
+        let im = col.split("_",3);
+        console.log(im);
         setTimeout(() => window.location.href = "/admin-ans-edit", 500);
     });
 
