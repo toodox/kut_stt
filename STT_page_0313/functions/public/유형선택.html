@@ -67,19 +67,17 @@
           <li class="nav-item">
             <a class="nav-link" href="#" id="result">면접결과확인</a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item">
+            <a class="nav-link" href="/questions" id="result">고객센터</a>
+          </li>
+          <li class="nav-item dropdown hidden" id="adminch">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
-              aria-expanded="false" href="#">고객센터</a>
+              aria-expanded="false" onclick="admincheck()" href="#">관리자페이지</a>
             <ul class="dropdown-menu f-medium" aria-labelledby="navbarDropdown">
               <!--<li><a class="dropdown-item" href="/announcement">공지사항</a></li>-->
-              <li><a class="dropdown-item" href="/announcement">공지사항</a></li>
-              <li><a class="dropdown-item" href="/questions">자주하는질문</a></li>
-              <li><a class="dropdown-item" href="/admin-page2">관리자페이지2</a></li>
-              <li><a class="dropdown-item" href="/admin-ans-edit">관리자질문유형수정</a></li>
+              <li><a class="dropdown-item" href="/admin-page1">면접리스트</a></li>
+              <li><a class="dropdown-item" href="/admin-ans-edit">질문수정</a></li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link hidden" id="adminch" onclick="admincheck()" href="#">관리자페이지</a>
           </li>
         </ul>
         <span class="userinfo hidden" id="userInfoaf"></span>
