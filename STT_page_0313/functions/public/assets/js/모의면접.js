@@ -245,6 +245,7 @@ $('#send').click(function () {
                     추가질문: moreQuestions,
                     날짜: new Date(),
                     걸린시간: time_gap,
+                    피드백: "",
                 }
                 db.collection('u_' + userName + '_' + selectedType).doc(userName + selectedType + currentQNum).set(저장할거).then((result) => {
                     console.log(result);
