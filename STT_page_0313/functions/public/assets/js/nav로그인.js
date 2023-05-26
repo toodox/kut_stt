@@ -2,7 +2,8 @@ document.getElementById(`mockinterview`).addEventListener('click', function() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             window.location.href = '/select-type';
-        } else {
+        } 
+        else {
             swal({
                 title: "Login",
                 text: "로그인이 필요한 서비스입니다.",
@@ -12,7 +13,7 @@ document.getElementById(`mockinterview`).addEventListener('click', function() {
                     window.location.href = '/Login';
                 /* "YES"클릭시 로직 */
                 }
-           });
+            });
         }
     });
 });
@@ -21,7 +22,8 @@ document.getElementById(`result`).addEventListener('click', function() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             window.location.href = '/choiceresults';
-        } else {
+        } 
+        else {
             swal({
                 title: "Login",
                 text: "로그인이 필요한 서비스입니다.",
@@ -31,7 +33,7 @@ document.getElementById(`result`).addEventListener('click', function() {
                     window.location.href = '/login';
                 /* "YES"클릭시 로직 */
                 }
-           });
+            });
         }
     });
 });
