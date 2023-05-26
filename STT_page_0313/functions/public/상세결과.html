@@ -117,7 +117,7 @@
       </div>
       <div class="card border-0">
         <div class="card-body">
-          <p class=" f-bold font-navy fs-3">⬇️면접 질문 녹음 파일</p>
+          <p class=" f-bold font-navy fs-3">⬇️녹음된 음성 파일</p>
           <!--걸린 시간 표시-->
           <div class="text-mute">
             <audio id="voiceFile" controls title="questions1.mp3"
@@ -133,7 +133,7 @@
       <div class="card border-0">
         <div class="card-body py-3">
           <div id="mArticle">
-            <p class="screen-out f-bold font-navy fs-3">⬇️상세결과 사용자 답변 내용</p>
+            <p class="screen-out f-bold font-navy fs-3">⬇️답변 내용</p>
             <div class="spell_grammar">
               <div class="fs-6 lead" id="resultForm">
                 <strong class="screen_out">응답 내용</strong>
@@ -150,7 +150,7 @@
 
       <div class="card border-0">
         <div class="card-body py-3">
-          <p class="f-bold font-navy fs-3">⬇️키워드 및 관련된 예상 질문</p>
+          <p class="f-bold font-navy fs-3">⬇️ChatGPT 후속 질문</p>
           <div class="spell_grammar">
             <div class="my-1 mx-3">
               <p class="lead fs-6" id="keyword">키워드: </p>
@@ -187,8 +187,8 @@
 
       <div class="card my-4 border-0">
         <div class="card-body text-end">
-          <button type="button" class="btn btn-primary float-end" id="cart" href="#additionalQLayer">장바구니</button>
-          <button type="button" class="btn btn-primary float-end mx-3" id="after">다음</button>
+          <button type="button" class="btn btn-primary float-end" id="cart" href="#additionalQLayer">후속질문</button>
+          <button type="button" class="btn btn-primary float-end mx-2" id="after">다음</button>
           <button type="button" class="btn btn-primary float-end" id="before">이전</button>
           
           <div id="additionalQLayer" class="examine_layer"
@@ -216,6 +216,9 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="card-body text-end">
+          
         </div>
       </div>
     </div>
