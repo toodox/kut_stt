@@ -65,9 +65,11 @@
     padding: 24px 32px 0;
 }
 .add_questions {
+    position: absolute;
     font-size: 14px;
-    margin-left: auto;
-    margin-right: auto;
+    padding-left: 7px;
+    padding-right: 32px;
+    overflow-wrap: normal;
 }
 .examine_layer {
     position: relative;
@@ -132,4 +134,7 @@
     border: none;
     border-radius: 20px;
     cursor: pointer;
+}
+.marking {
+    background-color: aqua;
 }
