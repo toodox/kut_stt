@@ -236,7 +236,7 @@ $('#send').click(function() {
                     날짜: new Date(), 
                     걸린시간: time_gap, 
                 }
-                db.collection('answer').doc(userName + selectedType + currentQNum).set(저장할거).then((result) => {
+                db.collection(userName +'_'+ selectedType).doc(userName + selectedType + currentQNum).set(저장할거).then((result) => {
                     console.log(result);
                 }).catch((error) => {
                     console.log(error);
