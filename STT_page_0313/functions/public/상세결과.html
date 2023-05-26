@@ -137,6 +137,8 @@
           </div>
         </div>
       </div>
+
+
       <div class="card border-0">
         <div class="card-body py-3">
           <div id="mArticle">
@@ -153,46 +155,32 @@
           </div>
         </div>
       </div>
+
+
       <div class="card border-0">
         <div class="card-body py-3">
           <p class="f-bold font-navy fs-3">⬇️키워드 및 관련된 예상 질문</p>
           <div class="spell_grammar">
-            <div class="cont_chkbox">
+            <div class="my-1 mx-3">
               <p class="lead fs-6" id="keyword">키워드: </p>
               <div class="box mb-3">
                 <input type="checkbox" title="pQ1" name="additionalQ1" value="q1" id="aQ1">
-                <label for="aQ1" id="aQ1Label" class="add_questions mb-5"></label>
+                <label for="aQ1" id="aQ1Label" class="mb-1"></label>
               </div>
-              <p class="lead fs-6"></p>
               
               <div class="box mb-3">
                 <input type="checkbox" title="pQ2" name="additionalQ2" value="q2" id="aQ2">
-                <label for="aQ2" id="aQ2Label" class="add_questions"></label>
+                <!--add_questions-->
+                <label for="aQ2" id="aQ2Label"></label>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+
       <div class="card my-4 border-0">
         <div class="card-body text-end">
-          <button type="button" class="btn btn-primary float-end mx-3" id="liveToastBtn">
-            +리스트
-          </button>
-          <!--토스트-->
-              <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-                <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
-                  <div class="toast-header">
-                    <img src="..." class="rounded me-2" alt="...">
-                    <strong class="me-auto">Bootstrap</strong>
-                    <small>11 mins ago</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                  </div>
-                  <div class="toast-body">
-                    Hello, world! This is a toast message.
-                  </div>
-                </div>
-              </div>
-          <!-------------------->
           <button type="button" class="btn btn-primary float-end" id="cart" href="#additionalQLayer">장바구니</button>
           <button type="button" class="btn btn-primary float-end mx-3" id="after">다음</button>
           <button type="button" class="btn btn-primary float-end" id="before">이전</button>
@@ -202,7 +190,7 @@
             <div class="inner_examine_layer">
               <div class="layer_head">
                 <strong class="layer_list_title">
-                  <span class="title">추가된 예상 질문 목록</span>
+                  <p class="title">추가된 예상 질문 목록</p>
                 </strong>
               </div>
               <div class="layer_body">
@@ -226,10 +214,18 @@
       </div>
     </div>
   </div>
-  <footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
-    <p class="text-center text-muted">© 2023 KOREATECH, Univ</p>
+  <footer class="mb-4">
+    <ul class="justify-content-center border-bottom mb-3"></ul>
+    <p class="text-center">2023 KOREATECH</p>
+    <p class="footer-notice text-center">본 서비스는 chrome 브라우저 사용을 권장합니다.</p>
   </footer>
+
+  <!--애니메이션 효과-->
+  <script>
+    AOS.init();
+  </script>
+  <script src="assets/js/nav로그인.js"></script>
+
   <script>
     $('#logoutbtn').click(function () {
       var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
