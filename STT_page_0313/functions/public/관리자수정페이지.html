@@ -10,6 +10,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+
+      <!--구글 폰트 적용-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+  
+  <!--파비콘-->
+  <link rel="icon" href="./assets/image/favicon_kut.ico" type="image/x-icon">
+  
+  <!--애니메이션 효과 주기-->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
 <body>
@@ -24,53 +36,54 @@
     integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="assets/js/firebaseset.js"></script>
     <script src="assets/js/loginlogout.js"></script>
-
-    <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary f-bold fs-5">
-        <div class="container-xl">
-          <a href="/" class="align-items-center col-md-3 mb-md-0 text-dark text-decoration-none">
-            <img src="assets/image/로고.png" class="head_logo" alt="">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto ms-2 mb-2 mb-md-0">
-              <li class="nav-item">
-                <a class="nav-link" href="/select-type">면접연습</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/choiceresults">면접결과확인</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
-                  aria-expanded="false" href="#">고객센터</a>
-                <ul class="dropdown-menu f-medium" aria-labelledby="navbarDropdown">
-                  <!--<li><a class="dropdown-item" href="/announcement">공지사항</a></li>-->
-                  <li><a class="dropdown-item" href="/announcement">공지사항</a></li>
-                  <li><a class="dropdown-item" href="/questions">자주하는질문</a></li>
-                  <li><a class="dropdown-item" href="/admin-page2">관리자페이지2</a></li>
-                  <li><a class="dropdown-item" href="/admin-ans-edit">관리자질문유형수정</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link hidden" id="adminch" onclick="admincheck()" href="#">관리자페이지</a>
-              </li>
-            </ul>
-            <span class="userinfo hidden" id="userInfoaf"></span>
-            <form class="d-flex f-medium">
-              <a href="/login" class="nav-link">
-                <button type="button" class="btn btn-outline-primary me-2 hidden" id="loginbtn">
-                  Login</button>
-              </a>
-              <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
-                Logout</button>
-              <a href="/sign-up" class="nav-link"><button type="button" class="btn btn-primary hidden"
-                  id="signupbtn">Sign-up</button></a>
-              <button type="button" class="btn btn-primary hidden" id="uinfo"></button>
-            </form>
-          </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- sweetalert 알림창 디자인 -->
+    <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary fs-6 f-bold">
+      <div class="container-xl">
+        <a href="/" class="align-items-center col-md-3 mb-md-0 text-dark text-decoration-none">
+          <img src="assets/image/로고.png" class="head_logo" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto ms-2 mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="mockinterview">면접연습</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="result">면접결과확인</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
+                aria-expanded="false" href="#">고객센터</a>
+              <ul class="dropdown-menu f-medium" aria-labelledby="navbarDropdown">
+                <!--<li><a class="dropdown-item" href="/announcement">공지사항</a></li>-->
+                <li><a class="dropdown-item" href="/announcement">공지사항</a></li>
+                <li><a class="dropdown-item" href="/questions">자주하는질문</a></li>
+                <li><a class="dropdown-item" href="/admin-page2">관리자페이지2</a></li>
+                <li><a class="dropdown-item" href="/admin-ans-edit">관리자질문유형수정</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link hidden" id="adminch" onclick="admincheck()" href="#">관리자페이지</a>
+            </li>
+          </ul>
+          <span class="userinfo hidden" id="userInfoaf"></span>
+          <form class="d-flex f-medium">
+            <a href="/login" class="nav-link">
+              <button type="button" class="btn btn-outline-primary me-2 hidden" id="loginbtn">
+                Login</button>
+            </a>
+            <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
+              Logout</button>
+            <a href="/sign-up" class="nav-link"><button type="button" class="btn btn-primary hidden"
+                id="signupbtn">Sign-up</button></a>
+            <button type="button" class="btn btn-primary hidden" id="uinfo"></button>
+          </form>
         </div>
+      </div>
     </nav>
 
     <div class="row mx-4">
@@ -118,33 +131,34 @@
     <script src="assets/js/관리자수정내용불러오기.js"></script>
 
     <script>
-        
-        $('#logoutbtn').click(function () {
-            var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
-            if (user) {
-                firebase.auth().signOut().then(function () { // signOut() 메소드 호출 시 then()을 사용하여 로그아웃 성공 시 처리할 작업을 추가합니다.
-                    alert("로그아웃 되었습니다.");
-                    window.location.href = '/';
-                }).catch(function (error) { // 로그아웃 실패 시 오류 메시지를 표시합니다.
-                    alert(error.message);
-                });
-            }
-            else {
-                window.location.href = '/login';
-            }
-        });
-
-        // var db = firebase.firestore();
-        // // for (var n = 1; n <= questionsLen; n ++){
-        // db.collection('teststt').doc(data + "1번 질문").get().then((result) => {
-        //     document.getElementById('answerbf').value = result.data().수정후내용;
-        //     document.getElementById('answeraf').value = result.data().수정후내용;
-        // });
-        
-
-        // }
-
+      $('#logoutbtn').click(function () {
+        var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
+        if (user) {
+          firebase.auth().signOut().then(function () { // signOut() 메소드 호출 시 then()을 사용하여 로그아웃 성공 시 처리할 작업을 추가합니다.
+            swal({
+                  title: "Logout",
+                  text: "로그아웃 되었습니다.",
+                  icon: "success", //"info,success,warning,error" 중 택1
+            }).then((ok) => {
+                  if (ok) {
+                      window.location.href = '/';
+                  /* "YES"클릭시 로직 */
+                  }
+            });
+          }).catch(function (error) { // 로그아웃 실패 시 오류 메시지를 표시합니다.
+            swal({
+                  title: "error",
+                  text: "로그아웃 중 에러가 발생했습니다.",
+                  icon: "error", //"info,success,warning,error" 중 택1
+            })
+          });
+        }
+        else {
+          window.location.href = '/login';
+        }
+      });
     </script>
+    <script src="assets/js/nav로그인.js"></script>
 </body>
 
 </html>

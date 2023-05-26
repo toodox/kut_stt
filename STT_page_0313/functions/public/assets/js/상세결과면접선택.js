@@ -20,15 +20,31 @@ firebase.auth().onAuthStateChanged(user => {
           if (checkanswer) {
             window.location.href = "/results";
           } else {
-            alert("진행되지 않은 면접입니다");
+            swal({
+              title: "Error",
+              text: "진행되지 않은 면접입니다.",
+              icon: "error", //"info,success,warning,error" 중 택1
+            });
           }
         }).catch(error => {
-          alert("진행되지 않은 면접입니다");
+          swal({
+            title: "Error",
+            text: "진행되지 않은 면접입니다.",
+            icon: "error", //"info,success,warning,error" 중 택1
+          });
           console.log(error);
         });
     }
   } else {
-    alert("로그인이 필요한 서비스입니다.");
-    window.location.href = "/login";
+    swal({
+      title: "Login",
+      text: "로그인이 필요한 서비스입니다.",
+      icon: "warning", //"info,success,warning,error" 중 택1
+    }).then((ok) => {
+        if (ok) {
+            window.location.href = '/Login';
+        /* "YES"클릭시 로직 */
+        }
+    });
   }
 });

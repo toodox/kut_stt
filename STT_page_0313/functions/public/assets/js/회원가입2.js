@@ -186,7 +186,11 @@ elSubmitButton.onclick = function() {
   }
   
   else {
-    alert('모든 조건이 충족되어야합니다.');
+    swal({
+      title: "Error",
+      text: "모든 조건이 충족되어야합니다.",
+      icon: "error", //"info,success,warning,error" 중 택1
+    });
   }
 };
 
