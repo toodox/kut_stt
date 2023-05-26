@@ -25,52 +25,52 @@
     <script src="assets/js/firebaseset.js"></script>
     <script src="assets/js/loginlogout.js"></script>
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary f-bold fs-5">
-        <div class="container-xl">
-          <a href="/" class="align-items-center col-md-3 mb-md-0 text-dark text-decoration-none">
-            <img src="assets/image/로고.png" class="head_logo" alt="">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto ms-2 mb-2 mb-md-0">
-              <li class="nav-item">
-                <a class="nav-link" href="/select-type">면접연습</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/choiceresults">면접결과확인</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
-                  aria-expanded="false" href="#">고객센터</a>
-                <ul class="dropdown-menu f-medium" aria-labelledby="navbarDropdown">
-                  <!--<li><a class="dropdown-item" href="/announcement">공지사항</a></li>-->
-                  <li><a class="dropdown-item" href="/announcement">공지사항</a></li>
-                  <li><a class="dropdown-item" href="/questions">자주하는질문</a></li>
-                  <li><a class="dropdown-item" href="/admin-page2">관리자페이지2</a></li>
-                  <li><a class="dropdown-item" href="/admin-ans-edit">관리자질문유형수정</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link hidden" id="adminch" onclick="admincheck()" href="#">관리자페이지</a>
-              </li>
-            </ul>
-            <span class="userinfo hidden" id="userInfoaf"></span>
-            <form class="d-flex f-medium">
-              <a href="/login" class="nav-link">
-                <button type="button" class="btn btn-outline-primary me-2 hidden" id="loginbtn">
-                  Login</button>
-              </a>
-              <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
-                Logout</button>
-              <a href="/sign-up" class="nav-link"><button type="button" class="btn btn-primary hidden"
-                  id="signupbtn">Sign-up</button></a>
-              <button type="button" class="btn btn-primary hidden" id="uinfo"></button>
-            </form>
-          </div>
+    <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary fs-6 f-bold">
+      <div class="container-xl">
+        <a href="/" class="align-items-center col-md-3 mb-md-0 text-dark text-decoration-none">
+          <img src="assets/image/로고.png" class="head_logo" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto ms-2 mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/select-type">면접연습</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/choiceresults">면접결과확인</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
+                aria-expanded="false" href="#">고객센터</a>
+              <ul class="dropdown-menu f-medium" aria-labelledby="navbarDropdown">
+                <!--<li><a class="dropdown-item" href="/announcement">공지사항</a></li>-->
+                <li><a class="dropdown-item" href="/announcement">공지사항</a></li>
+                <li><a class="dropdown-item" href="/questions">자주하는질문</a></li>
+                <li><a class="dropdown-item" href="/admin-page2">관리자페이지2</a></li>
+                <li><a class="dropdown-item" href="/admin-ans-edit">관리자질문유형수정</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link hidden" id="adminch" onclick="admincheck()" href="#">관리자페이지</a>
+            </li>
+          </ul>
+          <span class="userinfo hidden" id="userInfoaf"></span>
+          <form class="d-flex f-medium">
+            <a href="/login" class="nav-link">
+              <button type="button" class="btn btn-outline-primary me-2 hidden" id="loginbtn">
+                Login</button>
+            </a>
+            <button type="button" class="btn btn-outline-primary me-2 hidden" id="logoutbtn">
+              Logout</button>
+            <a href="/sign-up" class="nav-link"><button type="button" class="btn btn-primary hidden"
+                id="signupbtn">Sign-up</button></a>
+            <button type="button" class="btn btn-primary hidden" id="uinfo"></button>
+          </form>
         </div>
+      </div>
     </nav>
 
     <div class="row mx-4">
