@@ -171,24 +171,41 @@ $('#send').click(function() {
         xhr.send(data);
 
         if (QIndex < questionsLen) {
-            let ok = window.confirm("다음 질문으로 넘어가시겠습니까?");
-            if (ok) {
-                updateContentAndType(selectedType, QIndex + 1);
-                updateProgressBar(100 * QIndex / questionsLen);
-            }
-            QIndex ++;
-            if (QIndex == questionsLen)
-                document.getElementById("send").innerText = "다음 단계";
+            swal({
+                title: "알림",
+                text: "다음 질문으로 넘어가시겠습니까?",
+                icon: "info", //"info,success,warning,error" 중 택1
+                buttons: ["NO", "YES"]
+                }).then((YES) => {
+                    if (YES) 
+                    {
+                        updateContentAndType(selectedType, QIndex + 1);
+                        updateProgressBar(100 * QIndex / questionsLen);
+                        QIndex ++;
+                        if (QIndex == questionsLen)
+                            document.getElementById("send").innerText = "다음 단계";
+                    }
+            });
         }
         else {
             updateProgressBar(100);
             setTimeout(function() {
-                alert("마지막 질문입니다.");
-                let interviewEND = window.confirm("제출하시겠습니까? 처리 중에는 5초 정도 시간이 걸릴 수 있습니다.");
-                if(interviewEND)
-                {
-                    setTimeout(() => window.location.href = "/submit", 5000);
-                }
+                swal({
+                    title: "알림",
+                    text: "마지막 질문입니다..",
+                    icon: "info", //"info,success,warning,error" 중 택1
+                });
+                swal({
+                    title: "제출",
+                    text: "제출하시겠습니까? 5초 가량 시간이 걸릴 수 있습니다.",
+                    icon: "info", //"info,success,warning,error" 중 택1
+                    buttons: ["NO", "YES"]
+                    }).then((YES) => {
+                        if (YES) 
+                        {
+                            setTimeout(() => window.location.href = "/submit", 5000);
+                        }
+                });
             }, 500);
         }
 
@@ -218,21 +235,38 @@ $('#send').click(function() {
                     console.log(result);
                 }).catch((error) => {
                     console.log(error);
-                    alert("오류가 발생하였습니다.");
+                    swal({
+                        title: "Error",
+                        text: "에러가 발생하였습니다.",
+                        icon: "error", //"info,success,warning,error" 중 택1
+                    });
                 })
             }
         }
     }
     else if(contentVal = '')
     {
-        alert("공백은 제출할 수 없습니다.");
+        swal({
+                title: "Error",
+                text: "공백은 제출할 수 없습니다.",
+                icon: "warning", //"info,success,warning,error" 중 택1
+        });
     }
     else if(recodeing = 1)
     {
-        alert("녹음 진행 중입니다. 종료 버튼을 눌러주세요.");
+        swal({
+                title: "Error",
+                text: "녹음 진행 중입니다. 종료 버튼을 눌러주세요.",
+                icon: "warning", //"info,success,warning,error" 중 택1
+        });
     }
     else 
     {
-        alert("제출하는 중 에러가 발생했습니다.");
+        swal({
+                title: "Error",
+                text: "제출하는 중 에러가 발생했습니다.",
+                icon: "error", //"info,success,warning,error" 중 택1
+        });
     }
+    
 });

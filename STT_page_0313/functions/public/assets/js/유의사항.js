@@ -89,35 +89,61 @@ $("#send").click(function () {
   };
 
   if (저장할거.내용 != "" &&  recodeing == 0) {
-    var ok = window.confirm("모의면접을 시작하시겠습니까?");
-    if (ok) {
-      var storageRef = storage.ref();
-      var user = firebase.auth().currentUser;
-      var 저장할경로 = storageRef.child(
-        "sample/" + user.email.split("@")[0] + " " + new Date()
-      ); //추후 유저명+시간으로 음성파일이름 바꿈
-      var 업로드작업 = 저장할경로.put(blob);
-      db.collection("teststt")
-        .doc(user.email.split("@")[0] + " " + "test")
-        .set(저장할거)
-        .then((result) => {
-          // window.location.href = "모의면접.html";
-          window.location.href = "/mock-interview";
-          console.log(result);
-          // alert("정상동작 하였습니다.");
-        })
-        .catch((error) => {
-          alert("에러가 발생했습니다");
-          // window.location.href = "유의사항.html";
-          window.location.href = "/notice";
-          console.log(error);
-        });
-    }
+    swal({
+      title: "면접 시작",
+      text: "모의면접을 시작하시겠습니까?",
+      icon: "info", //"info,success,warning,error" 중 택1
+      buttons: ["NO", "YES"]
+      }).then((YES) => {
+          if (YES) {
+            var storageRef = storage.ref();
+            var user = firebase.auth().currentUser;
+            var 저장할경로 = storageRef.child(
+              "sample/" + user.email.split("@")[0] + " " + new Date()
+            ); //추후 유저명+시간으로 음성파일이름 바꿈
+            var 업로드작업 = 저장할경로.put(blob);
+            db.collection("teststt")
+              .doc(user.email.split("@")[0] + " " + "test")
+              .set(저장할거)
+              .then((result) => {
+                // window.location.href = "모의면접.html";
+                window.location.href = "/mock-interview";
+                console.log(result);
+                // alert("정상동작 하였습니다.");
+              })
+              .catch((error) => 
+              {
+                swal({
+                      title: "Error",
+                      text: "에러가 발생했습니다",
+                      icon: "error", //"info,success,warning,error" 중 택1
+                }).then((ok) => {
+                      if (ok) {
+                          window.location.href = '/notice';
+                      /* "YES"클릭시 로직 */
+                      }
+                });
+                console.log(error);
+              });
+          }
+      });
   } else if (저장할거.내용 == "") {
-    alert("공백은 제출할 수 없습니다.");
+    swal({
+                title: "Error",
+                text: "공백은 제출할 수 없습니다.",
+                icon: "warning", //"info,success,warning,error" 중 택1
+    });
   } else if(recodeing = 1)  {
-      alert("녹음 진행 중입니다. 종료 버튼을 눌러주세요.");
+    swal({
+      title: "Error",
+      text: "녹음 진행 중입니다. 종료 버튼을 눌러주세요.",
+      icon: "warning", //"info,success,warning,error" 중 택1
+    });
   } else {
-    alert("제출하는 중 에러가 발생했습니다.");
+    swal({
+      title: "Error",
+      text: "제출하는 중 에러가 발생했습니다.",
+      icon: "error", //"info,success,warning,error" 중 택1
+    });
   }
 });
