@@ -7,6 +7,7 @@
     <title>STT모의 면접 서비스</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/total.css">
+    <link rel="stylesheet" href="assets/css/results.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
@@ -89,18 +90,13 @@
     <div class="row mx-4">
         <div class="col-md-3">
             <div class="panel panel-info">
-                <ul class="list-group text-decoration-none" id="quesLists">
-                </ul>
+              <ul class="list-group text-decoration-none" id="questionLists">
+              </ul>
             </div>
         </div>
 
 
         <div class="col-md-7">
-            <div class="card my-4">
-                <div class="card-body text-center" id="useremail">
-
-                </div>
-            </div>
             <div class="shadow card my-4 rounded-pill bg-warning border-0">
                 <div class="card-body text-center">
                     <h5 id="Qtype"></h5>
@@ -110,15 +106,25 @@
                 <div class="card-body" id="questions">
                 </div>
             </div>
-            <div class="card my-4">
-                <textarea readonly id="answerbf"></textarea>
+            <div id="mArticle">
+              <p class="screen-out">상세결과 사용자 답변 내용</p>
+              <div class="spell_grammar">
+                <div class="spell_reform" id="resultForm" style>
+                  <strong class="screen_out">응답 내용</strong>
+                  <div class="cont_grammar">
+                    <div class="cont_spell" id="join_result">
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+            <p>피드백</p>
             <div class="card my-4">
-                <textarea id="answeraf"></textarea>
+                <textarea id="mod_anwser" placeholder="면접 내용에 대한 피드백을 입력해주세요"></textarea>
             </div>
             <div class="my-4 d-flex btnline">
                 <button type="button" class="btn btn-primary" id="before">이전 질문</button>
-                <button class="btn btn-warning" onclick="updateanswer()">수정완료</button>
+                <button class="btn btn-warning" onclick="updateanswer()">피드백 저장</button>
                 <button type="button" class="btn btn-primary" id="after">다음 질문</button>
             </div>
         </div>
