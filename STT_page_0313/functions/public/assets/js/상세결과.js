@@ -308,6 +308,24 @@ $('#aQ2').click(function() {
 });
 
 
+$('#aQ1').click(function() {
+    let check = 'input[name="additionalQ1"]:checked';
+    let isChecked = document.querySelector(check);
+
+    console.log(isChecked);
+    if (isChecked != null) {
+        addQuestionList.push('');
+    }
+    let test = document.getElementById('aQ1');
+    console.log(test);
+});
+
+
+$('#aQ2').click(function() {
+    console.log("aQ2");
+});
+
+
 $('#cart').click(function() {
     targetID = this.getAttribute('href');
     document.querySelector(targetID).style.display = 'block';

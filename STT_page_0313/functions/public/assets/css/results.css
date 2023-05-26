@@ -136,5 +136,7 @@
     cursor: pointer;
 }
 .marking {
-    background-color: aqua;
+    /* background-color: rgba(25, 135, 84, 0.3);
+    border-radius: 5px; */
+    font-family: GmarketSansBold;
 }
