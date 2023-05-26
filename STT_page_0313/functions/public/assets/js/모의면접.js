@@ -129,7 +129,7 @@ function fixWrongSpell(orgSentence, tokens, suggestions) {
     tokens.forEach((token, idx) => {
         console.log(token);
         console.log(suggestions[idx].join('/'));
-        changedText = changedText.replace(token, '[' + suggestions[idx].join('/') + ']');
+        changedText = changedText.replace(token, suggestions[idx].join('/'));
     });
     console.log(changedText);
     return changedText;
@@ -226,7 +226,7 @@ $('#send').click(function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 console.log(xhr.response);
                 console.log(JSON.parse(xhr.response));
-                let { tokens, suggestions, keyword1, moreQuestions } = JSON.parse(xhr.response);
+                let { tokens, suggestions, keyword1, keywordGPT, moreQuestions } = JSON.parse(xhr.response);
                 console.log(tokens);
                 console.log(suggestions);
                 console.log(keyword1);
@@ -239,7 +239,8 @@ $('#send').click(function () {
                     수정전내용: contentVal,
                     수정후내용: fixedSentence,
                     수정할내용: fixArr,
-                    키워드: keyword1,
+                    키워드: keyword1, 
+                    GPT키워드: keywordGPT, 
                     추가질문: moreQuestions,
                     날짜: new Date(),
                     걸린시간: time_gap,
