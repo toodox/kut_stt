@@ -100,18 +100,21 @@
                 </div>
             </div>
 
-            <div id="mArticle">
-              <p class="screen-out">상세결과 사용자 답변 내용</p>
-              <div class="spell_grammar">
-                <div class="spell_reform" id="resultForm" style>
-                  <strong class="screen_out">응답 내용</strong>
-                  <div class="cont_grammar">
-                    <div class="cont_spell" id="join_result">
+            <div class="card border-0">
+              <div class="card-body py-3">
+                <p class="f-bold font-navy fs-3">⬇️사용자 답변 내용</p>
+                <div class="spell_grammar">
+                  <div class="spell_reform" id="resultForm" style>
+                    <strong class="screen_out">응답 내용</strong>
+                    <div class="cont_grammar">
+                      <div class="cont_spell" id="join_result">
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="card border-0">
               <div class="card-body py-3">
                 <p class="f-bold font-navy fs-3">⬇️키워드</p>
@@ -122,10 +125,18 @@
                 </div>
               </div>
             </div>
-            <p>피드백</p>
-            <div class="card my-4">
-                <textarea id="peedback" placeholder="면접 내용에 대한 피드백을 입력해주세요"></textarea>
+            <div class="card border-0">
+              <div class="card-body py-3">
+                <p class="f-bold font-navy fs-3">⬇️피드백</p>
+                <div class="card my-4">
+                  <textarea id="peedback" placeholder="면접 내용에 대한 피드백을 입력해주세요"></textarea>
+                </div>
+    
+              </div>
             </div>
+
+
+
             <div class="my-4 d-flex btnline">
                 <button type="button" class="btn btn-primary" id="before">이전 질문</button>
                 <button class="btn btn-warning" onclick="updateanswer()">피드백 저장</button>

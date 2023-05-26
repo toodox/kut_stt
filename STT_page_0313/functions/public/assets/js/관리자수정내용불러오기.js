@@ -258,10 +258,10 @@ $('#gpt').click(function () {
 function updateanswer() {
     db.collection(data).doc(userName + resultType + i).update(
         {
-            피드백: document.getElementById('mod_anwser').value
+            피드백: document.getElementById('peedback').value
         }
     ).then(() => {
-        document.getElementById('peedback').value = ""
+        
         alert("저장되었습니다.");
         window.location.href = '#';
     });
