@@ -14,7 +14,7 @@ firebase.auth().onAuthStateChanged(user => {
     function saveSelectedType(type, userName) {
       localStorage.setItem("resultType", type);
 
-      db.collection('answer').doc(userName + type + 1).get()
+      db.collection('u_' + userName + '_' + type).doc(userName + type + 1).get()
         .then(result => {
           const checkanswer = result.data().수정전내용;
           if (checkanswer) {
