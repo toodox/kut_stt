@@ -86,77 +86,77 @@
     </nav>
 
     <div class="row mx-4">
-        <div class="col-md-3">
-            <div class="panel panel-info">
-              <ul class="list-group text-decoration-none" id="questionLists">
-              </ul>
-            </div>
+      <div class="col-md-3">
+        <div class="panel panel-info">
+          <ul class="list-group text-decoration-none" id="questionLists">
+          </ul>
         </div>
+      </div>
 
 
-        <div class="col-md-7">
-            <div class="card my-4 border-0">
-                <div class="card-body" id="questions">
-                </div>
-            </div>
+      <div class="col-md-7">
+          <div class="card my-4 border-0">
+              <div class="card-body f-bold" id="questions">
+              </div>
+          </div>
 
-            <div class="card border-0">
-              <div class="card-body">
-                <p class=" f-bold font-navy fs-3">⬇️면접 질문 녹음 파일</p>
-                <!--걸린 시간 표시-->
-                <div class="text-mute">
-                  <audio id="voiceFile" controls title="questions1.mp3"
-                    style="margin-right:10px; width: 300px; height: 50px; background-color: #f2f2f2; color: #333; border: 1px solid #ccc; border-radius: 5px;">
-                    <source src="questions1.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
+          <div class="card border-0">
+            <div class="card-body">
+              <p class=" f-bold font-navy fs-3">⬇️면접 질문 녹음 파일</p>
+              <!--걸린 시간 표시-->
+              <div class="text-mute">
+                <audio id="voiceFile" controls title="questions1.mp3"
+                  style="margin-right:10px; width: 300px; height: 50px; background-color: #f2f2f2; color: #333; border: 1px solid #ccc; border-radius: 5px;">
+                  <source src="questions1.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
               </div>
             </div>
+          </div>
 
-            <div class="card border-0">
-              <div class="card-body py-3">
-                <p class="f-bold font-navy fs-3">⬇️사용자 답변 내용</p>
-                <div class="spell_grammar">
-                  <div class="spell_reform" id="resultForm" style>
-                    <strong class="screen_out">응답 내용</strong>
-                    <div class="cont_grammar">
-                      <div class="cont_spell" id="join_result">
-                      </div>
+          <div class="card border-0">
+            <div class="card-body py-3">
+              <p class="f-bold font-navy fs-3">⬇️사용자 답변 내용</p>
+              <div class="spell_grammar">
+                <div class="spell_reform" id="resultForm" style>
+                  <strong class="screen_out">응답 내용</strong>
+                  <div class="cont_grammar">
+                    <div class="cont_spell" id="join_result">
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="card border-0">
-              <div class="card-body py-3">
-                <p class="f-bold font-navy fs-3">⬇️키워드</p>
-                <div class="spell_grammar">
-                  <div class="my-1 mx-3">
-                    <p class="lead fs-6" id="keyword">키워드: </p>
-                  </div>
+          <div class="card border-0">
+            <div class="card-body py-3">
+              <p class="f-bold font-navy fs-3">⬇️키워드</p>
+              <div class="spell_grammar">
+                <div class="my-1 mx-3">
+                  <p class="lead fs-6" id="keyword">키워드: </p>
                 </div>
               </div>
             </div>
-            <div class="card border-0">
-              <div class="card-body py-3">
-                <p class="f-bold font-navy fs-3">⬇️피드백</p>
-                <div class="card my-4">
-                  <textarea id="peedback" placeholder="면접 내용에 대한 피드백을 입력해주세요"></textarea>
-                </div>
-    
+          </div>
+          <div class="card border-0">
+            <div class="card-body py-3">
+              <p class="f-bold font-navy fs-3">⬇️피드백</p>
+              <div class="card my-4">
+                <textarea id="peedback" placeholder="면접 내용에 대한 피드백을 입력해주세요"></textarea>
               </div>
+  
             </div>
+          </div>
 
 
 
-            <div class="my-4 d-flex btnline">
-                <button type="button" class="btn btn-primary" id="before">이전 질문</button>
-                <button class="btn btn-warning" onclick="updateanswer()">피드백 저장</button>
-                <button type="button" class="btn btn-primary" id="after">다음 질문</button>
-            </div>
-        </div>
+          <div class="my-4 d-flex btnline">
+              <button type="button" class="btn btn-primary" id="before">이전 질문</button>
+              <button class="btn btn-warning" onclick="updateanswer()">피드백 저장</button>
+              <button type="button" class="btn btn-primary" id="after">다음 질문</button>
+          </div>
+      </div>
     </div>
 
     <footer class="py-3 my-4">
