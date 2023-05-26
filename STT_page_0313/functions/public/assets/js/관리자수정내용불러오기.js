@@ -62,6 +62,7 @@ window.onload = function () {
         db.collection('question_' + resultType).doc(resultType + '_question' + i).get().then((result) => {
             $('#questions').html('<h1 id="Qcon">질문1. ' + result.data().content + '</h1>');
             document.getElementById("Qtype").innerText = result.data().type;
+            
         });
 
         // 현재 window.onload를 통해 상세결과를 바로 출력할 시
@@ -75,6 +76,8 @@ window.onload = function () {
         // 수정 전/후 텍스트 불러오기
         db.collection(data).doc(userName + resultType + i).get().then((result) => {
             document.getElementById('join_result').textContent = result.data().수정후내용;
+            document.getElementById('peedback').innerText = result.data().피드백;
+
         }).catch((error) => {
             swal({
                 title: "Error",
@@ -98,6 +101,8 @@ $('#after').click(function () {
             document.getElementById("Qtype").innerText = result.data().type;
             db.collection(data).doc(userName + resultType + i).get().then((result) => {
                 document.getElementById('join_result').textContent = result.data().수정후내용;
+                document.getElementById('peedback').innerText = result.data().피드백;
+
             }).catch((error) => {
                 swal({
                     title: "Error",
@@ -134,6 +139,8 @@ $('#before').click(function () {
             document.getElementById("Qtype").innerText = result.data().type;
             db.collection(data).doc(userName + resultType + i).get().then((result) => {
                 document.getElementById('join_result').textContent = result.data().수정후내용;
+                document.getElementById('peedback').innerText = result.data().피드백;
+
             }).catch((error) => {
                 swal({
                     title: "Error",
@@ -246,6 +253,7 @@ function updateanswer() {
             피드백: document.getElementById('mod_anwser').value
         }
     ).then(() => {
+        document.getElementById('peedback').value = ""
         alert("저장되었습니다.");
         window.location.href = '#';
     });
