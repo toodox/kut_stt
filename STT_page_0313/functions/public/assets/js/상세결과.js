@@ -101,7 +101,6 @@ window.onload = function () {
         $("#questions").html(
           '<h1 id="Qcon">질문1. ' + result.data().content + "</h1>"
         );
-        document.getElementById("Qtype").innerText = result.data().type;
       });
 
     // 현재 window.onload를 통해 상세결과를 바로 출력할 시
@@ -186,7 +185,6 @@ $("#after").click(function () {
         document.getElementById("Qcon").innerText =
           "질문" + i + ". " + result.data().content;
         // 질문 유형 업데이트
-        document.getElementById("Qtype").innerText = result.data().type;
         db.collection("u_"+userName+"_"+resultType)
           .doc(userName + resultType + i)
           .get()
@@ -288,7 +286,6 @@ $("#before").click(function () {
         document.getElementById("Qcon").innerText =
           "질문" + i + ". " + result.data().content;
         // 질문 유형 업데이트
-        document.getElementById("Qtype").innerText = result.data().type;
         db.collection("u_"+userName+"_"+resultType)
           .doc(userName + resultType + i)
           .get()

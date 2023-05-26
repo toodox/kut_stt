@@ -116,11 +116,9 @@ function updateContentAndType(selectedTypes, questionNum) {
     db.collection('question_' + selectedTypes).doc(selectedTypes + '_question' + questionNum).get().then((result) => {
         if (questionNum == 1) {
             $('#questions').html('<h1 id="Qcon">질문' + questionNum + '. ' + result.data().content + '</h1>');
-            document.getElementById("Qtype").innerText = result.data().type;
         }
         else {
             document.getElementById("Qcon").innerText = '질문' + questionNum + '. ' + result.data().content;
-            document.getElementById("Qtype").innerText = result.data().type;
         }
     });
 }
