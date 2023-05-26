@@ -3,7 +3,6 @@ function admincheck() {
   var user = firebase.auth().currentUser;
   if (user) {
       if (user.email == 'master@koreatech.ac.kr') {   //관리자 아이디일 경우 관리자 페이지 접속
-          location.href='/admin-page1'
       }
       else {
           alert("관리자가 아닙니다.")
