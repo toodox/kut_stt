@@ -141,23 +141,29 @@ app.post('/submitForm', (req, res) => {
             }
             moreQuestions = qArr;
 
-            let response = {
-                tokens: tokens, 
-                suggestions: suggestions, 
-                keyword1: (keyObj[0] == undefined ? '' : keyObj), 
-                moreQuestions: moreQuestions
-            };
-            // db.collection('question_GPT').doc("GPT_question" + num).set(GPT추가질문).then((result) => {
-            //     console.log(result);
-            // }).catch((error) => {
-            //     console.log(error);
-            //     alert("오류가 발생하였습니다.");
-            // })
+            const gptKeyword = async(sentence) => {
+                const keyGPT = await openai.createChatCompletion({
+                    model: "gpt-3.5-turbo", 
+                    messages: [{ role: "user", content: sentence }],
+                });
+                let ggkeyWords = keyGPT.data.choices[0].message.content;
+                
+                ggkeyWords = ggkeyWords.replace('.', '');
 
-            console.log(response);
-            console.log("done");
-
-            res.send(JSON.stringify(response));
+                let response = {
+                    tokens: tokens, 
+                    suggestions: suggestions, 
+                    keyword1: (keyObj[0] == undefined ? '' : keyObj), 
+                    keywordGPT: ggkeyWords, 
+                    moreQuestions: moreQuestions
+                };
+    
+                console.log(response);
+                console.log("done");
+    
+                res.send(JSON.stringify(response));
+            }
+            gptKeyword(sentence + "이 문장에서 가장 중요한 핵심 단어 2개를 추출해줘.");
         }
         try {
             runGPT(sentence + "이 문장을 고등학생이 대학교 입학 면접에서 대답했다고 가정할 때 추가로 나올만한 질문들을 2개 알려줘");
@@ -169,6 +175,7 @@ app.post('/submitForm', (req, res) => {
                 tokens: tokens, 
                 suggestions: suggestions, 
                 keyword1: (keyObj[0] == undefined ? '' : keyObj[0]), 
+                keywordGPT: '', 
                 moreQuestions: ''
             };
 
