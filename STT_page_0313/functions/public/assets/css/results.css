@@ -30,7 +30,9 @@
 }
 .spell_grammar {
     overflow: hidden;
+
     position: relative;
+    padding: 10px 0px 10px 10px;
     margin-top: 10px;
     border: 1px solid #d0d0d0;
     border-radius: 6px;
@@ -45,6 +47,8 @@
     height: 192px;
     padding-bottom: 38px;
 }
+
+
 .screen_out {
     overflow: hidden;
     position: absolute;
@@ -60,19 +64,23 @@
     font-size: 15px;
     line-height: 28px;
 }
-.cont_chkbox {
+
+
+/* .cont_chkbox {
     overflow-x: hidden;
     overflow-y: auto;
     height: 192px;
     padding: 24px 32px 0;
-}
-.add_questions {
+} */
+/* .add_questions {
     position: absolute;
     font-size: 14px;
     padding-left: 7px;
     padding-right: 32px;
     overflow-wrap: normal;
-}
+} */
+
+
 .examine_layer {
     position: relative;
     margin-top: 20px;
