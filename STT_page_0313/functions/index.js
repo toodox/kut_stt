@@ -98,6 +98,10 @@ app.get('/admin-ans-edit', (req, res) => {
     res.sendFile(path.join(__dirname + filePath + '관리자질문유형수정.html'));
 });
 
+function sortByNumberDescending(a, b) {
+    return b.number - a.number;
+}
+
 app.post('/submitForm', (req, res) => {
     const { sentence , num} = req.body;
     const spellCheck = async function(results) {
@@ -111,8 +115,13 @@ app.post('/submitForm', (req, res) => {
         }
 
         var keywords = extractor(sentence);
-        var keyObj = Object.keys(keywords);
-        
+        var keyObj = Object.keys(keywords).map(key => ({ word: key, number: keywords[key] }));;
+
+        const sortedKeyObjArray = keyObj.sort(sortByNumberDescending);
+        // key 값만 추출하여 keyObj 배열에 저장
+        keyObj = sortedKeyObjArray.map(item => item.word);
+
+
         const runGPT = async(prompt) => {
             console.log("running...");
             const responseGPT = await openai.createChatCompletion({
