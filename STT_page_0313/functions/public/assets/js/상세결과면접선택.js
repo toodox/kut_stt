@@ -20,10 +20,18 @@ firebase.auth().onAuthStateChanged(user => {
           if (checkanswer) {
             window.location.href = "/results";
           } else {
-            alert("진행되지 않은 면접입니다");
+            swal({
+              title: "Error",
+              text: "진행되지 않은 면접입니다.",
+              icon: "error", //"info,success,warning,error" 중 택1
+            });
           }
         }).catch(error => {
-          alert("진행되지 않은 면접입니다");
+          swal({
+            title: "Error",
+            text: "진행되지 않은 면접입니다.",
+            icon: "error", //"info,success,warning,error" 중 택1
+          });
           console.log(error);
         });
     }
