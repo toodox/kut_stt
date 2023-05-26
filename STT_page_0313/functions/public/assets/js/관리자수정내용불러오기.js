@@ -78,7 +78,7 @@ window.onload = function () {
             document.getElementById('peedback').innerText = result.data().피드백;
             document.getElementById("keyword").innerHTML =
             '키워드: <mark class="marking">' +
-            result.data().키워드 +
+            result.data().키워드[0]+ ', ' + result.data().키워드[1] +
             "</mark>";
 
         }).catch((error) => {
@@ -106,7 +106,7 @@ $('#after').click(function () {
                 document.getElementById('peedback').innerText = result.data().피드백;
                 document.getElementById("keyword").innerHTML =
                 '키워드: <mark class="marking">' +
-                result.data().키워드 +
+                result.data().키워드[0]+ ', ' + result.data().키워드[1] +
                 "</mark>";
 
             }).catch((error) => {
@@ -147,7 +147,7 @@ $('#before').click(function () {
                 document.getElementById('peedback').innerText = result.data().피드백;
                 document.getElementById("keyword").innerHTML =
                 '키워드: <mark class="marking">' +
-                result.data().키워드 +
+                result.data().키워드[0]+ ', ' + result.data().키워드[1] +
                 "</mark>";
             }).catch((error) => {
                 swal({
