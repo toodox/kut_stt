@@ -1,3 +1,19 @@
+/* @import url(./total.css); */
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSansBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -5,6 +21,8 @@ body {
   text-align: center;
   margin: 0;
   padding: 0;
+  font-family: 'GmarketSansMedium';
+
 }
 
 /* 공통 클래스 */
@@ -74,8 +92,8 @@ body {
 }
 #form-container #subit-button.allCheck {
   color: #fff;
-  border: 2px solid #5f0081;
-  background: #5f0081;
+  border: 2px solid #0D5289;
+  background: #0D5289;
   cursor: pointer;
 }
 
