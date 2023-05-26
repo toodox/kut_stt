@@ -70,7 +70,7 @@ $(document).on('click', '.modbtn', function (b) {
             );
         }
         alert("수정되었습니다.");
-        let im = col.split("_",3);
+        let im = col.split("_", 3);
         console.log(im);
         setTimeout(() => window.location.href = "/admin-ans-edit", 500);
     });
@@ -131,23 +131,27 @@ $(document).on('click', '.addbtn', function (add) {
     let text = prompt("질문유형집의 이름을 입력해주세요(대문자만 가능합니다.)");
     let question = "question_" + text;
     let questionn = text + "_question";
+    let check = true;
     if (qonly.test(text)) {
         var { names } = JSON.parse(xhr.response);
         console.log(question);
         names.forEach(name => {
             if (question == name) {
                 alert("중복된 이름입니다.")
+                check = false;
             }
-            else {
-                db.collection(question).doc(questionn + 1).set({
-                    content: "간단한자기소개 해주세요",
-                    type: "기본질문"
-                }).then(() => {
-                    alert("생성되었습니다.");
-                    setTimeout(() => window.location.href = "/admin-ans-edit", 500);
-                })
-            }
+
         });
+        if(check)
+        {
+            db.collection(question).doc(questionn + 1).set({
+            content: "간단한자기소개 해주세요",
+            type: "기본질문"
+        }).then(() => {
+            alert("생성되었습니다.");
+            setTimeout(() => window.location.href = "/admin-ans-edit", 500);
+        })
+        }
     }
     else {
         alert("영어 대문자로만 입력해주세요");
