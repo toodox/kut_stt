@@ -75,7 +75,7 @@ window.onload = function () {
         // 수정 전/후 텍스트 불러오기
         db.collection(data).doc(userName + resultType + i).get().then((result) => {
             document.getElementById('join_result').textContent = result.data().수정후내용;
-            document.getElementById('peedback').innerText = result.data().피드백;
+            document.getElementById('peedback').value = result.data().피드백;
             document.getElementById("keyword").innerHTML =
             '키워드: <mark class="marking">' +
             result.data().키워드[0]+ ', ' + result.data().키워드[1] +
@@ -103,7 +103,7 @@ $('#after').click(function () {
             // 질문 유형 업데이트
             db.collection(data).doc(userName + resultType + i).get().then((result) => {
                 document.getElementById('join_result').textContent = result.data().수정후내용;
-                document.getElementById('peedback').innerText = result.data().피드백;
+                document.getElementById('peedback').value = result.data().피드백;
                 document.getElementById("keyword").innerHTML =
                 '키워드: <mark class="marking">' +
                 result.data().키워드[0]+ ', ' + result.data().키워드[1] +
@@ -144,7 +144,7 @@ $('#before').click(function () {
             // 질문 유형 업데이트
             db.collection(data).doc(userName + resultType + i).get().then((result) => {
                 document.getElementById('join_result').textContent = result.data().수정후내용;
-                document.getElementById('peedback').innerText = result.data().피드백;
+                document.getElementById('peedback').value = result.data().피드백;
                 document.getElementById("keyword").innerHTML =
                 '키워드: <mark class="marking">' +
                 result.data().키워드[0]+ ', ' + result.data().키워드[1] +
@@ -261,7 +261,6 @@ function updateanswer() {
             피드백: document.getElementById('peedback').value
         }
     ).then(() => {
-        
         alert("저장되었습니다.");
         window.location.href = '#';
     });
