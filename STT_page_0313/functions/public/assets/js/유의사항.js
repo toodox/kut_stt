@@ -133,7 +133,7 @@ $("#send").click(function () {
                 text: "공백은 제출할 수 없습니다.",
                 icon: "warning", //"info,success,warning,error" 중 택1
     });
-  } else if(recodeing = 1)  {
+  } else if(recodeing == 1)  {
     swal({
       title: "Error",
       text: "녹음 진행 중입니다. 종료 버튼을 눌러주세요.",

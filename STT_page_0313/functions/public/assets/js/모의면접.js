@@ -244,7 +244,7 @@ $('#send').click(function() {
             }
         }
     }
-    else if(contentVal = '')
+    else if(contentVal == '')
     {
         swal({
                 title: "Error",
@@ -252,7 +252,7 @@ $('#send').click(function() {
                 icon: "warning", //"info,success,warning,error" 중 택1
         });
     }
-    else if(recodeing = 1)
+    else if(recodeing == 1)
     {
         swal({
                 title: "Error",
