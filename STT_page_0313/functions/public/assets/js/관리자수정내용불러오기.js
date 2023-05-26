@@ -76,10 +76,19 @@ window.onload = function () {
         db.collection(data).doc(userName + resultType + i).get().then((result) => {
             document.getElementById('join_result').textContent = result.data().수정후내용;
             document.getElementById('peedback').value = result.data().피드백;
-            document.getElementById("keyword").innerHTML =
-            '키워드: <mark class="marking">' +
-            result.data().키워드[0]+ ', ' + result.data().키워드[1] +
-            "</mark>";
+            var keywordHTML = '키워드: <mark class="marking">';
+
+            for (var i = 0; i < 3 && result.data().키워드[i] !== undefined; i++) {
+              if (i === 0) {
+                keywordHTML += result.data().키워드[i];
+              } else {
+                keywordHTML += ', ' + result.data().키워드[i];
+              }
+            }
+            
+            keywordHTML += '</mark>';
+            document.getElementById("keyword").innerHTML = keywordHTML;
+            
 
         }).catch((error) => {
             swal({
@@ -89,7 +98,22 @@ window.onload = function () {
             });
             console.log(error);
         });
+        storageRef
+          .child("voicedata/" + userName + " " + i + "번 질문" + resultType)
+          .getDownloadURL()
+          .then(function (url) {
+            // 오디오 태그를 사용하여 음성 파일을 표시
+            audioEl.src = url;
+          })
+          .catch((error) => {
+            swal({
+              title: "Error",
+              text: "음성 파일을 불러오는 중 오류가 발생했습니다",
+              icon: "error", //"info,success,warning,error" 중 택1
+            });
+          });
     }, 2023);
+    
 }
 
 
@@ -104,16 +128,39 @@ $('#after').click(function () {
             db.collection(data).doc(userName + resultType + i).get().then((result) => {
                 document.getElementById('join_result').textContent = result.data().수정후내용;
                 document.getElementById('peedback').value = result.data().피드백;
-                document.getElementById("keyword").innerHTML =
-                '키워드: <mark class="marking">' +
-                result.data().키워드[0]+ ', ' + result.data().키워드[1] +
-                "</mark>";
+                var keywordHTML = '키워드: <mark class="marking">';
+
+                for (var i = 0; i < 3 && result.data().키워드[i] !== undefined; i++) {
+                  if (i === 0) {
+                    keywordHTML += result.data().키워드[i];
+                  } else {
+                    keywordHTML += ', ' + result.data().키워드[i];
+                  }
+                }
+                
+                keywordHTML += '</mark>';
+                document.getElementById("keyword").innerHTML = keywordHTML;
+                
 
             }).catch((error) => {
                 swal({
                     title: "Error",
                     text: "답변을 불러오는 중 오류가 발생했습니다",
                     icon: "error", //"info,success,warning,error" 중 택1
+                });
+            });
+            storageRef
+            .child("voicedata/" + userName + " " + i + "번 질문" + resultType)
+            .getDownloadURL()
+            .then(function (url) {
+                // 오디오 태그를 사용하여 음성 파일을 표시
+                audioEl.src = url;
+            })
+            .catch((error) => {
+                swal({
+                title: "Error",
+                text: "음성 파일을 불러오는 중 오류가 발생했습니다",
+                icon: "error", //"info,success,warning,error" 중 택1
                 });
             });
             // 현재 질문의 사이드 바를 하이라이트 설정
@@ -145,15 +192,38 @@ $('#before').click(function () {
             db.collection(data).doc(userName + resultType + i).get().then((result) => {
                 document.getElementById('join_result').textContent = result.data().수정후내용;
                 document.getElementById('peedback').value = result.data().피드백;
-                document.getElementById("keyword").innerHTML =
-                '키워드: <mark class="marking">' +
-                result.data().키워드[0]+ ', ' + result.data().키워드[1] +
-                "</mark>";
+                var keywordHTML = '키워드: <mark class="marking">';
+
+                for (var i = 0; i < 3 && result.data().키워드[i] !== undefined; i++) {
+                  if (i === 0) {
+                    keywordHTML += result.data().키워드[i];
+                  } else {
+                    keywordHTML += ', ' + result.data().키워드[i];
+                  }
+                }
+                
+                keywordHTML += '</mark>';
+                document.getElementById("keyword").innerHTML = keywordHTML;
+                
             }).catch((error) => {
                 swal({
                     title: "Error",
                     text: "답변을 불러오는 중 오류가 발생했습니다",
                     icon: "error", //"info,success,warning,error" 중 택1
+                });
+            });
+            storageRef
+            .child("voicedata/" + userName + " " + i + "번 질문" + resultType)
+            .getDownloadURL()
+            .then(function (url) {
+                // 오디오 태그를 사용하여 음성 파일을 표시
+                audioEl.src = url;
+            })
+            .catch((error) => {
+                swal({
+                title: "Error",
+                text: "음성 파일을 불러오는 중 오류가 발생했습니다",
+                icon: "error", //"info,success,warning,error" 중 택1
                 });
             });
             // 현재 질문의 사이드 바를 하이라이트 설정
