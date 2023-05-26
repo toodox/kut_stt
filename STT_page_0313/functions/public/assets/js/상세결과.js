@@ -130,15 +130,15 @@ window.onload = function () {
         ).textContent = `재생 시간: ${duration}초`;
         // document.getElementById("keyword").textContent = "키워드: " + result.data().키워드;
         document.getElementById("keyword").innerHTML =
-          '키워드: <mark class="marking">' + result.data().키워드 + "</mark>";
+          '키워드: <mark class="marking">' + result.data().GPT키워드 + "</mark>";
 
         ques = result.data().추가질문.split("2. ");
         document.getElementById("aQ1Label").innerHTML = markingKeyword(
-          result.data().키워드,
+          result.data().GPT키워드,
           ques[0]
         );
         document.getElementById("aQ2Label").innerHTML = markingKeyword(
-          result.data().키워드,
+          result.data().GPT키워드,
           "2. " + ques[1]
         );
         $("input[name=additionalQ1]").attr("value", ques[0].replace("1. ", ""));
@@ -201,16 +201,16 @@ $("#after").click(function () {
             ).textContent = `걸린 시간: ${duration}초`;
             document.getElementById("keyword").innerHTML =
               '키워드: <mark class="marking">' +
-              result.data().키워드 +
+              result.data().GPT키워드 +
               "</mark>";
 
             ques = result.data().추가질문.split("2. ");
             document.getElementById("aQ1Label").innerHTML = markingKeyword(
-              result.data().키워드,
+              result.data().GPT키워드,
               ques[0]
             );
             document.getElementById("aQ2Label").innerHTML = markingKeyword(
-              result.data().키워드,
+              result.data().GPT키워드,
               "2. " + ques[1]
             );
             $("input[name=additionalQ1]").attr(
@@ -302,16 +302,16 @@ $("#before").click(function () {
             ).textContent = `걸린 시간: ${duration}초`;
             document.getElementById("keyword").innerHTML =
               '키워드: <mark class="marking">' +
-              result.data().키워드 +
+              result.data().GPT키워드 +
               "</mark>";
 
             ques = result.data().추가질문.split("2. ");
             document.getElementById("aQ1Label").innerHTML = markingKeyword(
-              result.data().키워드,
+              result.data().GPT키워드,
               ques[0]
             );
             document.getElementById("aQ2Label").innerHTML = markingKeyword(
-              result.data().키워드,
+              result.data().GPT키워드,
               "2. " + ques[1]
             );
             $("input[name=additionalQ1]").attr(
