@@ -132,12 +132,12 @@ app.post('/submitForm', (req, res) => {
                 content: moreQuestions,
                 keyword: keyObj[0], 
             }
-            db.collection('question_GPT').doc("GPT_question" + num).set(GPT추가질문).then((result) => {
-                console.log(result);
-            }).catch((error) => {
-                console.log(error);
-                alert("오류가 발생하였습니다.");
-            })
+            // db.collection('question_GPT').doc("GPT_question" + num).set(GPT추가질문).then((result) => {
+            //     console.log(result);
+            // }).catch((error) => {
+            //     console.log(error);
+            //     alert("오류가 발생하였습니다.");
+            // })
 
             console.log(response);
             console.log("done");
