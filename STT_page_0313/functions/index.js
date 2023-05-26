@@ -130,6 +130,17 @@ app.post('/submitForm', (req, res) => {
             });
             let moreQuestions = responseGPT.data.choices[0].message.content;
 
+            console.log(typeof(moreQuestions));
+            let qArr = moreQuestions.split('1. ');
+            console.log(qArr);
+            qArr = '1. ' + qArr[1];
+            console.log(qArr);
+            if (qArr.indexOf('3. ') != -1) {
+                qArr = qArr.split('3. ');
+                qArr = qArr[0];
+            }
+            moreQuestions = qArr;
+
             let response = {
                 tokens: tokens, 
                 suggestions: suggestions, 
@@ -149,10 +160,7 @@ app.post('/submitForm', (req, res) => {
             res.send(JSON.stringify(response));
         }
         try {
-            if (keyObj[0] != undefined)
-                runGPT(keyObj[0] + "을(를) 키워드로 나올 수 있는 추가 면접 질문을 " + keyObj[0] + "을(를) 질문 문장에 포함해서 2개 알려줘.");
-            else
-                runGPT('' + "을(를) 키워드로 나올 수 있는 추가 면접 질문을 " + '' + "을(를) 질문 문장에 포함해서 2개 알려줘.");
+            runGPT(sentence + "이 문장을 고등학생이 대학교 입학 면접에서 대답했다고 가정할 때 추가로 나올만한 질문들을 2개 알려줘");
         }
         catch (error) {
             console.log("GPT error" + error);
