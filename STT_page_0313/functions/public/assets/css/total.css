@@ -110,7 +110,7 @@ textarea {
   }
 
   nav {
-    font-size: 0.9rem;
+    font-size: 80%;
   }
 }
 
@@ -177,6 +177,6 @@ textarea {
   color : #0d4dbf
 }
 
-.lead, .f-medium {
+.f-medium {
   font-family: GmarketSansMedium;
 }
