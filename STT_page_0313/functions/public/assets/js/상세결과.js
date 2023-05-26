@@ -118,9 +118,13 @@ window.onload = function() {
             // document.getElementById("keyword").textContent = "키워드: " + result.data().키워드;
             document.getElementById("keyword").innerHTML = '키워드: <mark class="marking">' + result.data().키워드 + '</mark>';
 
-            ques = result.data().추가질문.split("2.");
+            ques = result.data().추가질문.split("2. ");
             document.getElementById("aQ1Label").innerHTML = markingKeyword(result.data().키워드, ques[0]);
-            document.getElementById("aQ2Label").innerHTML = markingKeyword(result.data().키워드, '2.' + ques[1]);
+            document.getElementById("aQ2Label").innerHTML = markingKeyword(result.data().키워드, '2. ' + ques[1]);
+            $('input[name=additionalQ1]').attr('value', ques[0].replace('1. ', ''));
+            $('input[name=additionalQ2]').attr('value', ques[1]);
+            currQ1 = ques[0].replace('1. ', '');
+            currQ2 = ques[1];
         }).catch((error) => {
             alert("답변을 불러오는 중 오류가 발생했습니다");
             console.log(error);
@@ -157,6 +161,24 @@ $('#after').click(function () {
                 
                 duration = result.data().걸린시간;
                 document.getElementById("timeCall").textContent = `걸린 시간: ${duration}초`;
+                document.getElementById("keyword").innerHTML = '키워드: <mark class="marking">' + result.data().키워드 + '</mark>';
+
+                ques = result.data().추가질문.split("2. ");
+                document.getElementById("aQ1Label").innerHTML = markingKeyword(result.data().키워드, ques[0]);
+                document.getElementById("aQ2Label").innerHTML = markingKeyword(result.data().키워드, '2. ' + ques[1]);
+                $('input[name=additionalQ1]').attr('value', ques[0].replace('1. ', ''));
+                $('input[name=additionalQ2]').attr('value', ques[1]);
+                currQ1 = ques[0].replace('1. ', '');
+                currQ2 = ques[1];
+                if (addQuestionList.indexOf(ques[0].replace('1. ', '')) != -1)
+                    $('input[name="additionalQ1"]').prop("checked", true);
+                else
+                    $('input[name="additionalQ1"]').prop("checked", false);
+                
+                if (addQuestionList.indexOf(ques[1]) != -1)
+                    $('input[name="additionalQ2"]').prop("checked", true);
+                else
+                    $('input[name="additionalQ2"]').prop("checked", false);
             }).catch((error) => {
                 alert("답변을 불러오는 중 오류가 발생했습니다");
             });
@@ -180,6 +202,7 @@ $('#after').click(function () {
     }
 });
 
+
 $('#before').click(function () {
     if (i - 1 > 0) {
         i --;
@@ -198,6 +221,24 @@ $('#before').click(function () {
                 
                 duration = result.data().걸린시간;
                 document.getElementById("timeCall").textContent = `걸린 시간: ${duration}초`;
+                document.getElementById("keyword").innerHTML = '키워드: <mark class="marking">' + result.data().키워드 + '</mark>';
+
+                ques = result.data().추가질문.split("2. ");
+                document.getElementById("aQ1Label").innerHTML = markingKeyword(result.data().키워드, ques[0]);
+                document.getElementById("aQ2Label").innerHTML = markingKeyword(result.data().키워드, '2. ' + ques[1]);
+                $('input[name=additionalQ1]').attr('value', ques[0].replace('1. ', ''));
+                $('input[name=additionalQ2]').attr('value', ques[1]);
+                currQ1 = ques[0].replace('1. ', '');
+                currQ2 = ques[1];
+                if (addQuestionList.indexOf(ques[0].replace('1. ', '')) != -1)
+                    $('input[name="additionalQ1"]').prop("checked", true);
+                else
+                    $('input[name="additionalQ1"]').prop("checked", false);
+                
+                if (addQuestionList.indexOf(ques[1]) != -1)
+                    $('input[name="additionalQ2"]').prop("checked", true);
+                else
+                    $('input[name="additionalQ2"]').prop("checked", false);
             }).catch((error) => {
                 alert("답변을 불러오는 중 오류가 발생했습니다");
             });
@@ -224,6 +265,8 @@ $('#before').click(function () {
 
 var target = document.getElementById('cart');
 var targetID;
+var addQContL = document.getElementById('join_ques');
+var currQ1 = '', currQ2= '';
 
 $('#aQ1').click(function() {
     let check = 'input[name="additionalQ1"]:checked';
@@ -231,15 +274,37 @@ $('#aQ1').click(function() {
 
     console.log(isChecked);
     if (isChecked != null) {
-        addQuestionList.push('');
+        addQuestionList.push(currQ1);
+        let addQ = document.createElement('li');
+        addQ.id = currQ1;
+        addQ.textContent = currQ1;
+        addQContL.appendChild(addQ);
     }
-    let test = document.getElementById('aQ1');
-    console.log(test);
+    else {
+        addQuestionList.splice(addQuestionList.indexOf(currQ1), 1);
+        let temp1 = document.getElementById(currQ1);
+        addQContL.removeChild(temp1);
+    }
 });
 
 
 $('#aQ2').click(function() {
-    console.log("aQ2");
+    let check = 'input[name="additionalQ2"]:checked';
+    let isChecked = document.querySelector(check);
+
+    console.log(isChecked);
+    if (isChecked != null) {
+        addQuestionList.push(currQ2);
+        let addQ = document.createElement('li');
+        addQ.id = currQ2;
+        addQ.textContent = currQ2;
+        addQContL.appendChild(addQ);
+    }
+    else {
+        addQuestionList.splice(addQuestionList.indexOf(currQ2), 1);
+        let temp2 = document.getElementById(currQ2);
+        addQContL.removeChild(temp2);
+    }
 });
 
 
