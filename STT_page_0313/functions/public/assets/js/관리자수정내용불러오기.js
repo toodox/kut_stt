@@ -331,7 +331,11 @@ function updateanswer() {
             피드백: document.getElementById('peedback').value
         }
     ).then(() => {
-        alert("저장되었습니다.");
+        swal({
+            title: "알림",
+            text: "저장되었습니다.",
+            icon: "info", //"info,success,warning,error" 중 택1
+        });
         window.location.href = '#';
     });
 }

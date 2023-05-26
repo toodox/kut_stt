@@ -18,7 +18,7 @@ xhr.onreadystatechange = () => {
                 let itype = name.split('_', 3);
                 newdiv.innerHTML = '<div class="card my-4"><div class="card-body text-center">'
                     + '<a href="/admin-edit-page" class="us" id="' + name + '">'
-                    + itype[1] + '  ' + itype[2] + '형</a> 면접내용</div></div>';
+                    + itype[1] + ' / ' + itype[2] + '형</a> 면접내용</div></div>';
                 que.append(newdiv);
             }
         });
