@@ -126,9 +126,6 @@ window.onload = function () {
 
         duration = result.data().걸린시간;
         document.getElementById(
-          "timeCall"
-        ).textContent = `재생 시간: ${duration}초`;
-        document.getElementById(
             "join_feedback"
         ).textContent = result.data().피드백;
         // document.getElementById("keyword").textContent = "키워드: " + result.data().키워드;
@@ -199,9 +196,6 @@ $("#after").click(function () {
             createSpellCheckResult(resultArray, showChange);
 
             duration = result.data().걸린시간;
-            document.getElementById(
-              "timeCall"
-            ).textContent = `걸린 시간: ${duration}초`;
             document.getElementById(
                 "join_feedback"
             ).textContent = result.data().피드백;
@@ -303,9 +297,6 @@ $("#before").click(function () {
             createSpellCheckResult(resultArray, showChange);
 
             duration = result.data().걸린시간;
-            document.getElementById(
-              "timeCall"
-            ).textContent = `걸린 시간: ${duration}초`;
             document.getElementById(
                 "join_feedback"
             ).textContent = result.data().피드백;
