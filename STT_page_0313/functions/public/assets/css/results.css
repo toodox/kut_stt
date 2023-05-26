@@ -124,7 +124,21 @@
     text-align: center;
 }
 .img_btn {
+    float: left;
     width: 54px;
+    height: 36px;
+    font-size: 15px;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+    background-color: #999;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.next_btn {
+    float: right;
+    width: 154px;
     height: 36px;
     font-size: 15px;
     line-height: 40px;
