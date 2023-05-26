@@ -106,7 +106,7 @@ window.onload = function() {
         console.log(userName);
 
         // 수정 전/후 텍스트 불러오기
-        db.collection(userName +'_'+ resultType).doc(userName + resultType + i).get().then((result) => {
+        db.collection('u_' + userName + '_' + resultType).doc(userName + resultType + i).get().then((result) => {
             console.log(result.data().수정전내용);
             let resultArray = result.data().수정전내용.split(' ');
             let showChange = JSON.parse(result.data().수정할내용);
@@ -160,7 +160,7 @@ $('#after').click(function () {
             document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
             // 질문 유형 업데이트
             document.getElementById("Qtype").innerText= result.data().type;
-            db.collection(userName +'_' + resultType).doc(userName + resultType + i).get().then((result) => {
+            db.collection('u_' + userName + '_' + resultType).doc(userName + resultType + i).get().then((result) => {
                 console.log(result.data().수정전내용);
                 let resultArray = result.data().수정전내용.split(' ');
                 let showChange = JSON.parse(result.data().수정할내용);
@@ -232,7 +232,7 @@ $('#before').click(function () {
             document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
             // 질문 유형 업데이트
             document.getElementById("Qtype").innerText= result.data().type;
-            db.collection(userName +'_'+ resultType).doc(userName + resultType + i).get().then((result) => {
+            db.collection('u_' + userName + '_' + resultType).doc(userName + resultType + i).get().then((result) => {
                 console.log(result.data().수정전내용);
                 let resultArray = result.data().수정전내용.split(' ');
                 let showChange = JSON.parse(result.data().수정할내용);
