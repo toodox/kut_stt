@@ -106,7 +106,7 @@ window.onload = function() {
         console.log(userName);
 
         // 수정 전/후 텍스트 불러오기
-        db.collection('answer').doc(userName + resultType + i).get().then((result) => {
+        db.collection('u_' + userName + '_' + resultType).doc(userName + resultType + i).get().then((result) => {
             console.log(result.data().수정전내용);
             let resultArray = result.data().수정전내용.split(' ');
             let showChange = JSON.parse(result.data().수정할내용);
@@ -127,7 +127,11 @@ window.onload = function() {
             currQ1 = ques[0].replace('1. ', '');
             currQ2 = ques[1];
         }).catch((error) => {
-            alert("답변을 불러오는 중 오류가 발생했습니다");
+            swal({
+                title: "Error",
+                text: "답변을 불러오는 중 오류가 발생했습니다",
+                icon: "error", //"info,success,warning,error" 중 택1
+            });
             console.log(error);
         });
         
@@ -136,7 +140,11 @@ window.onload = function() {
             // 오디오 태그를 사용하여 음성 파일을 표시
             audioEl.src = url;
         }).catch((error) => {
-            alert("음성 파일을 불러오는 중 오류가 발생했습니다");
+            swal({
+                title: "Error",
+                text: "음성 파일을 불러오는 중 오류가 발생했습니다",
+                icon: "error", //"info,success,warning,error" 중 택1
+            });
         });
 
 
@@ -153,7 +161,7 @@ $('#after').click(function () {
             document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
             // 질문 유형 업데이트
             document.getElementById("Qtype").innerText= result.data().type;
-            db.collection('answer').doc(userName + resultType + i).get().then((result) => {
+            db.collection('u_' + userName + '_' + resultType).doc(userName + resultType + i).get().then((result) => {
                 console.log(result.data().수정전내용);
                 let resultArray = result.data().수정전내용.split(' ');
                 let showChange = JSON.parse(result.data().수정할내용);
@@ -182,14 +190,22 @@ $('#after').click(function () {
                 else
                     $('input[name="additionalQ2"]').prop("checked", false);
             }).catch((error) => {
-                alert("답변을 불러오는 중 오류가 발생했습니다");
+                swal({
+                    title: "Error",
+                    text: "답변을 불러오는 중 오류가 발생했습니다",
+                    icon: "error", //"info,success,warning,error" 중 택1
+                });
             });
             // 오디오 파일 불러오기
             storageRef.child('voicedata/'+ userName + " " + i + "번 질문" + resultType).getDownloadURL().then(function(url) {
                 // 오디오 태그를 사용하여 음성 파일을 표시
                 audioEl.src = url;
             }).catch((error) => {
-                alert("음성 파일을 불러오는 중 오류가 발생했습니다");
+                swal({
+                    title: "Error",
+                    text: "음성 파일을 불러오는 중 오류가 발생했습니다",
+                    icon: "error", //"info,success,warning,error" 중 택1
+                });
             });
             // 현재 질문의 사이드 바를 하이라이트 설정
             document.getElementById('QLcontainer' + i).className = "list-group-item bg-primary text-right";
@@ -200,7 +216,11 @@ $('#after').click(function () {
         });
     }
     else {
-        alert("마지막 질문입니다.");
+        swal({
+            title: "알림",
+            text: "마지막 질문입니다.",
+            icon: "info", //"info,success,warning,error" 중 택1
+        });
     }
 });
 
@@ -214,7 +234,7 @@ $('#before').click(function () {
             document.getElementById("Qcon").innerText='질문' + i + '. ' + result.data().content;
             // 질문 유형 업데이트
             document.getElementById("Qtype").innerText= result.data().type;
-            db.collection('answer').doc(userName + resultType + i).get().then((result) => {
+            db.collection('u_' + userName + '_' + resultType).doc(userName + resultType + i).get().then((result) => {
                 console.log(result.data().수정전내용);
                 let resultArray = result.data().수정전내용.split(' ');
                 let showChange = JSON.parse(result.data().수정할내용);
@@ -243,14 +263,22 @@ $('#before').click(function () {
                 else
                     $('input[name="additionalQ2"]').prop("checked", false);
             }).catch((error) => {
-                alert("답변을 불러오는 중 오류가 발생했습니다");
+                swal({
+                    title: "Error",
+                    text: "답변을 불러오는 중 오류가 발생했습니다",
+                    icon: "error", //"info,success,warning,error" 중 택1
+                });
             });
             // 오디오 파일 불러오기
             storageRef.child('voicedata/'+ userName + " " + i + "번 질문" + resultType).getDownloadURL().then(function(url) {
                 // 오디오 태그를 사용하여 음성 파일을 표시
                 audioEl.src = url;
             }).catch((error) => {
-                alert("음성 파일을 불러오는 중 오류가 발생했습니다");
+                swal({
+                    title: "Error",
+                    text: "음성 파일을 불러오는 중 오류가 발생했습니다",
+                    icon: "error", //"info,success,warning,error" 중 택1
+                });
             });
             // 현재 질문의 사이드 바를 하이라이트 설정
             document.getElementById('QLcontainer' + i).className = "list-group-item bg-primary text-right";
@@ -261,7 +289,11 @@ $('#before').click(function () {
         });
     }
     else {
-        alert("처음 질문입니다.");
+        swal({
+            title: "알림",
+            text: "처음 질문입니다.",
+            icon: "info", //"info,success,warning,error" 중 택1
+        });
     }
 });
 

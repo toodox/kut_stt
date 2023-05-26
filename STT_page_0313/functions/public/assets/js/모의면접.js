@@ -22,10 +22,10 @@ function startRecording() {
     chunks = [];
     recodeing = 1;
     navigator.mediaDevices.getUserMedia(constraints).then(
-        function(mediaStream) {
+        function (mediaStream) {
             mediaRecorder = new MediaRecorder(mediaStream);
 
-            mediaRecorder.ondataavailable = function(e) {
+            mediaRecorder.ondataavailable = function (e) {
                 chunks.push(e.data);
                 if (mediaRecorder.state == "inactive") {
                     blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' });
@@ -34,7 +34,7 @@ function startRecording() {
             }
 
             mediaRecorder.start();
-        }).catch(function(error) {
+        }).catch(function (error) {
             console.log(error.name + ": " + error.message);
         });
 }
@@ -54,10 +54,10 @@ function startConverting() {
 
         var finalTranscripts = '';
 
-        speechRecognizer.onresult = function(event) {
+        speechRecognizer.onresult = function (event) {
             var interimTranscripts = '';
 
-            for (var i = event.resultIndex; i < event.results.length; i ++) {
+            for (var i = event.resultIndex; i < event.results.length; i++) {
                 var transcript = event.results[i][0].transcript;
                 // transcript.replace("\n", "<br>");
 
@@ -70,7 +70,7 @@ function startConverting() {
             r.value = finalTranscripts + interimTranscripts;
         };
 
-        speechRecognizer.onerror = function(event) {
+        speechRecognizer.onerror = function (event) {
 
         };
     }
@@ -93,14 +93,14 @@ function stopConverting() {
 
 function updateProgressBar(currentPercent) {
     $('#QProgress').html(
-        '<div ' 
-        + 'class="progress-bar progress-bar-striped progress-bar-animated" ' 
-        + 'role="progressbar" ' 
+        '<div '
+        + 'class="progress-bar progress-bar-striped progress-bar-animated" '
+        + 'role="progressbar" '
         + 'style="width: '
         + currentPercent
-        + '%" aria-valuenow="0"' 
-        + ' aria-valuemin="0"' 
-        + ' aria-valuemax="100"' 
+        + '%" aria-valuenow="0"'
+        + ' aria-valuemin="0"'
+        + ' aria-valuemax="100"'
         + '></div>'
     );
 }
@@ -140,7 +140,7 @@ function createFixArr(tokens, suggestions) {
 }
 
 
-window.onload = function() {
+window.onload = function () {
     selectedType = localStorage.getItem("selectedType");
     console.log(selectedType);
     db.collection('question_' + selectedType).get().then(snap => {
@@ -149,14 +149,14 @@ window.onload = function() {
 
         if (size == 1)
             document.getElementById("send").innerText = "다음 단계";
-        
+
         updateProgressBar(0);
     });
     updateContentAndType(selectedType, QIndex);
 }
 
 
-$('#send').click(function() {
+$('#send').click(function () {
     let contentVal = $('#content').val();
     let currentQNum = QIndex;
     if (contentVal != '' && recodeing == 0) {
@@ -166,8 +166,8 @@ $('#send').click(function() {
         let 저장할경로 = storageRef.child('voicedata/' + userName + ' ' + QIndex + "번 질문" + selectedType);
 
         let 업로드작업 = 저장할경로.put(blob);
-        
-        let data = JSON.stringify({sentence: $('#content').val(), num: currentQNum});
+
+        let data = JSON.stringify({ sentence: $('#content').val(), num: currentQNum });
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/submitForm', true);
         xhr.setRequestHeader('Content-type', 'application/json');
@@ -179,22 +179,21 @@ $('#send').click(function() {
                 text: "다음 질문으로 넘어가시겠습니까?",
                 icon: "info", //"info,success,warning,error" 중 택1
                 buttons: ["NO", "YES"]
-                }).then((YES) => {
-                    if (YES) 
-                    {
-                        // r.innerHTML = '';
-                        r.value = '';
-                        updateContentAndType(selectedType, QIndex + 1);
-                        updateProgressBar(100 * QIndex / questionsLen);
-                        QIndex ++;
-                        if (QIndex == questionsLen)
-                            document.getElementById("send").innerText = "다음 단계";
-                    }
+            }).then((YES) => {
+                if (YES) {
+                    // r.innerHTML = '';
+                    r.value = '';
+                    updateContentAndType(selectedType, QIndex + 1);
+                    updateProgressBar(100 * QIndex / questionsLen);
+                    QIndex++;
+                    if (QIndex == questionsLen)
+                        document.getElementById("send").innerText = "다음 단계";
+                }
             });
         }
         else {
             updateProgressBar(100);
-            setTimeout(function() {
+            setTimeout(function () {
                 swal({
                     title: "알림",
                     text: "마지막 질문입니다..",
@@ -205,11 +204,10 @@ $('#send').click(function() {
                     text: "제출하시겠습니까? 5초 가량 시간이 걸릴 수 있습니다.",
                     icon: "info", //"info,success,warning,error" 중 택1
                     buttons: ["NO", "YES"]
-                    }).then((YES) => {
-                        if (YES) 
-                        {
-                            setTimeout(() => window.location.href = "/submit", 5000);
-                        }
+                }).then((YES) => {
+                    if (YES) {
+                        setTimeout(() => window.location.href = "/submit", 5000);
+                    }
                 });
             }, 500);
         }
@@ -228,15 +226,15 @@ $('#send').click(function() {
                 let fixArr = JSON.stringify(createFixArr(tokens, suggestions));
 
                 let 저장할거 = {
-                    수정전내용: contentVal, 
-                    수정후내용: fixedSentence, 
-                    수정할내용: fixArr, 
-                    키워드: keyword1, 
-                    추가질문: moreQuestions, 
-                    날짜: new Date(), 
-                    걸린시간: time_gap, 
+                    수정전내용: contentVal,
+                    수정후내용: fixedSentence,
+                    수정할내용: fixArr,
+                    키워드: keyword1,
+                    추가질문: moreQuestions,
+                    날짜: new Date(),
+                    걸린시간: time_gap,
                 }
-                db.collection('answer').doc(userName + selectedType + currentQNum).set(저장할거).then((result) => {
+                db.collection('u_' + userName + '_' + selectedType).doc(userName + selectedType + currentQNum).set(저장할거).then((result) => {
                     console.log(result);
                 }).catch((error) => {
                     console.log(error);
@@ -249,29 +247,26 @@ $('#send').click(function() {
             }
         }
     }
-    else if(contentVal == '')
-    {
+    else if (contentVal == '') {
         swal({
-                title: "Error",
-                text: "공백은 제출할 수 없습니다.",
-                icon: "warning", //"info,success,warning,error" 중 택1
+            title: "Error",
+            text: "공백은 제출할 수 없습니다.",
+            icon: "warning", //"info,success,warning,error" 중 택1
         });
     }
-    else if(recodeing == 1)
-    {
+    else if (recodeing == 1) {
         swal({
-                title: "Error",
-                text: "녹음 진행 중입니다. 종료 버튼을 눌러주세요.",
-                icon: "warning", //"info,success,warning,error" 중 택1
+            title: "Error",
+            text: "녹음 진행 중입니다. 종료 버튼을 눌러주세요.",
+            icon: "warning", //"info,success,warning,error" 중 택1
         });
     }
-    else 
-    {
+    else {
         swal({
-                title: "Error",
-                text: "제출하는 중 에러가 발생했습니다.",
-                icon: "error", //"info,success,warning,error" 중 택1
+            title: "Error",
+            text: "제출하는 중 에러가 발생했습니다.",
+            icon: "error", //"info,success,warning,error" 중 택1
         });
     }
-    
+
 });
