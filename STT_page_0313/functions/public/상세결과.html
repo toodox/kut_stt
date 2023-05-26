@@ -97,70 +97,94 @@
       </div>
     </div>
 
-    <div class="col-md-7">
-      <div class="shadow card my-2 rounded-pill bg-warning border-0">
+    <div class="col-md-8">
+      <!-- <div class="shadow card my-2 rounded-pill bg-warning border-0">
         <div class="card-body text-center">
           <h6 id="Qtype"></h6>
         </div>
-      </div>
+      </div> -->
       <!--질문 진도 표시-->
-      <div class="progress" id="QProgress">
+      <!-- <div class="progress" id="QProgress">
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"
           aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
         </div>
-      </div>
-      <div class="card my-2 border-0">
-        <div class="card-body" id="questions">
+      </div> -->
+      <div class="card border-0">
+        <div class="card-body f-bold" id="questions">
           <!-- <h1> -->
           <!-- 질문1. 우리 학교 지원 동기는 무엇입니까? -->
           <!-- 단순 h1형식으로 하는게 아니라 질문DB에서 따와서 불러와야 됨-->
           <!-- </h1> -->
         </div>
       </div>
-      <p style="font-size:14px;">면접 질문 녹음 파일</p>
-      <div style="display:flex; align-items:center;">
-        <audio id="voiceFile" controls title="questions1.mp3"
-          style="margin-right:10px; width: 300px; height: 50px; background-color: #f2f2f2; color: #333; border: 1px solid #ccc; border-radius: 5px;">
-          <source src="questions1.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-        <span style="font-size:14px;" id="timeCall"></span>
+      <div class="card border-0">
+        <div class="card-body">
+          <p class=" f-bold font-navy fs-3">⬇️면접 질문 녹음 파일</p>
+          <!--걸린 시간 표시-->
+          <div class="text-mute">
+            <audio id="voiceFile" controls title="questions1.mp3"
+              style="margin-right:10px; width: 300px; height: 50px; background-color: #f2f2f2; color: #333; border: 1px solid #ccc; border-radius: 5px;">
+              <source src="questions1.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+            <p class="text-mute" id="timeCall"></p>
+          </div>
+        </div>
       </div>
-      <div id="mArticle">
-        <p class="screen-out">상세결과 사용자 답변 내용</p>
-        <div class="spell_grammar">
-          <div class="spell_reform" id="resultForm" style>
-            <strong class="screen_out">응답 내용</strong>
-            <div class="cont_grammar">
-              <div class="cont_spell" id="join_result">
 
+
+      <div class="card border-0">
+        <div class="card-body py-3">
+          <div id="mArticle">
+            <p class="screen-out f-bold font-navy fs-3">⬇️상세결과 사용자 답변 내용</p>
+            <div class="spell_grammar">
+              <div class="spell_reform fs-6 lead" id="resultForm">
+                <strong class="screen_out">응답 내용</strong>
+                <div class="cont_grammar">
+                  <div class="cont_spell" id="join_result"> 
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <p style="font-size: 14px;">키워드 및 관련된 예상 질문</p>
-      <div class="spell_grammar">
-        <div class="cont_chkbox">
-          <p style="font-size: 14px;" id="keyword">키워드: </p>
-          <input type="checkbox" title="pQ1" name="additionalQ1" value="q1" id="aQ1">
-          <label for="aQ1" id="aQ1Label" class="add_questions"></label>
-          <p></p>
-          <input type="checkbox" title="pQ2" name="additionalQ2" value="q2" id="aQ2">
-          <label for="aQ2" id="aQ2Label" class="add_questions"></label>
+
+
+      <div class="card border-0">
+        <div class="card-body py-3">
+          <p class="f-bold font-navy fs-3">⬇️키워드 및 관련된 예상 질문</p>
+          <div class="spell_grammar">
+            <div class="my-1 mx-3">
+              <p class="lead fs-6" id="keyword">키워드: </p>
+              <div class="box mb-3">
+                <input type="checkbox" title="pQ1" name="additionalQ1" value="q1" id="aQ1">
+                <label for="aQ1" id="aQ1Label" class="mb-1"></label>
+              </div>
+              
+              <div class="box mb-3">
+                <input type="checkbox" title="pQ2" name="additionalQ2" value="q2" id="aQ2">
+                <!--add_questions-->
+                <label for="aQ2" id="aQ2Label"></label>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+
       <div class="card my-4 border-0">
         <div class="card-body text-end">
           <button type="button" class="btn btn-primary float-end" id="cart" href="#additionalQLayer">장바구니</button>
           <button type="button" class="btn btn-primary float-end mx-3" id="after">다음</button>
           <button type="button" class="btn btn-primary float-end" id="before">이전</button>
+          
           <div id="additionalQLayer" class="examine_layer"
             style="margin-left: -320px; margin-top: -206.5px; display: none;">
             <div class="inner_examine_layer">
               <div class="layer_head">
                 <strong class="layer_list_title">
-                  <span class="title">추가된 예상 질문 목록</span>
+                  <p class="title">추가된 예상 질문 목록</p>
                 </strong>
               </div>
               <div class="layer_body">
@@ -184,10 +208,18 @@
       </div>
     </div>
   </div>
-  <footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
-    <p class="text-center text-muted">© 2023 KOREATECH, Univ</p>
+  <footer class="mb-4">
+    <ul class="justify-content-center border-bottom mb-3"></ul>
+    <p class="text-center">2023 KOREATECH</p>
+    <p class="footer-notice text-center">본 서비스는 chrome 브라우저 사용을 권장합니다.</p>
   </footer>
+
+  <!--애니메이션 효과-->
+  <script>
+    AOS.init();
+  </script>
+  <script src="assets/js/nav로그인.js"></script>
+
   <script>
     $('#logoutbtn').click(function () {
       var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기

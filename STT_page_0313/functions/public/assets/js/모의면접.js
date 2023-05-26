@@ -18,6 +18,13 @@ var QIndex = 1;
 var questionsLen = 1;
 var recodeing = 0; //녹음중인지 확인하는 변수
 
+function showLoading() {
+    document.getElementById('loading').style.display = 'block';
+  }
+  
+function hideLoading() {
+    document.getElementById('loading').style.display = 'none';
+}
 function startRecording() {
     chunks = [];
     recodeing = 1;
@@ -201,13 +208,18 @@ $('#send').click(function () {
                 });
                 swal({
                     title: "제출",
-                    text: "제출하시겠습니까? 5초 가량 시간이 걸릴 수 있습니다.",
+                    text: "제출하시겠습니까? 10초 정도 시간이 걸릴 수 있습니다.",
                     icon: "info", //"info,success,warning,error" 중 택1
                     buttons: ["NO", "YES"]
-                }).then((YES) => {
-                    if (YES) {
-                        setTimeout(() => window.location.href = "/submit", 5000);
-                    }
+                    }).then((YES) => {
+                        if (YES) 
+                        {
+                            showLoading(); // 로딩 애니메이션 표시
+                            setTimeout(() => {
+                              hideLoading(); // 로딩 애니메이션 숨기기
+                              window.location.href = "/submit";
+                            }, 10000);
+                        }
                 });
             }, 500);
         }
