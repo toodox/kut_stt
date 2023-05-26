@@ -18,6 +18,14 @@ var QIndex = 1;
 var questionsLen = 1;
 var recodeing = 0; //녹음중인지 확인하는 변수
 
+function showLoading() {
+    document.getElementById('loading').style.display = 'block';
+  }
+  
+function hideLoading() {
+    document.getElementById('loading').style.display = 'none';
+}
+
 function startRecording() {
     chunks = [];
     recodeing = 1;
@@ -208,7 +216,11 @@ $('#send').click(function() {
                     }).then((YES) => {
                         if (YES) 
                         {
-                            setTimeout(() => window.location.href = "/submit", 5000);
+                            showLoading(); // 로딩 애니메이션 표시
+                            setTimeout(() => {
+                              hideLoading(); // 로딩 애니메이션 숨기기
+                              window.location.href = "/submit";
+                            }, 5000);
                         }
                 });
             }, 500);

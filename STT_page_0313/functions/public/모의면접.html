@@ -23,7 +23,50 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+  <!-- 로딩 애니메이션 CSS 스타일 -->
+  <style>
+    .loading {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+    }
+
+    .spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50px;
+      height: 50px;
+      background-color: #ffffff;
+      border: 3px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    @keyframes spin {
+      from {
+        transform: translateX(-50%) translateY(-50%) rotate(0deg);
+      }
+      to {
+        transform: translateX(-50%) translateY(-50%) rotate(360deg);
+      }
+    }
+  </style>
+  
+  
+
 </head>
+
+
+
 
 <body>
   <!-- 파이어베이스 관련 스크립트 -->
@@ -112,6 +155,9 @@
       </div>
     </div>
 
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+    </div>
 
     <div class="col-md-8">
       <!-- 
