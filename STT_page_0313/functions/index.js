@@ -133,14 +133,9 @@ app.post('/submitForm', (req, res) => {
             let response = {
                 tokens: tokens, 
                 suggestions: suggestions, 
-                keyword1: (keyObj[0] == undefined ? '' : keyObj[0]), 
+                keyword1: (keyObj[0] == undefined ? '' : keyObj), 
                 moreQuestions: moreQuestions
             };
-            let GPT추가질문 = {
-                type: "GPT",
-                content: moreQuestions,
-                keyword: keyObj[0], 
-            }
             // db.collection('question_GPT').doc("GPT_question" + num).set(GPT추가질문).then((result) => {
             //     console.log(result);
             // }).catch((error) => {

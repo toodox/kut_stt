@@ -61,7 +61,6 @@ window.onload = function () {
         // 질문지 불러오기
         db.collection('question_' + resultType).doc(resultType + '_question' + i).get().then((result) => {
             $('#questions').html('<h1 id="Qcon">질문1. ' + result.data().content + '</h1>');
-            document.getElementById("Qtype").innerText = result.data().type;
             
         });
 
@@ -77,6 +76,10 @@ window.onload = function () {
         db.collection(data).doc(userName + resultType + i).get().then((result) => {
             document.getElementById('join_result').textContent = result.data().수정후내용;
             document.getElementById('peedback').innerText = result.data().피드백;
+            document.getElementById("keyword").innerHTML =
+            '키워드: <mark class="marking">' +
+            result.data().키워드[0]+ ', ' + result.data().키워드[1] +
+            "</mark>";
 
         }).catch((error) => {
             swal({
@@ -98,10 +101,13 @@ $('#after').click(function () {
             // 질문 내용 업데이트
             document.getElementById("Qcon").innerText = '질문' + i + '. ' + result.data().content;
             // 질문 유형 업데이트
-            document.getElementById("Qtype").innerText = result.data().type;
             db.collection(data).doc(userName + resultType + i).get().then((result) => {
                 document.getElementById('join_result').textContent = result.data().수정후내용;
                 document.getElementById('peedback').innerText = result.data().피드백;
+                document.getElementById("keyword").innerHTML =
+                '키워드: <mark class="marking">' +
+                result.data().키워드[0]+ ', ' + result.data().키워드[1] +
+                "</mark>";
 
             }).catch((error) => {
                 swal({
@@ -136,11 +142,13 @@ $('#before').click(function () {
             // 질문 내용 업데이트
             document.getElementById("Qcon").innerText = '질문' + i + '. ' + result.data().content;
             // 질문 유형 업데이트
-            document.getElementById("Qtype").innerText = result.data().type;
             db.collection(data).doc(userName + resultType + i).get().then((result) => {
                 document.getElementById('join_result').textContent = result.data().수정후내용;
                 document.getElementById('peedback').innerText = result.data().피드백;
-
+                document.getElementById("keyword").innerHTML =
+                '키워드: <mark class="marking">' +
+                result.data().키워드[0]+ ', ' + result.data().키워드[1] +
+                "</mark>";
             }).catch((error) => {
                 swal({
                     title: "Error",
