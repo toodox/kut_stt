@@ -68,6 +68,11 @@ textarea {
   overflow-y: hidden;
 }
 
+#mod_anwser{
+  overflow-y: hidden;
+  resize: none;
+}
+
 .btnline {
   justify-content: space-between;
 }

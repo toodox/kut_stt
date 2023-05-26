@@ -107,28 +107,7 @@
         </div>
 
 
-        <div class="col-md-7 mocklist">
-            <div class="card mb-4">
-                <div class="card-body text-center">
-                    <a href="/admin-edit-page" class="us" id="userem1">master</a>면접내용
-                </div>
-            </div>
-            <div class="card my-4">
-                <div class="card-body text-center">
-                    <a href="/admin-edit-page" class="us" id="userem2">ki</a>면접내용
-                </div>
-            </div>
-            <div class="card my-4">
-                <div class="card-body text-center">
-                    학생3 면접 내용
-                </div>
-            </div>
-            <div class="card my-4">
-                <div class="card-body text-center">
-                    학생4 면접 내용
-                </div>
-            </div>
-        </div>
+        <div class="col-md-7" id="mocklist">
     </div>
 
     <footer class="py-3 my-4">
@@ -136,6 +115,8 @@
         <p class="text-center text-muted">© 2023 KOREATECH, Univ</p>
     </footer>
     <script src="assets/js/send.js"></script>
+    <script src="assets/js/관리자페이지.js"></script>
+
     <script>
       $('#logoutbtn').click(function () {
         var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
