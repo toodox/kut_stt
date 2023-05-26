@@ -11,17 +11,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
 
-    <!--구글 폰트 적용-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
-    
-    <!--파비콘-->
-    <link rel="icon" href="./assets/image/favicon_kut.ico" type="image/x-icon">
-    
-    <!--애니메이션 효과 주기-->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!--구글 폰트 적용-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+
+  <!--파비콘-->
+  <link rel="icon" href="./assets/image/favicon_kut.ico" type="image/x-icon">
+
+  <!--애니메이션 효과 주기-->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
 <body>
@@ -103,19 +103,20 @@
         </ul>
       </div>
     </div>
-
-
     <div class="col-md-7">
       <div class="card mb-4">
         <div class="accordion" id="queli">
         </div>
+        <div>
+          <button class="btn btn-warning addbtn" id="add">질문유형집 추가</button>
+        </div>
       </div>
     </div>
+    <footer class="py-3 my-4">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+      <p class="text-center text-muted">© 2023 KOREATECH</p>
+    </footer>
   </div>
-  <footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
-    <p class="text-center text-muted">© 2023 KOREATECH, Univ</p>
-  </footer>
   <script src="assets/js/관리자질문유형수정.js"></script>
   <script>
     $('#logoutbtn').click(function () {
@@ -123,20 +124,20 @@
       if (user) {
         firebase.auth().signOut().then(function () { // signOut() 메소드 호출 시 then()을 사용하여 로그아웃 성공 시 처리할 작업을 추가합니다.
           swal({
-                title: "Logout",
-                text: "로그아웃 되었습니다.",
-                icon: "success", //"info,success,warning,error" 중 택1
+            title: "Logout",
+            text: "로그아웃 되었습니다.",
+            icon: "success", //"info,success,warning,error" 중 택1
           }).then((ok) => {
-                if (ok) {
-                    window.location.href = '/';
-                /* "YES"클릭시 로직 */
-                }
+            if (ok) {
+              window.location.href = '/';
+              /* "YES"클릭시 로직 */
+            }
           });
         }).catch(function (error) { // 로그아웃 실패 시 오류 메시지를 표시합니다.
           swal({
-                title: "error",
-                text: "로그아웃 중 에러가 발생했습니다.",
-                icon: "error", //"info,success,warning,error" 중 택1
+            title: "error",
+            text: "로그아웃 중 에러가 발생했습니다.",
+            icon: "error", //"info,success,warning,error" 중 택1
           })
         });
       }

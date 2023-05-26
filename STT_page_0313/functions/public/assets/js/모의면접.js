@@ -179,6 +179,7 @@ $('#send').click(function() {
                 }).then((YES) => {
                     if (YES) 
                     {
+                        r.innerHTML = '';
                         updateContentAndType(selectedType, QIndex + 1);
                         updateProgressBar(100 * QIndex / questionsLen);
                         QIndex ++;
