@@ -43,7 +43,8 @@ function startRecording() {
 function startConverting() {
     startRecording();
     first_time = performance.now();
-    r.innerHTML = '';
+    // r.innerHTML = '';
+    r.value = '';
 
     if ('webkitSpeechRecognition' in window) {
         speechRecognizer.continuous = true;
@@ -58,14 +59,15 @@ function startConverting() {
 
             for (var i = event.resultIndex; i < event.results.length; i ++) {
                 var transcript = event.results[i][0].transcript;
-                transcript.replace("\n", "<br>");
+                // transcript.replace("\n", "<br>");
 
                 if (event.results[i].isFinal)
                     finalTranscripts += transcript;
                 else
                     interimTranscripts += transcript;
             }
-            r.innerHTML = finalTranscripts + interimTranscripts;
+            // r.innerHTML = finalTranscripts + interimTranscripts;
+            r.value = finalTranscripts + interimTranscripts;
         };
 
         speechRecognizer.onerror = function(event) {
@@ -73,7 +75,8 @@ function startConverting() {
         };
     }
     else {
-        r.innerHTML = "Your browser is not supported. If google chrome, please upgrade!";
+        // r.innerHTML = "Your browser is not supported. If google chrome, please upgrade!";
+        r.value = "Your browser is not supported. If google chrome, please upgrade!";
     }
 }
 
@@ -179,7 +182,8 @@ $('#send').click(function() {
                 }).then((YES) => {
                     if (YES) 
                     {
-                        r.innerHTML = '';
+                        // r.innerHTML = '';
+                        r.value = '';
                         updateContentAndType(selectedType, QIndex + 1);
                         updateProgressBar(100 * QIndex / questionsLen);
                         QIndex ++;
