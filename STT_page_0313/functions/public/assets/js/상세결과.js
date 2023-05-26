@@ -115,7 +115,7 @@ window.onload = function () {
     console.log(userName);
 
     // 수정 전/후 텍스트 불러오기
-    db.collection("answer")
+    db.collection("u_"+userName+"_"+resultType)
       .doc(userName + resultType + i)
       .get()
       .then((result) => {
@@ -187,7 +187,7 @@ $("#after").click(function () {
           "질문" + i + ". " + result.data().content;
         // 질문 유형 업데이트
         document.getElementById("Qtype").innerText = result.data().type;
-        db.collection("answer")
+        db.collection("u_"+userName+"_"+resultType)
           .doc(userName + resultType + i)
           .get()
           .then((result) => {
@@ -289,7 +289,7 @@ $("#before").click(function () {
           "질문" + i + ". " + result.data().content;
         // 질문 유형 업데이트
         document.getElementById("Qtype").innerText = result.data().type;
-        db.collection("answer")
+        db.collection("u_"+userName+"_"+resultType)
           .doc(userName + resultType + i)
           .get()
           .then((result) => {
