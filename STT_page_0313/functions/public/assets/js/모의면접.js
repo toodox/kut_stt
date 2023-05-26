@@ -25,7 +25,6 @@ function showLoading() {
 function hideLoading() {
     document.getElementById('loading').style.display = 'none';
 }
-
 function startRecording() {
     chunks = [];
     recodeing = 1;
