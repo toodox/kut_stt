@@ -25,7 +25,7 @@ xhr.onreadystatechange = () => {
     }
 }
 $(document).on('click', '.us', function (e) {
-    const username = e.target.id     //클릭된 a태그의 id를 가져온다
+    let username = e.target.id     //클릭된 a태그의 id를 가져온다
     console.log(username);
     localStorage.setItem("email", username);
 });
