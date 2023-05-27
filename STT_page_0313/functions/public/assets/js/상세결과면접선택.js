@@ -7,9 +7,7 @@ xhr.send();
 
 
 xhr.onreadystatechange = () => {
-  setTimeout(() => {
-    let user = firebase.auth().currentUser;
-    let userName = user.email.split('@',2)[0];
+  let userName = localStorage.getItem('userName');
     if (xhr.readyState == 4 && xhr.status == 200) {
       var { names } = JSON.parse(xhr.response);
       names.forEach(name => {
@@ -25,7 +23,6 @@ xhr.onreadystatechange = () => {
         }
       })
     }
-  }, 500)
   
 }
 
