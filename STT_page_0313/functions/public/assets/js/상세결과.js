@@ -464,14 +464,31 @@ $("#secondKMOCKbtn").click(function() {
         userName = user.email.split("@")[0];
         console.log(addQuestionList);
         for await(let question of addQuestionList) {
-            await db.collection("question_GPT").doc("GPT_" + userName + idx).set({
-                content: question
-            }).then((result) => {
-                console.log(result);
-            }).catch((error) => {
-                console.error(error);
+
+          for (let i = 0; i < 20; i++) {
+            await db.collection("question_GPT").doc("GPT_" + userName + i).get().then(doc => {
+              if (doc.exists) {
+                db.collection("question_GPT").doc("GPT_" + userName + i).delete().then(() => {
+                  console.log("Document successfully deleted!");
+                }).catch((error) => {
+                  console.error("Error removing document: ", error);
+                });
+              } else {
+                console.log("Document does not exist!");
+              }
+            }).catch(error => {
+              console.error("Error getting document: ", error);
             });
-            idx += 1;
+          }
+
+          await db.collection("question_GPT").doc("GPT_" + userName + idx).set({
+              content: question
+          }).then((result) => {
+              console.log(result);
+          }).catch((error) => {
+              console.error(error);
+          });
+          idx += 1;
         }
         setTimeout(() => {
           window.location.href = "/notice"; // 유의사항.html 페이지로 이동
