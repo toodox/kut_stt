@@ -113,7 +113,15 @@ function updateProgressBar(currentPercent) {
 }
 
 function updateContentAndType(selectedTypes, questionNum) {
-    db.collection('question_' + selectedTypes).doc(selectedTypes + '_question' + questionNum).get().then((result) => {
+    let user = firebase.auth().currentUser;
+    let userName = user.email.split('@')[0];
+    let docName = '';
+    if (selectedType == "GPT")
+        docName = selectedTypes + '_' + userName + questionNum;
+    else
+        docName = selectedTypes + '_question' + questionNum;
+    console.log(docName);
+    db.collection('question_' + selectedTypes).doc(docName).get().then((result) => {
         if (questionNum == 1) {
             $('#questions').html('<h1 id="Qcon">질문' + questionNum + '. ' + result.data().content + '</h1>');
         }
@@ -157,7 +165,9 @@ window.onload = function () {
 
         updateProgressBar(0);
     });
-    updateContentAndType(selectedType, QIndex);
+    setTimeout(() => {
+        updateContentAndType(selectedType, QIndex);
+    }, 500);
 }
 
 

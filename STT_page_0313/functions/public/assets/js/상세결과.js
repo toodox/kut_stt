@@ -417,22 +417,6 @@ $("#aQ2").click(function () {
   }
 });
 
-$("#aQ1").click(function () {
-  let check = 'input[name="additionalQ1"]:checked';
-  let isChecked = document.querySelector(check);
-
-  console.log(isChecked);
-  if (isChecked != null) {
-    addQuestionList.push("");
-  }
-  let test = document.getElementById("aQ1");
-  console.log(test);
-});
-
-$("#aQ2").click(function () {
-  console.log("aQ2");
-});
-
 $("#cart").click(function () {
   targetID = this.getAttribute("href");
   document.querySelector(targetID).style.display = "block";
@@ -442,10 +426,32 @@ $("#closeBtn").click(function () {
   document.querySelector(targetID).style.display = "none";
 });
 
-$("#gpt").click(function () {
-  function saveSelectedType(type) {
-    localStorage.setItem("selectedType", type); // 웹 브라우저에 변수를 저장
-    window.location.href = "/notice"; // 유의사항.html 페이지로 이동
-  }
-  saveSelectedType("GPT");
+$("#secondKMOCKbtn").click(function() {
+
+    function saveSelectedType(type) {
+        localStorage.setItem("selectedType", type); // 웹 브라우저에 변수를 저장
+    }
+
+    async function saveGPTQuestion() {
+        let idx = 1;
+        var user = firebase.auth().currentUser;
+        userName = user.email.split("@")[0];
+        console.log(addQuestionList);
+        for await(let question of addQuestionList) {
+            await db.collection("question_GPT").doc("GPT_" + userName + idx).set({
+                content: question
+            }).then((result) => {
+                console.log(result);
+            }).catch((error) => {
+                console.error(error);
+            });
+            idx += 1;
+        }
+        setTimeout(() => {
+          window.location.href = "/notice"; // 유의사항.html 페이지로 이동
+        }, 500);
+    }
+
+    saveSelectedType("GPT");
+    saveGPTQuestion();
 });
