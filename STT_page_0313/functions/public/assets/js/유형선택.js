@@ -28,7 +28,7 @@
 var db = firebase.firestore();
 let n = 1;
 var xhr = new XMLHttpRequest();
-let onlyal = /question_[A-Z]/;
+let onlyal = /question_(?!GPT)[A-Z]/;
 xhr.open('POST', '/getCollections', true);
 xhr.setRequestHeader('Content-type', 'application/json');
 xhr.send();
