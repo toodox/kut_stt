@@ -82,10 +82,6 @@ function markingKeyword(keyword, text) {
 }
 
 window.onload = function () {
-  let user = firebase.auth().currentUser;
-  let userName = user.email.split("@")[0];
-  console.log(userName);
-
   resultType = localStorage.getItem("resultType");
   db.collection("question_" + resultType)
     .get()
@@ -97,8 +93,8 @@ window.onload = function () {
       createSideBar(questionsLen);
     });
   setTimeout(function () {
-    user = firebase.auth().currentUser;
-    userName = user.email.split("@")[0];
+    var user = firebase.auth().currentUser;
+    var userName = user.email.split("@")[0];
     console.log(userName);
     // 질문지 불러오기
     let docName = '';
@@ -190,12 +186,15 @@ $("#after").click(function () {
   if (i < questionsLen) {
     i++;
     updateProgressBar((100 * i) / questionsLen);
+    var user = firebase.auth().currentUser;
+    var userName = user.email.split("@")[0];
     let docName = '';
     if (resultType == "GPT")
         docName = resultType + '_' + userName + i;
     else
         docName = resultType + '_question' + i;
 
+    console.log(docName);
     db.collection("question_" + resultType)
       .doc(docName)
       .get()
@@ -297,6 +296,8 @@ $("#before").click(function () {
   if (i - 1 > 0) {
     i--;
     updateProgressBar((100 * i) / questionsLen);
+    var user = firebase.auth().currentUser;
+    var userName = user.email.split("@")[0];
     let docName = '';
     if (resultType == "GPT")
         docName = resultType + '_' + userName + i;
