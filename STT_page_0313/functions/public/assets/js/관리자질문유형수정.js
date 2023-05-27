@@ -59,8 +59,8 @@ $(document).on('click', '.modbtn', function (b) {
         for (let j = 1; j < snap.size + 1; j++) {
             db.collection(col).doc(coln + j).update(
                 {
-                    content: document.getElementById(coln + j).value,
-                    type: document.getElementById(b.target.id + j).value
+                    content: document.getElementById(coln + j).textContent,
+                    type: document.getElementById(b.target.id + j).textContent
                 }
             );
         }
