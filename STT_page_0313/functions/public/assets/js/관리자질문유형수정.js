@@ -59,7 +59,7 @@ $(document).on('click', '.modbtn', function (b) {
         for (let j = 1; j < snap.size + 1; j++) {
             db.collection(col).doc(coln + j).update(
                 {
-                    content: document.getElementById(coln + j).textContent,
+                    content: document.getElementById(coln + j).value,
                     type: document.getElementById(b.target.id + j).textContent
                 }
             );
@@ -67,7 +67,7 @@ $(document).on('click', '.modbtn', function (b) {
         alert("수정되었습니다.");
         let im = col.split("_", 3);
         console.log(im);
-        setTimeout(() => window.location.href = "/admin-ans-edit", 500);
+        setTimeout(() => window.location.href = "/admin-ans-edit", 1000);
     });
 
 });
