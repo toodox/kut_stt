@@ -463,23 +463,23 @@ $("#secondKMOCKbtn").click(function() {
         var user = firebase.auth().currentUser;
         userName = user.email.split("@")[0];
         console.log(addQuestionList);
+        //아래는 질문 초기화하는 코드 10개만지우는걸로 적혀있음
+        for (let i = 0; i < 10; i++) { 
+          await db.collection("question_GPT").doc("GPT_" + userName + i).get().then(doc => {
+            if (doc.exists) {
+              db.collection("question_GPT").doc("GPT_" + userName + i).delete().then(() => {
+                console.log("Document successfully deleted!");
+              }).catch((error) => {
+                console.error("Error removing document: ", error);
+              });
+            } 
+          }).catch(error => {
+            console.error("Error getting document: ", error);
+          });
+        }
+
         for await(let question of addQuestionList) {
 
-          for (let i = 0; i < 20; i++) {
-            await db.collection("question_GPT").doc("GPT_" + userName + i).get().then(doc => {
-              if (doc.exists) {
-                db.collection("question_GPT").doc("GPT_" + userName + i).delete().then(() => {
-                  console.log("Document successfully deleted!");
-                }).catch((error) => {
-                  console.error("Error removing document: ", error);
-                });
-              } else {
-                console.log("Document does not exist!");
-              }
-            }).catch(error => {
-              console.error("Error getting document: ", error);
-            });
-          }
 
           await db.collection("question_GPT").doc("GPT_" + userName + idx).set({
               content: question
