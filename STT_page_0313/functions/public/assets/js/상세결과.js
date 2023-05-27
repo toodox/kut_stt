@@ -93,8 +93,8 @@ window.onload = function () {
       createSideBar(questionsLen);
     });
   setTimeout(function () {
-    var user = firebase.auth().currentUser;
-    var userName = user.email.split("@")[0];
+ 
+    var userName = localStorage.getItem('userName');
     console.log(userName);
     // 질문지 불러오기
     let docName = '';
@@ -119,7 +119,7 @@ window.onload = function () {
     // 개선이 필요할 듯함
     // ex) 상세결과를 누르자 마자 바로 질문 번호가 나오지 않는 방식으로
     user = firebase.auth().currentUser;
-    userName = user.email.split("@")[0];
+    userName = localStorage.getItem('userName');
     console.log(userName);
 
     // 수정 전/후 텍스트 불러오기
@@ -186,8 +186,8 @@ $("#after").click(function () {
   if (i < questionsLen) {
     i++;
     updateProgressBar((100 * i) / questionsLen);
-    var user = firebase.auth().currentUser;
-    var userName = user.email.split("@")[0];
+ 
+    var userName = localStorage.getItem('userName');
     let docName = '';
     if (resultType == "GPT")
         docName = resultType + '_' + userName + i;
@@ -296,8 +296,8 @@ $("#before").click(function () {
   if (i - 1 > 0) {
     i--;
     updateProgressBar((100 * i) / questionsLen);
-    var user = firebase.auth().currentUser;
-    var userName = user.email.split("@")[0];
+ 
+    var userName = localStorage.getItem('userName');
     let docName = '';
     if (resultType == "GPT")
         docName = resultType + '_' + userName + i;
@@ -460,8 +460,8 @@ $("#secondKMOCKbtn").click(function() {
 
     async function saveGPTQuestion() {
         let idx = 1;
-        var user = firebase.auth().currentUser;
-        userName = user.email.split("@")[0];
+     
+        userName = localStorage.getItem('userName');
         console.log(addQuestionList);
         //아래는 질문 초기화하는 코드 10개만지우는걸로 적혀있음
         for (let i = 0; i < 10; i++) { 
