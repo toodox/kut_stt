@@ -1,50 +1,33 @@
-const db = firebase.firestore();
+var xhr = new XMLHttpRequest();
+var db = firebase.firestore();
+let onlyuser = /^u_[\w]+_[A-Z]$/;
+xhr.open('POST', '/getCollections', true);
+xhr.setRequestHeader('Content-type', 'application/json');
+xhr.send();
 
-firebase.auth().onAuthStateChanged(user => {
-  if (user) {
-    const userName = user.email.split("@")[0];
 
-    ["A", "B", "C", "GPT"].forEach(type => {
-      document.getElementById(`type${type}`).addEventListener("click", e => {
-        e.preventDefault();
-        saveSelectedType(type, userName);
-      });
-    });
-
-    function saveSelectedType(type, userName) {
-      localStorage.setItem("resultType", type);
-
-      db.collection('u_' + userName + '_' + type).doc(userName + type + 1).get()
-        .then(result => {
-          const checkanswer = result.data().수정전내용;
-          if (checkanswer) {
-            window.location.href = "/results";
-          } else {
-            swal({
-              title: "Error",
-              text: "진행되지 않은 면접입니다.",
-              icon: "error", //"info,success,warning,error" 중 택1
-            });
-          }
-        }).catch(error => {
-          swal({
-            title: "Error",
-            text: "진행되지 않은 면접입니다.",
-            icon: "error", //"info,success,warning,error" 중 택1
-          });
-          console.log(error);
-        });
-    }
-  } else {
-    swal({
-      title: "Login",
-      text: "로그인이 필요한 서비스입니다.",
-      icon: "warning", //"info,success,warning,error" 중 택1
-    }).then((ok) => {
-        if (ok) {
-            window.location.href = '/Login';
-        /* "YES"클릭시 로직 */
-        }
-    });
+xhr.onreadystatechange = () => {
+  let user = firebase.auth().currentUser;
+  let userName = user.email.split('@')[0];
+  if (xhr.readyState == 4 && xhr.status == 200) {
+    var { names } = JSON.parse(xhr.response);
+    names.forEach(name => {
+      itype = name.split("_", 3)
+      if (onlyuser.test(name) && itype[1] == userName) {
+        let clear = document.getElementById('clemock');
+        let newli = document.createElement('li');
+        newli.classList.add('select-list');
+        newli.innerHTML = '<a href="/results" class="mocktype" id="type_'
+          + itype[2] + '" data-hover="대입 수시 면접 ' + itype[2] + '형">'
+          + '<span>대입 수시 면접 ' + itype[2] + '형</span></a>';
+        clear.append(newli);
+      }
+    })
   }
+}
+
+$(document).on('click', '.mocktype', function (e) {
+  let typename = e.target.id.split("_",2);
+  console.log(typename[1]);
+  localStorage.setItem("resultType", typename[1]);
 });
