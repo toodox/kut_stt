@@ -51,11 +51,6 @@ xhr.onreadystatechange = () => {
             }
         })
     }
-
-
-
-    //질문 목록 수정하고 완료버튼 누르면 db에 저장
-
 }
 $(document).on('click', '.modbtn', function (b) {
     let col = 'question_' + b.target.id;
@@ -65,7 +60,7 @@ $(document).on('click', '.modbtn', function (b) {
             db.collection(col).doc(coln + j).update(
                 {
                     content: document.getElementById(coln + j).value,
-                    type: document.getElementById(coln + j).value
+                    type: document.getElementById(b.target.id + j).value
                 }
             );
         }
@@ -107,7 +102,7 @@ $(document).on('click', '.delbtn', function (del) {
         alert("취소되었습니다.");
     }
     else {
-        db.collection("question_R").get().then(snap => {
+        db.collection(delcol).get().then(snap => {
             let size = snap.size;
             for (let k = Number(delnum) + 1; k < size + 1; k++) {
                 let t = k - 1;
