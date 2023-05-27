@@ -82,6 +82,10 @@ function markingKeyword(keyword, text) {
 }
 
 window.onload = function () {
+  let user = firebase.auth().currentUser;
+  let userName = user.email.split("@")[0];
+  console.log(userName);
+
   resultType = localStorage.getItem("resultType");
   db.collection("question_" + resultType)
     .get()
@@ -93,9 +97,18 @@ window.onload = function () {
       createSideBar(questionsLen);
     });
   setTimeout(function () {
+    user = firebase.auth().currentUser;
+    userName = user.email.split("@")[0];
+    console.log(userName);
     // 질문지 불러오기
+    let docName = '';
+    if (resultType == "GPT")
+        docName = resultType + '_' + userName + i;
+    else
+        docName = resultType + '_question' + i;
+    console.log(docName);
     db.collection("question_" + resultType)
-      .doc(resultType + "_question" + i)
+      .doc(docName)
       .get()
       .then((result) => {
         $("#questions").html(
@@ -109,7 +122,7 @@ window.onload = function () {
     // 로딩되는 즉시 user의 정보를 받아오지 못하는 듯 함
     // 개선이 필요할 듯함
     // ex) 상세결과를 누르자 마자 바로 질문 번호가 나오지 않는 방식으로
-    var user = firebase.auth().currentUser;
+    user = firebase.auth().currentUser;
     userName = user.email.split("@")[0];
     console.log(userName);
 
@@ -177,8 +190,14 @@ $("#after").click(function () {
   if (i < questionsLen) {
     i++;
     updateProgressBar((100 * i) / questionsLen);
+    let docName = '';
+    if (resultType == "GPT")
+        docName = resultType + '_' + userName + i;
+    else
+        docName = resultType + '_question' + i;
+
     db.collection("question_" + resultType)
-      .doc(resultType + "_question" + i)
+      .doc(docName)
       .get()
       .then((result) => {
         // 질문 내용 업데이트
@@ -278,8 +297,14 @@ $("#before").click(function () {
   if (i - 1 > 0) {
     i--;
     updateProgressBar((100 * i) / questionsLen);
+    let docName = '';
+    if (resultType == "GPT")
+        docName = resultType + '_' + userName + i;
+    else
+        docName = resultType + '_question' + i;
+
     db.collection("question_" + resultType)
-      .doc(resultType + "_question" + i)
+      .doc(docName)
       .get()
       .then((result) => {
         // 질문 내용 업데이트
