@@ -472,9 +472,7 @@ $("#secondKMOCKbtn").click(function() {
               }).catch((error) => {
                 console.error("Error removing document: ", error);
               });
-            } else {
-              console.log("Document does not exist!");
-            }
+            } 
           }).catch(error => {
             console.error("Error getting document: ", error);
           });
