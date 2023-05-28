@@ -1,6 +1,7 @@
 var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
-function admincheck() {
-  var user = firebase.auth().currentUser;
+
+async function admincheck() {
+  var user = await firebase.auth().currentUser;
   if (user) {
       if (user.email == 'master@koreatech.ac.kr') {   //관리자 아이디일 경우 관리자 페이지 접속
       }
@@ -15,7 +16,8 @@ function admincheck() {
 }
 
 
-firebase.auth().onAuthStateChanged(function (user) {
+firebase.auth().onAuthStateChanged(async function () {
+  var user = await firebase.auth().currentUser;
   if (user) {
     // 로그인 된 경우
     document.getElementById('logoutbtn').classList.remove('hidden');
