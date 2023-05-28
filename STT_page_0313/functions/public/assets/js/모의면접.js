@@ -114,7 +114,7 @@ function updateProgressBar(currentPercent) {
 
 function updateContentAndType(selectedTypes, questionNum) {
     let user = firebase.auth().currentUser;
-    let userName = user.email.split('@')[0];
+    let userName = localStorage.getItem('userName');
     let docName = '';
     if (selectedType == "GPT")
         docName = selectedTypes + '_' + userName + questionNum;
@@ -176,7 +176,7 @@ $('#send').click(function () {
     let currentQNum = QIndex;
     if (contentVal != '' && recodeing == 0) {
         let user = firebase.auth().currentUser;
-        let userName = user.email.split('@')[0];
+        let userName = localStorage.getItem('userName');
         let storageRef = storage.ref();
         let 저장할경로 = storageRef.child('voicedata/' + userName + ' ' + QIndex + "번 질문" + selectedType);
 
