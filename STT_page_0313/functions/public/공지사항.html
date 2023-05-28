@@ -25,7 +25,6 @@
 		integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 	<script src="assets/js/firebaseset.js"></script>
 	<!-- 파이어베이스 관련 스크립트 -->
-	<script src="assets/js/loginlogout.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- sweetalert 알림창 디자인 -->
 	<nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary fs-6 f-bold">
@@ -180,6 +179,7 @@
 		<ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
 		<p class="text-center text-muted">© 2023 KOREATECH</p>
 	</footer>
+	<script src="assets/js/loginlogout.js"></script>
 	<script>
         $('#logoutbtn').click(function () {
           var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기

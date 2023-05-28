@@ -64,7 +64,6 @@
               <a class="nav-link dropdown-toggle" id="navbarDropdown" role=" button" data-bs-toggle="dropdown"
                 aria-expanded="false" onclick="admincheck()" href="#">관리자페이지</a>
               <ul class="dropdown-menu f-medium" aria-labelledby="navbarDropdown">
-                <!--<li><a class="dropdown-item" href="/announcement">공지사항</a></li>-->
                 <li><a class="dropdown-item" href="/admin-page1">면접리스트</a></li>
                 <li><a class="dropdown-item" href="/admin-ans-edit">질문수정</a></li>
               </ul>
@@ -108,22 +107,6 @@
                     </h1>
                 </div>
             </div>
-
-            <!--질문 유형 구분용 박스 만들어놓은거-->
-            <!-- <div class="card my-4 border-0">
-                <div class="card-body">
-                    <nav class="navbar navbar-light">
-                        <form class="container-fluid justify-content-start">
-                            <button class="btn btn-outline-success me-3" type="button">회원정보</button>
-                            <button class="btn btn-sm btn-outline-secondary me-3" type="button">Type2</button>
-                            <button class="btn btn-sm btn-outline-secondary me-3" type="button">Type3</button>
-                            <button class="btn btn-sm btn-outline-secondary me-3" type="button">Type4</button>
-                            <button class="btn btn-sm btn-outline-secondary me-2" type="button">Type5</button>
-                        </form>
-                    </nav>
-                </div>
-            </div> -->
-
             <div class="card my-4 border-0">
                 <div class="accordion" id="accordionPanelsStayOpenExample">
                     <div class="accordion-item">
@@ -180,6 +163,8 @@
         <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
         <p class="text-center text-muted">© 2023 KOREATECH</p>
     </footer>
+    <script src="assets/js/loginlogout.js"></script>
+
     <script>
       $('#logoutbtn').click(function () {
         var user = firebase.auth().currentUser; // 현재 사용자 객체 가져오기
