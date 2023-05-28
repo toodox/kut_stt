@@ -463,19 +463,26 @@ $("#secondKMOCKbtn").click(function() {
      
         userName = localStorage.getItem('userName');
         console.log(addQuestionList);
-        //아래는 질문 초기화하는 코드 10개만지우는걸로 적혀있음
-        for (let i = 0; i < 10; i++) { 
-          await db.collection("question_GPT").doc("GPT_" + userName + i).get().then(doc => {
-            if (doc.exists) {
-              db.collection("question_GPT").doc("GPT_" + userName + i).delete().then(() => {
-                console.log("Document successfully deleted!");
-              }).catch((error) => {
-                console.error("Error removing document: ", error);
-              });
-            } 
-          }).catch(error => {
-            console.error("Error getting document: ", error);
-          });
+        //기존 도큐먼트를 초기화하는 코드
+        let i = 1;
+        while (i < 100) {
+            const docRef = db.collection("question_GPT").doc("GPT_" + userName + i);
+
+            try {
+                const doc = await docRef.get();
+
+                if (doc.exists) {
+                    await docRef.delete();
+                    console.log("Document successfully deleted!");
+                } else {
+                    console.log("Every Document deleted!");
+                    break;
+                }
+            } catch (error) {
+                console.error("Error processing document: ", error);
+                break;
+            }
+            i++;
         }
 
         for await(let question of addQuestionList) {
