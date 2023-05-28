@@ -196,6 +196,10 @@ $('#send').click(function () {
                 buttons: ["NO", "YES"]
             }).then((YES) => {
                 if (YES) {
+                    showLoading(); // 로딩 애니메이션 표시
+                    setTimeout(() => {
+                      hideLoading(); // 로딩 애니메이션 숨기기
+                    }, 2000);
                     // r.innerHTML = '';
                     r.value = '';
                     updateContentAndType(selectedType, QIndex + 1);
