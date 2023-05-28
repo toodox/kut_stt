@@ -130,43 +130,32 @@ app.post('/submitForm', (req, res) => {
             });
             let moreQuestions = responseGPT.data.choices[0].message.content;
 
-            console.log(typeof(moreQuestions));
-            let qArr = moreQuestions.split('1. ');
-            console.log(qArr);
-            qArr = '1. ' + qArr[1];
-            console.log(qArr);
-            if (qArr.indexOf('3. ') != -1) {
-                qArr = qArr.split('3. ');
-                qArr = qArr[0];
+            let qArr = moreQuestions.split("가능한 질문들:");
+            let kWd = qArr[0].split("핵심 단어: ")[1].replace('\n', '');
+            let qst = qArr[1].replace('\n', '');
+            if (qst.indexOf('3. ') != -1) {
+                qst = qst.split('3. ');
+                qst = qst[0];
             }
-            moreQuestions = qArr;
+            console.log(qArr);
+            console.log(kWd);
+            console.log(qst);
 
-            const gptKeyword = async(sentence) => {
-                const keyGPT = await openai.createChatCompletion({
-                    model: "gpt-3.5-turbo", 
-                    messages: [{ role: "user", content: sentence }],
-                });
-                let ggkeyWords = keyGPT.data.choices[0].message.content;
-                
-                ggkeyWords = ggkeyWords.replace('.', '');
+            let response = {
+                tokens: tokens, 
+                suggestions: suggestions, 
+                keyword1: (keyObj[0] == undefined ? '' : keyObj), 
+                keywordGPT: kWd, 
+                moreQuestions: qst
+            };
+    
+            console.log(response);
+            console.log("done");
 
-                let response = {
-                    tokens: tokens, 
-                    suggestions: suggestions, 
-                    keyword1: (keyObj[0] == undefined ? '' : keyObj), 
-                    keywordGPT: ggkeyWords, 
-                    moreQuestions: moreQuestions
-                };
-    
-                console.log(response);
-                console.log("done");
-    
-                res.send(JSON.stringify(response));
-            }
-            gptKeyword(sentence + "이 문장에서 가장 중요한 핵심 단어 2개를 추출해줘.");
+            res.send(JSON.stringify(response));
         }
         try {
-            runGPT(sentence + "이 문장을 고등학생이 대학교 입학 면접에서 대답했다고 가정할 때 추가로 나올만한 질문들을 2개 알려줘");
+            runGPT(sentence + "이 문장에서 가장 중요한 핵심 단어 2개를 추출해주고, 고등학생이 대학교 입학 면접에서 대답한 내용이라고 가정했을 때 추가로 나올만한 질문들을 2개 알려줘. 답변해줄 때 형식은 다음과 같이 답변해줘. \n핵심 단어: 단어1, 단어2\n가능한 질문들: \n1. 질문\n2. 질문");
         }
         catch (error) {
             console.log("GPT error" + error);
