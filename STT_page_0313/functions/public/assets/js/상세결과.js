@@ -14,14 +14,14 @@ var addQuestionList = [];
 function updateProgressBar(currentPercent) {
   $("#QProgress").html(
     "<div " +
-      'class="progress-bar progress-bar-striped progress-bar-animated" ' +
-      'role="progressbar" ' +
-      'style="width: ' +
-      currentPercent +
-      '%" aria-valuenow="0"' +
-      ' aria-valuemin="0"' +
-      ' aria-valuemax="100"' +
-      "></div>"
+    'class="progress-bar progress-bar-striped progress-bar-animated" ' +
+    'role="progressbar" ' +
+    'style="width: ' +
+    currentPercent +
+    '%" aria-valuenow="0"' +
+    ' aria-valuemin="0"' +
+    ' aria-valuemax="100"' +
+    "></div>"
   );
 }
 
@@ -83,7 +83,13 @@ function markingKeyword(keyword, text) {
 
 window.onload = function () {
   resultType = localStorage.getItem("resultType");
-  db.collection("question_" + resultType)
+  let userName = localStorage.getItem('userName');
+  let quecol = '';
+  if (resultType == "GPT")
+    quecol = db.collection("question_" + resultType).doc(resultType + "_" + userName).collection("question_" + resultType);
+  else
+    quecol = db.collection("question_" + resultType);
+  quecol
     .get()
     .then((result) => {
       questionsLen = result.size;
@@ -93,18 +99,21 @@ window.onload = function () {
       createSideBar(questionsLen);
     });
   setTimeout(function () {
- 
-    var userName = localStorage.getItem('userName');
+
+
     console.log(userName);
     // 질문지 불러오기
-    let docName = '';
-    if (resultType == "GPT")
-        docName = resultType + '_' + userName + i;
-    else
-        docName = resultType + '_question' + i;
-    console.log(docName);
-    db.collection("question_" + resultType)
-      .doc(docName)
+    let gptcol = '';
+    if (resultType == "GPT") {
+      gptcol = quecol.doc(resultType + "_" + userName + i);
+      concol = db.collection('u_' + userName + '_' + resultType).doc(resultType + "_" + userName).collection("question_" + resultType).doc(userName + resultType + i);
+    }
+    else {
+      gptcol = quecol.doc(resultType + '_question' + i);
+      concol = db.collection('u_' + userName + '_' + resultType).doc(userName + resultType + i);
+    }
+
+    gptcol
       .get()
       .then((result) => {
         $("#questions").html(
@@ -123,8 +132,7 @@ window.onload = function () {
     console.log(userName);
 
     // 수정 전/후 텍스트 불러오기
-    db.collection("u_"+userName+"_"+resultType)
-      .doc(userName + resultType + i)
+    concol
       .get()
       .then((result) => {
         console.log(result.data().수정전내용);
@@ -135,7 +143,7 @@ window.onload = function () {
 
         duration = result.data().걸린시간;
         document.getElementById(
-            "join_feedback"
+          "join_feedback"
         ).textContent = result.data().피드백;
         // document.getElementById("keyword").textContent = "키워드: " + result.data().키워드;
         document.getElementById("keyword").innerHTML =
@@ -186,25 +194,27 @@ $("#after").click(function () {
   if (i < questionsLen) {
     i++;
     updateProgressBar((100 * i) / questionsLen);
- 
-    var userName = localStorage.getItem('userName');
-    let docName = '';
-    if (resultType == "GPT")
-        docName = resultType + '_' + userName + i;
-    else
-        docName = resultType + '_question' + i;
 
-    console.log(docName);
-    db.collection("question_" + resultType)
-      .doc(docName)
+    var userName = localStorage.getItem('userName');
+    let gptcol = '';
+    let concol = '';
+    if (resultType == "GPT") {
+      gptcol = db.collection("question_" + resultType).doc(resultType + "_" + userName).collection("question_" + resultType).doc(resultType + "_" + userName + i);
+      concol = db.collection('u_' + userName + '_' + resultType).doc(resultType + "_" + userName).collection("question_" + resultType).doc(userName + resultType + i);
+    }
+    else {
+      gptcol = db.collection("question_" + resultType).doc(resultType + '_question' + i);
+      concol = db.collection('u_' + userName + '_' + resultType).doc(userName + resultType + i);
+    }
+
+    gptcol
       .get()
       .then((result) => {
         // 질문 내용 업데이트
         document.getElementById("Qcon").innerText =
           "질문" + i + ". " + result.data().content;
         // 질문 유형 업데이트
-        db.collection("u_"+userName+"_"+resultType)
-          .doc(userName + resultType + i)
+        concol
           .get()
           .then((result) => {
             console.log(result.data().수정전내용);
@@ -215,7 +225,7 @@ $("#after").click(function () {
 
             duration = result.data().걸린시간;
             document.getElementById(
-                "join_feedback"
+              "join_feedback"
             ).textContent = result.data().피드백;
             document.getElementById("keyword").innerHTML =
               '키워드: <mark class="marking">' +
@@ -296,24 +306,27 @@ $("#before").click(function () {
   if (i - 1 > 0) {
     i--;
     updateProgressBar((100 * i) / questionsLen);
- 
-    var userName = localStorage.getItem('userName');
-    let docName = '';
-    if (resultType == "GPT")
-        docName = resultType + '_' + userName + i;
-    else
-        docName = resultType + '_question' + i;
 
-    db.collection("question_" + resultType)
-      .doc(docName)
+    var userName = localStorage.getItem('userName');
+    let gptcol = '';
+    let concol = '';
+    if (resultType == "GPT") {
+      gptcol = db.collection("question_" + resultType).doc(resultType + "_" + userName).collection("question_" + resultType).doc(resultType + "_" + userName + i);
+      concol = db.collection('u_' + userName + '_' + resultType).doc(resultType + "_" + userName).collection("question_" + resultType).doc(userName + resultType + i);
+    }
+    else {
+      gptcol = db.collection("question_" + resultType).doc(resultType + '_question' + i);
+      concol = db.collection('u_' + userName + '_' + resultType).doc(userName + resultType + i);
+    }
+
+    gptcol
       .get()
       .then((result) => {
         // 질문 내용 업데이트
         document.getElementById("Qcon").innerText =
           "질문" + i + ". " + result.data().content;
         // 질문 유형 업데이트
-        db.collection("u_"+userName+"_"+resultType)
-          .doc(userName + resultType + i)
+       concol
           .get()
           .then((result) => {
             console.log(result.data().수정전내용);
@@ -324,7 +337,7 @@ $("#before").click(function () {
 
             duration = result.data().걸린시간;
             document.getElementById(
-                "join_feedback"
+              "join_feedback"
             ).textContent = result.data().피드백;
             document.getElementById("keyword").innerHTML =
               '키워드: <mark class="marking">' +
@@ -452,56 +465,41 @@ $("#closeBtn").click(function () {
   document.querySelector(targetID).style.display = "none";
 });
 
-$("#secondKMOCKbtn").click(function() {
+$("#secondKMOCKbtn").click(function () {
 
-    function saveSelectedType(type) {
-        localStorage.setItem("selectedType", type); // 웹 브라우저에 변수를 저장
+  function saveSelectedType(type) {
+    localStorage.setItem("selectedType", type); // 웹 브라우저에 변수를 저장
+  }
+
+  async function saveGPTQuestion() {
+    let idx = 1;
+
+    userName = localStorage.getItem('userName');
+    console.log(addQuestionList);
+    //기존 도큐먼트를 초기화하는 코드
+    await db.collection("question_GPT").doc("GPT_" + userName).delete();
+
+    for await (let question of addQuestionList) {
+
+
+      await db.collection("question_GPT")
+        .doc("GPT_" + userName)
+        .collection("question_GPT")
+        .doc("GPT_" + userName + idx)
+        .set({
+          content: question
+        }).then((result) => {
+          console.log(result);
+        }).catch((error) => {
+          console.error(error);
+        });
+      idx += 1;
     }
+    setTimeout(() => {
+      window.location.href = "/notice"; // 유의사항.html 페이지로 이동
+    }, 500);
+  }
 
-    async function saveGPTQuestion() {
-        let idx = 1;
-     
-        userName = localStorage.getItem('userName');
-        console.log(addQuestionList);
-        //기존 도큐먼트를 초기화하는 코드
-        let i = 1;
-        while (i < 100) {
-            const docRef = db.collection("question_GPT").doc("GPT_" + userName + i);
-
-            try {
-                const doc = await docRef.get();
-
-                if (doc.exists) {
-                    await docRef.delete();
-                    console.log("Document successfully deleted!");
-                } else {
-                    console.log("Every Document deleted!");
-                    break;
-                }
-            } catch (error) {
-                console.error("Error processing document: ", error);
-                break;
-            }
-            i++;
-        }
-
-        for await(let question of addQuestionList) {
-
-
-          await db.collection("question_GPT").doc("GPT_" + userName + idx).set({
-              content: question
-          }).then((result) => {
-              console.log(result);
-          }).catch((error) => {
-              console.error(error);
-          });
-          idx += 1;
-        }
-        setTimeout(() => {
-          window.location.href = "/notice"; // 유의사항.html 페이지로 이동
-        }, 500);
-    }
-
-    saveSelectedType("GPT");
-    saveGPTQuestion();
+  saveSelectedType("GPT");
+  saveGPTQuestion();
 });

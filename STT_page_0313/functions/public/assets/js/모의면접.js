@@ -20,8 +20,8 @@ var recodeing = 0; //녹음중인지 확인하는 변수
 
 function showLoading() {
     document.getElementById('loading').style.display = 'block';
-  }
-  
+}
+
 function hideLoading() {
     document.getElementById('loading').style.display = 'none';
 }
@@ -113,24 +113,32 @@ function updateProgressBar(currentPercent) {
 }
 
 function updateContentAndType(selectedTypes, questionNum) {
-    let user = firebase.auth().currentUser;
-    let userName = user.email.split('@')[0];
+    let userName = localStorage.getItem('userName');
     let docName = '';
-    if (selectedType == "GPT")
-        docName = selectedTypes + '_' + userName + questionNum;
-    else
+    if (selectedType == "GPT") {
+        docName = selectedTypes + '_' + userName;
+        db.collection('question_' + selectedTypes).doc(docName).collection('question_' + selectedTypes).doc(docName + questionNum).get().then((result) => {
+            if (questionNum == 1) {
+                $('#questions').html('<h1 id="Qcon">질문' + questionNum + '. ' + result.data().content + '</h1>');
+            }
+            else {
+                document.getElementById("Qcon").innerText = '질문' + questionNum + '. ' + result.data().content;
+            }
+        });
+    }
+    else {
         docName = selectedTypes + '_question' + questionNum;
-    console.log(docName);
-    db.collection('question_' + selectedTypes).doc(docName).get().then((result) => {
-        if (questionNum == 1) {
-            $('#questions').html('<h1 id="Qcon">질문' + questionNum + '. ' + result.data().content + '</h1>');
-        }
-        else {
-            document.getElementById("Qcon").innerText = '질문' + questionNum + '. ' + result.data().content;
-        }
-    });
+        console.log(docName);
+        db.collection('question_' + selectedTypes).doc(docName).get().then((result) => {
+            if (questionNum == 1) {
+                $('#questions').html('<h1 id="Qcon">질문' + questionNum + '. ' + result.data().content + '</h1>');
+            }
+            else {
+                document.getElementById("Qcon").innerText = '질문' + questionNum + '. ' + result.data().content;
+            }
+        });
+    }
 }
-
 
 function fixWrongSpell(orgSentence, tokens, suggestions) {
     let changedText = orgSentence
@@ -155,8 +163,15 @@ function createFixArr(tokens, suggestions) {
 
 window.onload = function () {
     selectedType = localStorage.getItem("selectedType");
+    var userName = localStorage.getItem('userName');
     console.log(selectedType);
-    db.collection('question_' + selectedType).get().then(snap => {
+    let questioncol = '';
+    if (selectedType == "GPT")
+        questioncol = db.collection("question_" + selectedType).doc(selectedType + "_" + userName).collection("question_" + selectedType);
+    else
+        questioncol = db.collection("question_" + selectedType);
+
+    questioncol.get().then(snap => {
         size = snap.size;
         questionsLen = size;
 
@@ -176,7 +191,7 @@ $('#send').click(function () {
     let currentQNum = QIndex;
     if (contentVal != '' && recodeing == 0) {
         let user = firebase.auth().currentUser;
-        let userName = user.email.split('@')[0];
+        let userName = localStorage.getItem('userName');
         let storageRef = storage.ref();
         let 저장할경로 = storageRef.child('voicedata/' + userName + ' ' + QIndex + "번 질문" + selectedType);
 
@@ -198,7 +213,7 @@ $('#send').click(function () {
                 if (YES) {
                     showLoading(); // 로딩 애니메이션 표시
                     setTimeout(() => {
-                      hideLoading(); // 로딩 애니메이션 숨기기
+                        hideLoading(); // 로딩 애니메이션 숨기기
                     }, 2000);
                     // r.innerHTML = '';
                     r.value = '';
@@ -223,15 +238,14 @@ $('#send').click(function () {
                     text: "제출하시겠습니까? 10초 정도 시간이 걸릴 수 있습니다.",
                     icon: "info", //"info,success,warning,error" 중 택1
                     buttons: ["NO", "YES"]
-                    }).then((YES) => {
-                        if (YES) 
-                        {
-                            showLoading(); // 로딩 애니메이션 표시
-                            setTimeout(() => {
-                              hideLoading(); // 로딩 애니메이션 숨기기
-                              window.location.href = "/submit";
-                            }, 10000);
-                        }
+                }).then((YES) => {
+                    if (YES) {
+                        showLoading(); // 로딩 애니메이션 표시
+                        setTimeout(() => {
+                            hideLoading(); // 로딩 애니메이션 숨기기
+                            window.location.href = "/submit";
+                        }, 10000);
+                    }
                 });
             }, 500);
         }
@@ -253,14 +267,24 @@ $('#send').click(function () {
                     수정전내용: contentVal,
                     수정후내용: fixedSentence,
                     수정할내용: fixArr,
-                    키워드: keyword1, 
-                    GPT키워드: keywordGPT, 
+                    키워드: keyword1,
+                    GPT키워드: keywordGPT,
                     추가질문: moreQuestions,
                     날짜: new Date(),
                     걸린시간: time_gap,
                     피드백: "",
                 }
-                db.collection('u_' + userName + '_' + selectedType).doc(userName + selectedType + currentQNum).set(저장할거).then((result) => {
+                selectedType = localStorage.getItem("selectedType");
+                let userName = localStorage.getItem('userName');
+                let resultcol = '';
+                if (selectedType == "GPT") {
+                    db.collection('u_' + userName + '_' + selectedType).doc(selectedType + "_" + userName).delete();
+                    resultcol = db.collection('u_' + userName + '_' + selectedType).doc(selectedType + "_" + userName).collection("question_" + selectedType).doc(userName + selectedType + currentQNum);
+                }
+                else
+                    resultcol = db.collection('u_' + userName + '_' + selectedType).doc(userName + selectedType + currentQNum);
+
+                resultcol.set(저장할거).then((result) => {
                     console.log(result);
                 }).catch((error) => {
                     console.log(error);
