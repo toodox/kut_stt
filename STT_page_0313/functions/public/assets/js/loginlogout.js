@@ -22,7 +22,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     document.getElementById('uinfo').classList.remove('hidden');
     document.getElementById("loginbtn").classList.add('hidden');
     document.getElementById("signupbtn").classList.add('hidden');
-    document.getElementById("uinfo").innerText = user.email;
+    document.getElementById("uinfo").innerText = localStorage.getItem('userName');
     if (user.email == 'master@koreatech.ac.kr')
       document.getElementById('adminch').classList.remove('hidden');
   } else {
