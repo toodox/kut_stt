@@ -112,12 +112,12 @@ function updateProgressBar(currentPercent) {
     );
 }
 
-function updateContentAndType(selectedTypes, questionNum) {
+async function updateContentAndType(selectedTypes, questionNum) {
     let userName = localStorage.getItem('userName');
     let docName = '';
     if (selectedType == "GPT") {
         docName = selectedTypes + '_' + userName;
-        db.collection('question_' + selectedTypes).doc(docName).collection('question_' + selectedTypes).doc(docName + questionNum).get().then((result) => {
+        await db.collection('question_' + selectedTypes).doc(docName).collection('question_' + selectedTypes).doc(docName + questionNum).get().then((result) => {
             if (questionNum == 1) {
                 $('#questions').html('<h1 id="Qcon">질문' + questionNum + '. ' + result.data().content + '</h1>');
             }
@@ -129,7 +129,7 @@ function updateContentAndType(selectedTypes, questionNum) {
     else {
         docName = selectedTypes + '_question' + questionNum;
         console.log(docName);
-        db.collection('question_' + selectedTypes).doc(docName).get().then((result) => {
+        await db.collection('question_' + selectedTypes).doc(docName).get().then((result) => {
             if (questionNum == 1) {
                 $('#questions').html('<h1 id="Qcon">질문' + questionNum + '. ' + result.data().content + '</h1>');
             }
