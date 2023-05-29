@@ -51,10 +51,8 @@ xhr.onreadystatechange = () => {
   }
 }
 
-document.addEventListener('click', function(e) {
-  if (e.target.classList.contains('mocktype')) {
-    let typename = e.target.id.split("_",2);
-    console.log(typename[1]);
-    localStorage.setItem('selectedType', typename[1]);
-  }
+$(document).on('click', '.mocktype', function (e) {
+  let typename = e.target.id.split("_",2);
+  console.log(typename[1]);
+  localStorage.setItem("selectedType", typename[1]);
 });
