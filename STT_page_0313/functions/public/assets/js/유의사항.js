@@ -14,6 +14,7 @@ var time_gap; //문제별 걸린 시간
 var first_time;
 var last_time;
 var recodeing = 0; //녹음중인지 확인하는 변수
+var stopBtnClicked = false;
 
 function startRecording() {
   chunks = [];
@@ -41,38 +42,45 @@ function startRecording() {
 function startConverting() {
   startRecording();
   first_time = performance.now();
-  isRecoding = true;
-  r.innerHTML = "";
-  if ("webkitSpeechRecognition" in window) {
-    speechRecognizer.continuous = true;
-    speechRecognizer.interimResults = true;
-    speechRecognizer.lang = "ko-KR";
-    speechRecognizer.start();
+  // r.innerHTML = '';
+  r.value = '';
 
-    var finalTranscripts = "";
+  if ('webkitSpeechRecognition' in window) {
+      speechRecognizer.continuous = true;
+      speechRecognizer.interimResults = true;
+      speechRecognizer.lang = 'ko-KR';
+      speechRecognizer.start();
 
-    speechRecognizer.onresult = function (event) {
-      var interimTranscripts = "";
-      for (var i = event.resultIndex; i < event.results.length; i++) {
-        var transcript = event.results[i][0].transcript;
-        transcript.replace("\n", "<br>");
-        if (event.results[i].isFinal) {
-          finalTranscripts += transcript;
-        } else {
-          interimTranscripts += transcript;
-        }
-      }
-      r.innerHTML = finalTranscripts + interimTranscripts;
-    };
+      var finalTranscripts = '';
 
-    speechRecognizer.onerror = function (event) {};
-  } else {
-    r.innerHTML =
-      "Your browser is not supported. If google chrome, please upgrade!";
+      speechRecognizer.onresult = function (event) {
+          var interimTranscripts = '';
+
+          for (var i = event.resultIndex; i < event.results.length; i++) {
+              var transcript = event.results[i][0].transcript;
+              // transcript.replace("\n", "<br>");
+
+              if (event.results[i].isFinal)
+                  finalTranscripts += transcript;
+              else
+                  interimTranscripts += transcript;
+          }
+          // r.innerHTML = finalTranscripts + interimTranscripts;
+          r.value = finalTranscripts + interimTranscripts;
+      };
+
+      speechRecognizer.onerror = function (event) {
+
+      };
+  }
+  else {
+      // r.innerHTML = "Your browser is not supported. If google chrome, please upgrade!";
+      r.value = "Your browser is not supported. If google chrome, please upgrade!";
   }
 }
 
 function stopConverting() {
+  stopBtnClicked = true;
   recodeing = 0;
   speechRecognizer.stop();
   mediaRecorder.stop();

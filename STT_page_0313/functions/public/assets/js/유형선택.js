@@ -43,16 +43,18 @@ xhr.onreadystatechange = () => {
         let newli = document.createElement('li');
         newli.classList.add('select-list');
         newli.innerHTML = '<a href="/notice" class="mocktype" id="type_'
-          + itype[1] + '" data-hover="대입 수시 면접 ' + itype[1] + '형">'
-          + '<span>대입 수시 면접 ' + itype[1] + '형</span></a>';
+        + itype[1] + '" data-hover="대입 수시 면접 ' + itype[1] + '형">'
+        + '<span id="type_'+ itype[1] + '">대입 수시 면접 ' + itype[1] + '형</span></a>';
         que.append(newli);
       }
     })
   }
 }
 
-$(document).on('click', '.mocktype', function (e) {
-  let typename = e.target.id.split("_",2);
-  console.log(typename[1]);
-  localStorage.setItem("selectedType", typename[1]);
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('mocktype')) {
+    let typename = e.target.id.split("_",2);
+    console.log(typename[1]);
+    localStorage.setItem('selectedType', typename[1]);
+  }
 });
