@@ -39,13 +39,14 @@
   <!-- 파이어베이스 관련 스크립트 -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <!-- sweetalert 알림창 디자인 -->
+
+
   <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary fs-6 f-bold">
     <div class="container-xxl">
       <a href="/" class="align-items-center col-md-3 mb-md-0 text-dark text-decoration-none">
         <img src="assets/image/로고.png" class="head_logo" alt="">
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -94,24 +95,8 @@
     </div>
 
     <div class="col-md-8">
-      <!-- <div class="shadow card my-2 rounded-pill bg-warning border-0">
-        <div class="card-body text-center">
-          <h6 id="Qtype"></h6>
-        </div>
-      </div> -->
-      <!--질문 진도 표시-->
-      <!-- <div class="progress" id="QProgress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"
-          aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-        </div>
-      </div> -->
       <div class="card border-0">
-        <div class="card-body f-bold" id="questions">
-          <!-- <h1> -->
-          <!-- 질문1. 우리 학교 지원 동기는 무엇입니까? -->
-          <!-- 단순 h1형식으로 하는게 아니라 질문DB에서 따와서 불러와야 됨-->
-          <!-- </h1> -->
-        </div>
+        <div class="card-body f-bold" id="questions"></div>
       </div>
       <div class="card border-0">
         <div class="card-body">
@@ -136,8 +121,7 @@
               <div class="fs-6 lead" id="resultForm">
                 <strong class="screen_out">응답 내용</strong>
                 <div class="cont_grammar">
-                  <div class="cont_spell" id="join_result"> 
-                  </div>
+                  <div class="cont_spell" id="join_result"></div>
                 </div>
               </div>
             </div>
@@ -156,7 +140,6 @@
                 <input type="checkbox" title="pQ1" name="additionalQ1" value="q1" id="aQ1">
                 <label for="aQ1" id="aQ1Label" class="mb-1"></label>
               </div>
-              
               <div class="box mb-3">
                 <input type="checkbox" title="pQ2" name="additionalQ2" value="q2" id="aQ2">
                 <!--add_questions-->
@@ -174,8 +157,7 @@
             <div class="fs-6 lead" id="resultForm">
               <strong class="screen_out">응답 내용</strong>
               <div class="cont_grammar">
-                <div class="cont_spell" id="join_feedback" contentEditable='true' placeholder='아직 피드백이 입력되지 않았습니다.'> 
-                </div>
+                <div class="cont_spell" id="join_feedback" contentEditable='true' placeholder='아직 피드백이 입력되지 않았습니다.'></div>
               </div>
             </div>
           </div>
@@ -199,9 +181,7 @@
               </div>
               <div class="layer_body">
                 <div class="cont_qList">
-                  <div id="join_ques">
-                    <!-- <li>테스트</li> -->
-                  </div>
+                  <div id="join_ques"></div>
                 </div>
                 <div class="btn_wrap">
                   <div class="img_btn" href="#none" id="closeBtn">
@@ -215,12 +195,10 @@
             </div>
           </div>
         </div>
-        <div class="card-body text-end">
-          
-        </div>
       </div>
     </div>
   </div>
+  
   <footer class="mt-4 mb-4">
     <ul class="justify-content-center border-bottom mb-3"></ul>
     <p class="text-center">2023 KOREATECH</p>
