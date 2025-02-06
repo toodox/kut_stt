@@ -15,3 +15,5 @@ https://koreatechsttmockinterview.web.app
 
 
 ![image](https://github.com/toodox/kut_stt/assets/101110020/36bf894a-55b3-45be-9cb7-39c4aebd4ed7)
+
+사용 툴: Firebase, Figma, Node.js(express), GPT4 api, hangeul api(맞춤법 검사)
